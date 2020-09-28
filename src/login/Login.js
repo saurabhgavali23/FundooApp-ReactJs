@@ -69,7 +69,7 @@ const Login = () => {
           </div>
           <div className="anchor">
             <a href="/registration">Create New Account</a>
-            <a href="/signUp">Forgot Password</a>
+            <a href="/forgot-password">Forgot Password</a>
           </div>
         </form>
       </div>
