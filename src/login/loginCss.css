@@ -1,0 +1,68 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.formDiv{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    box-shadow:  0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+.inputDiv{
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+    height: 80px;
+    justify-content: space-between;
+}
+.fundooTitle{
+    display: flex;
+    font-size: x-large;
+    margin-top: 5%;
+    justify-content: center;
+}
+.signInTitle{
+    display: flex;
+    font-size: large;
+    margin-top: 5%;
+    justify-content: center;
+}
+.emailInput{
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+.passwordInput{
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+}
+.buttonDiv{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+.button{
+    width: 60px;
+    height: 30px;
+}
+.inputError{
+    font-size: 12px;
+    color: red;
+}
+.anchor{
+    display: flex;
+    margin-left: 10%;
+    height: 50px;
+    margin-top: 5%;
+    flex-direction: column;
+    justify-content: space-between;
+}

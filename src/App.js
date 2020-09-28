@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
+import Login from './login/Login';
 
 function App() {
   return (
-    <div>
-      Hello World
-    </div>
+    <Login/>
   );
 }
 
