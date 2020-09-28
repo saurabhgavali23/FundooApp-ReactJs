@@ -59,7 +59,7 @@
     font-size: 12px;
     color: red;
 }
-.anchor{
+.loginAnchor{
     display: flex;
     margin-left: 10%;
     height: 50px;
@@ -72,4 +72,8 @@
     align-self: center;
     margin-left: 22%;
     cursor: pointer;
+}
+.confirmPassword{
+    display: flex;
+    flex-direction: row;
 }

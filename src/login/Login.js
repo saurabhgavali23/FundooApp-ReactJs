@@ -51,7 +51,7 @@ const Login = () => {
               required
             />
             {emailError ? <div className="inputError">{emailText}</div> : null}
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div className='confirmPassword'>
             <input
               type={isvisible?'text':'password'}
               placeholder="Password"
@@ -67,7 +67,7 @@ const Login = () => {
           <div className="buttonDiv">
             <input type="submit" value="Login" className="button" />
           </div>
-          <div className="anchor">
+          <div className="loginAnchor">
             <a href="/registration">Create New Account</a>
             <a href="/forgot-password">Forgot Password</a>
           </div>
