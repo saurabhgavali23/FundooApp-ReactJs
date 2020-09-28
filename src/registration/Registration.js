@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "../registration/registerCss.css";
+import { userRegistration } from '../services/userServices';
 
 const Registration = () => {
   const [email, setEmail] = useState();
@@ -46,7 +47,16 @@ const Registration = () => {
   }
 
   const handleData = () => {
-    
+    let data={
+      firstName: firstName,
+      lastName: lastName,
+      service: "advance",
+      email: email,
+      password: password
+    }
+    userRegistration(data).then(res=>{
+    }).catch(err=>{
+    })
   };
 
   return (
@@ -98,7 +108,9 @@ const Registration = () => {
             {confirmPasswordError ? <div className="inputError">{confirmPasswordText}</div> : null}
           </div>
           <div className="buttonDiv">
-            <input type="submit" value="Register" className="button" />
+            <input type="submit" value="Register" className="button"
+              onClick={handleData}
+            />
           </div>
           <div className="anchor">
             <a href="/">SignIn</a>
