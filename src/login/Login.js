@@ -68,7 +68,7 @@ const Login = () => {
             <input type="submit" value="Login" className="button" />
           </div>
           <div className="anchor">
-            <a href="/signUp">Create New Account</a>
+            <a href="/registration">Create New Account</a>
             <a href="/signUp">Forgot Password</a>
           </div>
         </form>

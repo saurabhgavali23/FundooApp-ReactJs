@@ -101,7 +101,7 @@ const Registration = () => {
             <input type="submit" value="Register" className="button" />
           </div>
           <div className="anchor">
-            <a href="/signIn">SignIn</a>
+            <a href="/">SignIn</a>
           </div>
         </form>
       </div>
