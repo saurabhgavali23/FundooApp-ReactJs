@@ -8,6 +8,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [emailText, setEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
+  const [isvisible, setIsvisible] = useState(false)
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -41,7 +42,7 @@ const Login = () => {
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">SignIn</div>
         <form onSubmit={handleData}>
-          <div className="inputDiv">
+          <div className="inputDiv1">
             <input
               placeholder="Email Id"
               className="emailInput"
@@ -50,14 +51,17 @@ const Login = () => {
               required
             />
             {emailError ? <div className="inputError">{emailText}</div> : null}
+            <div style={{display: 'flex', flexDirection: 'row'}}>
             <input
-              type="password"
+              type={isvisible?'text':'password'}
               placeholder="Password"
               className="passwordInput"
               onBlur={passwordValidation}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <div className="showHide" onClick={()=>setIsvisible(!isvisible)}>{isvisible?'hide':'show'}</div>
+            </div>
             {passwordError ? <div className="inputError">{passwordText}</div> : null}
           </div>
           <div className="buttonDiv">

@@ -5,7 +5,7 @@ import Registration from './registration/Registration';
 
 function App() {
   return (
-    <Registration/>
+    <Login/>
   );
 }
 
