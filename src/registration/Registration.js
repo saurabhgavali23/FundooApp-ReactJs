@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import "../login/loginCss.css";
+import React, { useState } from 'react'
+import "../registration/registerCss.css";
 
-const Login = () => {
+const Registration = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [emailText, setEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState()
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false)
+  const [confirmPasswordText, setConfirmPasswordText] = useState('')
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -30,21 +35,44 @@ const Login = () => {
     }
   };
 
+  const confirmPasswordValidation = () =>{
+      if(confirmPassword!==password){
+        setConfirmPasswordError(true)
+        setConfirmPasswordText("Password dose not match")
+      }else{
+          setConfirmPasswordError(false)
+          setConfirmPasswordText('')
+      }
+  }
+
   const handleData = () => {
-    console.log("email", email);
-    console.log("password", password);
+    
   };
 
   return (
     <div className="container">
       <div className="formDiv">
         <div className="fundooTitle">FundooApp</div>
-        <div className="signInTitle">SignIn</div>
+        <div className="signInTitle">Registration</div>
         <form onSubmit={handleData}>
           <div className="inputDiv">
+         <div className="firstAndLastNameContainer">
+         <input
+            className="firstAndLastName"
+              placeholder="FirstName"
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+             <input
+             className="firstAndLastName"
+              placeholder="LastName"
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+         </div>
             <input
               placeholder="Email Id"
-              className="emailInput"
+              className="input"
               onBlur={validateEmailAddress}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -53,19 +81,27 @@ const Login = () => {
             <input
               type="password"
               placeholder="Password"
-              className="passwordInput"
+              className="input"
               onBlur={passwordValidation}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             {passwordError ? <div className="inputError">{passwordText}</div> : null}
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="input"
+              onBlur={confirmPasswordValidation}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            {confirmPasswordError ? <div className="inputError">{confirmPasswordText}</div> : null}
           </div>
           <div className="buttonDiv">
-            <input type="submit" value="Login" className="button" />
+            <input type="submit" value="Register" className="button" />
           </div>
           <div className="anchor">
-            <a href="/signUp">Create New Account</a>
-            <a href="/signUp">Forgot Password</a>
+            <a href="/signIn">SignIn</a>
           </div>
         </form>
       </div>
@@ -73,4 +109,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
+
