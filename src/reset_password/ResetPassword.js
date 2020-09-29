@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../forgot_password/ForgotPasswordCss.css";
+import "./ResetPasswordCss.css";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [emailText, setEmailText] = useState("");
@@ -48,4 +48,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

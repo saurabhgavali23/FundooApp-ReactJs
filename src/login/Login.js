@@ -82,7 +82,7 @@ const Login = ({openSnackBar}) => {
           </div>
           <div className="loginAnchor">
             <a href="/registration">Create New Account</a>
-            <a href="/forgot-password">Forgot Password</a>
+            <a href="/reset-password">Forgot Password</a>
           </div>
       </div>
     </div>

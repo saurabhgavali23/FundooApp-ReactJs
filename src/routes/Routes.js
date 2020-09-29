@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import ForgotPassword from '../forgot_password/ForgotPassword'
+import ResetPassword from '../reset_password/ResetPassword'
 import Login from '../login/Login'
 import Registration from '../registration/Registration'
 import Styles from '../routes/snackBar.module.css'
@@ -24,7 +24,7 @@ const Routes = () => {
                 <Route path={'/registration'} component={Registration}>
                     <Registration openSnackBar={openSnackBar}/>
                 </Route>
-                <Route path={'/forgot-password'} component={ForgotPassword}/>
+                <Route path={'/reset-password'} component={ResetPassword}/>
             </Switch>
             </BrowserRouter>
             <div className={
