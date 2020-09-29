@@ -14,6 +14,7 @@ const Registration = () => {
   const [confirmPassword, setConfirmPassword] = useState()
   const [confirmPasswordError, setConfirmPasswordError] = useState(false)
   const [confirmPasswordText, setConfirmPasswordText] = useState('')
+  const [isEnabled, setIsEnabled] = useState(false)
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -38,25 +39,32 @@ const Registration = () => {
 
   const confirmPasswordValidation = () =>{
       if(confirmPassword!==password){
+        setIsEnabled(false)
         setConfirmPasswordError(true)
         setConfirmPasswordText("Password dose not match")
       }else{
+          setIsEnabled(true)
           setConfirmPasswordError(false)
           setConfirmPasswordText('')
+          
       }
   }
 
   const handleData = () => {
-    let data={
-      firstName: firstName,
-      lastName: lastName,
-      service: "advance",
-      email: email,
-      password: password
+    if(firstName && lastName && email && password !== null){
+      let data={
+        firstName: firstName,
+        lastName: lastName,
+        service: "advance",
+        email: email,
+        password: password
+      }
+      userRegistration(data).then(res=>{
+      }).catch(err=>{
+      })
+    }else{
+      console.log("invalid");
     }
-    userRegistration(data).then(res=>{
-    }).catch(err=>{
-    })
   };
 
   return (
@@ -64,7 +72,6 @@ const Registration = () => {
       <div className="formDiv">
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">Registration</div>
-        <form onSubmit={handleData}>
           <div className="inputDiv">
          <div className="firstAndLastNameContainer">
          <input
@@ -109,13 +116,13 @@ const Registration = () => {
           </div>
           <div className="buttonDiv">
             <input type="submit" value="Register" className="button"
+            disabled={isEnabled?false:true}
               onClick={handleData}
             />
           </div>
           <div className="anchor">
             <a href="/">SignIn</a>
           </div>
-        </form>
       </div>
     </div>
   );
