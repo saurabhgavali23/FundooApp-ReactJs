@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../login/loginCss.css";
+import { login } from "../services/userServices";
 
-const Login = () => {
+const Login = ({openSnackBar}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState(false);
@@ -32,8 +33,20 @@ const Login = () => {
   };
 
   const handleData = () => {
-    console.log("email", email);
-    console.log("password", password);
+    if(email!==null && password!==null){
+      let data={
+        email: email,
+        password: password
+      }
+      login(data).then(res=>{
+        if(res.status===401){
+          openSnackBar("UnAuthorized User")
+        }
+       openSnackBar("Login Successfull")
+      }).catch(err=>{
+        openSnackBar("Login Faild")
+      })
+    }
   };
 
   return (
@@ -41,7 +54,6 @@ const Login = () => {
       <div className="formDiv">
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">SignIn</div>
-        <form onSubmit={handleData}>
           <div className="inputDiv1">
             <input
               placeholder="Email Id"
@@ -65,13 +77,13 @@ const Login = () => {
             {passwordError ? <div className="inputError">{passwordText}</div> : null}
           </div>
           <div className="buttonDiv">
-            <input type="submit" value="Login" className="button" />
+            <input type="submit" value="Login" className="button"
+             onClick={handleData} />
           </div>
           <div className="loginAnchor">
             <a href="/registration">Create New Account</a>
             <a href="/forgot-password">Forgot Password</a>
           </div>
-        </form>
       </div>
     </div>
   );

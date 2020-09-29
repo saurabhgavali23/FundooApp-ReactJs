@@ -6,3 +6,10 @@ export const userRegistration = (data) =>{
         data
     )
 }
+
+export const login = (data) =>{
+    return Axios.post(
+        'http://fundoonotes.incubation.bridgelabz.com/api/user/login',
+        data
+    )
+}

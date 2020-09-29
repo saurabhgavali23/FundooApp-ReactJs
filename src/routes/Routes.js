@@ -19,7 +19,7 @@ const Routes = () => {
             <BrowserRouter>
             <Switch>
                 <Route path={'/'} component={Login} exact>
-                    <Login/>
+                    <Login openSnackBar={openSnackBar}/>
                 </Route>
                 <Route path={'/registration'} component={Registration}>
                     <Registration openSnackBar={openSnackBar}/>
