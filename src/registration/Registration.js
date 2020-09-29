@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import "../registration/registerCss.css";
 import { userRegistration } from '../services/userServices';
 
-const Registration = () => {
+const Registration = ({openSnackBar}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState(false);
@@ -15,6 +16,7 @@ const Registration = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false)
   const [confirmPasswordText, setConfirmPasswordText] = useState('')
   const [isEnabled, setIsEnabled] = useState(false)
+  const history = useHistory();
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -51,6 +53,7 @@ const Registration = () => {
   }
 
   const handleData = () => {
+    
     if(firstName && lastName && email && password !== null){
       let data={
         firstName: firstName,
@@ -60,10 +63,17 @@ const Registration = () => {
         password: password
       }
       userRegistration(data).then(res=>{
+        if(res.status===422){
+          openSnackBar("User Already Register")
+        }else{
+        openSnackBar(res.data.data.message)
+        history.push('/');
+        }
       }).catch(err=>{
+        openSnackBar('Registration Faild')
       })
     }else{
-      console.log("invalid");
+      openSnackBar('All Fields are Required')
     }
   };
 
