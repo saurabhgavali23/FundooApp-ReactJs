@@ -42,6 +42,10 @@ const Login = ({openSnackBar}) => {
         if(res.status===401){
           openSnackBar("UnAuthorized User")
         }
+        let userToken = res.data.id
+        let userId = res.data.userId
+        localStorage.setItem('userToken',userToken)
+        localStorage.setItem('userId', userId)
        openSnackBar("Login Successfull")
       }).catch(err=>{
         openSnackBar("Login Faild")
