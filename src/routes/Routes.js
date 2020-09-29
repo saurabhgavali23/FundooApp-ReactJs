@@ -18,13 +18,15 @@ const Routes = () => {
         <div>
             <BrowserRouter>
             <Switch>
-                <Route path={'/'} component={Login} exact>
+                <Route path={'/'} exact>
                     <Login openSnackBar={openSnackBar}/>
                 </Route>
-                <Route path={'/registration'} component={Registration}>
+                <Route path={'/registration'}>
                     <Registration openSnackBar={openSnackBar}/>
                 </Route>
-                <Route path={'/reset-password'} component={ResetPassword}/>
+                <Route path={'/reset-password'}>
+                    <ResetPassword openSnackBar={openSnackBar}/>
+                </Route>
             </Switch>
             </BrowserRouter>
             <div className={

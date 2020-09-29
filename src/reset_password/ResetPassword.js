@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { sendEmail } from "../services/userServices";
 import "./ResetPasswordCss.css";
 
-const ResetPassword = () => {
+const ResetPassword = ({openSnackBar}) => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [emailText, setEmailText] = useState("");
@@ -18,6 +19,20 @@ const ResetPassword = () => {
   };
 
   const handleData = () => {
+    if(email!==null){
+      let data={
+        email: email
+      }
+      sendEmail(data).then(res=>{
+        if(res.status===200){
+          openSnackBar('Email Sent Successfully')
+        }
+      }).catch(err=>{
+        openSnackBar('Faild Sent Email')
+      })
+    }else{
+      openSnackBar('Email Id required')
+    }
   };
 
   return (
@@ -25,7 +40,6 @@ const ResetPassword = () => {
       <div className="formDiv1">
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">Enter your recovery email</div>
-        <form onSubmit={handleData}>
           <div className="emailInputDiv">
             <input
               placeholder="Email Id"
@@ -37,12 +51,12 @@ const ResetPassword = () => {
             {emailError ? <div className="inputError">{emailText}</div> : null}
             </div>
           <div className="buttonDiv">
-            <input type="submit" value="Submit" className="button1" />
+            <input type="submit" value="Submit" className="button1" 
+            onClick={handleData}/>
           </div>
           <div className="anchor">
             <a href="/">SignIn</a>
           </div>
-        </form>
       </div>
     </div>
   );

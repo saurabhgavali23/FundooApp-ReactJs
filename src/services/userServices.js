@@ -16,3 +16,16 @@ export const login = (data) =>{
         data
     )
 }
+
+export const sendEmail = (data) =>{
+    
+    let token = localStorage.getItem('userToken')
+    return Axios.post(
+        URL+NoteApi.userReset,
+        data,{
+            headers:{
+                Authorization: token
+            }
+        }
+    )
+}
