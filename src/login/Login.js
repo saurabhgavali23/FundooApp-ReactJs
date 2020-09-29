@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../login/loginCss.css";
 import { login } from "../services/userServices";
 
@@ -10,6 +11,7 @@ const Login = ({openSnackBar}) => {
   const [emailText, setEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
   const [isvisible, setIsvisible] = useState(false)
+  const history = useHistory();
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -46,6 +48,7 @@ const Login = ({openSnackBar}) => {
         let userId = res.data.userId
         localStorage.setItem('userToken',userToken)
         localStorage.setItem('userId', userId)
+        history.push('/dash-board')
        openSnackBar("Login Successfull")
       }).catch(err=>{
         openSnackBar("Login Faild")

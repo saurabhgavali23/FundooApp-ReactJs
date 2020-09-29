@@ -55,7 +55,7 @@ const ResetPassword = ({openSnackBar}) => {
             onClick={handleData}/>
           </div>
           <div className="anchor">
-            <a href="/">SignIn</a>
+            <a href="/login">SignIn</a>
           </div>
       </div>
     </div>
