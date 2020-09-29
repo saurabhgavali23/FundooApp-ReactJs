@@ -1,26 +1,31 @@
+import { Button, Grid, Input, Link } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../login/loginCss.css";
 import { login } from "../services/userServices";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
 
 const Login = ({openSnackBar}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState(false);
+  const [emailText, setEmailText] = useState('')
+  const [passwordText, setPasswordText] = useState('')
   const [passwordError, setPasswordError] = useState(false);
-  const [emailText, setEmailText] = useState("");
-  const [passwordText, setPasswordText] = useState("");
-  const [isvisible, setIsvisible] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const history = useHistory();
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
     if (!regexp3.test(email)) {
       setEmailError(true);
-      setEmailText("Invalid Email Id");
+      setEmailText('Invalid Email')
     } else {
       setEmailError(false);
-      setEmailError("");
+      setEmailText("");
     }
   };
 
@@ -28,11 +33,16 @@ const Login = ({openSnackBar}) => {
     var passReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/;
     if (!passReg.test(password)) {
       setPasswordError(true);
-      setPasswordText("Invalid Password");
+      setPasswordText("Invalid Password")
     } else {
       setPasswordError(false);
+      setPasswordText("")
     }
   };
+
+ const handleClickShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   const handleData = () => {
     if(email!==null && password!==null){
@@ -62,35 +72,55 @@ const Login = ({openSnackBar}) => {
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">SignIn</div>
           <div className="inputDiv1">
-            <input
+            <div className='emailContainer'>
+            <Input
+              className='emailInput'
               placeholder="Email Id"
-              className="emailInput"
               onBlur={validateEmailAddress}
               onChange={(e) => setEmail(e.target.value)}
-              required
+              error={emailError}
             />
-            {emailError ? <div className="inputError">{emailText}</div> : null}
-            <div className='confirmPassword'>
-            <input
-              type={isvisible?'text':'password'}
+            <div className="inputError">{emailError?emailText:null}</div>
+            </div>
+            <div className='passwordInput'>
+            <Input
+              id='password'
+              type={showPassword?'text':'password'}
               placeholder="Password"
-              className="passwordInput"
               onBlur={passwordValidation}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              error={passwordError}
+              endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                        aria-label="password"
+                        onClick={()=>handleClickShowPassword()}
+                        edge="end"
+                    >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                </InputAdornment>
+            }
+            labelWidth={80}
             />
-            <div className="showHide" onClick={()=>setIsvisible(!isvisible)}>{isvisible?'hide':'show'}</div>
+            <div className="inputError">{passwordError?passwordText:null}</div>
             </div>
-            {passwordError ? <div className="inputError">{passwordText}</div> : null}
           </div>
           <div className="buttonDiv">
-            <input type="submit" value="Login" className="button"
-             onClick={handleData} />
+            <Button variant="contained" color="primary" onClick={handleData}>Login</Button>
           </div>
-          <div className="loginAnchor">
-            <a href="/registration">Create New Account</a>
-            <a href="/reset-password">Forgot Password</a>
-          </div>
+          <Grid container className="loginAnchor">
+            <Grid item xs >
+                <Link href="/reset-password" variant="body2">
+                    Forgot password?
+                </Link>
+            </Grid>
+            <Grid item>
+                <Link href="/registration" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                </Link>
+            </Grid>
+        </Grid>
       </div>
     </div>
   );

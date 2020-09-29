@@ -16,8 +16,6 @@
     display: flex;
     flex-direction: column;
     margin: 10%;
-    height: 80px;
-    justify-content: space-between;
 }
 .fundooTitle{
     display: flex;
@@ -31,21 +29,13 @@
     margin-top: 5%;
     justify-content: center;
 }
+.emailContainer{
+    margin-bottom: 5%;
+}
 .emailInput{
-    font-size: large;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
-}
-.passwordInput{
     width: 100%;
-    font-size: large;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
 }
+
 .buttonDiv{
     display: flex;
     justify-content: flex-end;
@@ -62,10 +52,8 @@
 .loginAnchor{
     display: flex;
     margin-left: 10%;
-    height: 50px;
     margin-top: 5%;
     flex-direction: column;
-    justify-content: space-between;
 }
 .showHide{
     position: absolute;
@@ -73,7 +61,7 @@
     margin-left: 22%;
     cursor: pointer;
 }
-.confirmPassword{
+.passwordInput{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
