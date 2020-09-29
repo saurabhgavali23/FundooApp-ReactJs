@@ -1,15 +1,18 @@
 import Axios from "axios";
+import NoteApi from "../config/NoteApi";
+
+const URL = process.env.REACT_APP_BASE_URL
 
 export const userRegistration = (data) =>{
  return Axios.post(
-        'http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp',
+        URL+NoteApi.userSignUp,
         data
     )
 }
 
 export const login = (data) =>{
     return Axios.post(
-        'http://fundoonotes.incubation.bridgelabz.com/api/user/login',
+        URL+NoteApi.userLogin,
         data
     )
 }
