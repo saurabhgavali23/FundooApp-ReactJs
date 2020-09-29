@@ -1,3 +1,4 @@
+import { Button, Grid, Link, TextField } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import "../registration/registerCss.css";
@@ -8,13 +9,10 @@ const Registration = ({openSnackBar}) => {
   const [password, setPassword] = useState();
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [emailText, setEmailText] = useState("");
-  const [passwordText, setPasswordText] = useState("");
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [confirmPassword, setConfirmPassword] = useState()
   const [confirmPasswordError, setConfirmPasswordError] = useState(false)
-  const [confirmPasswordText, setConfirmPasswordText] = useState('')
   const [isEnabled, setIsEnabled] = useState(false)
   const history = useHistory();
 
@@ -22,10 +20,8 @@ const Registration = ({openSnackBar}) => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
     if (!regexp3.test(email)) {
       setEmailError(true);
-      setEmailText("Invalid Email Id");
     } else {
       setEmailError(false);
-      setEmailError("");
     }
   };
 
@@ -33,7 +29,6 @@ const Registration = ({openSnackBar}) => {
     var passReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/;
     if (!passReg.test(password)) {
       setPasswordError(true);
-      setPasswordText("Invalid Password");
     } else {
       setPasswordError(false);
     }
@@ -43,12 +38,9 @@ const Registration = ({openSnackBar}) => {
       if(confirmPassword!==password){
         setIsEnabled(false)
         setConfirmPasswordError(true)
-        setConfirmPasswordText("Password dose not match")
       }else{
           setIsEnabled(true)
-          setConfirmPasswordError(false)
-          setConfirmPasswordText('')
-          
+          setConfirmPasswordError(false) 
       }
   }
 
@@ -84,55 +76,62 @@ const Registration = ({openSnackBar}) => {
         <div className="signInTitle">Registration</div>
           <div className="inputDiv">
          <div className="firstAndLastNameContainer">
-         <input
-            className="firstAndLastName"
+          <TextField
+              className="firstAndLastName"
               placeholder="FirstName"
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
-             <input
-             className="firstAndLastName"
+          <TextField
+              className="firstAndLastName"
               placeholder="LastName"
               onChange={(e) => setLastName(e.target.value)}
               required
-            />
+          />
          </div>
-            <input
+            <TextField
               placeholder="Email Id"
-              className="input"
+              style={{marginBottom: '5%'}}
               onBlur={validateEmailAddress}
               onChange={(e) => setEmail(e.target.value)}
               required
+              error={emailError}
+              helperText={emailError?'Invalid Email':null}
             />
-            {emailError ? <div className="inputError">{emailText}</div> : null}
-            <input
+            <TextField
               type="password"
               placeholder="Password"
-              className="input"
+              style={{marginBottom: '5%'}}
               onBlur={passwordValidation}
               onChange={(e) => setPassword(e.target.value)}
               required
+              error={passwordError}
+              helperText={passwordError?'Invalid Password':null}
             />
-            {passwordError ? <div className="inputError">{passwordText}</div> : null}
-            <input
+            <TextField
               type="password"
               placeholder="Confirm Password"
-              className="input"
+              style={{marginBottom: '5%'}}
               onBlur={confirmPasswordValidation}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              error={confirmPasswordError}
+              helperText={confirmPasswordError?'Password Mismatch':null}
             />
-            {confirmPasswordError ? <div className="inputError">{confirmPasswordText}</div> : null}
           </div>
           <div className="buttonDiv">
-            <input type="submit" value="Register" className="button"
+            <Button variant="contained" color='primary'
             disabled={isEnabled?false:true}
               onClick={handleData}
-            />
+            >Register</Button>
           </div>
-          <div className="anchor">
-            <a href="/login">SignIn</a>
-          </div>
+          <Grid container className="loginAnchor">
+            <Grid item xs >
+                <Link href="/login" variant="body2">
+                    SignIn
+                </Link>
+            </Grid>
+          </Grid>
       </div>
     </div>
   );

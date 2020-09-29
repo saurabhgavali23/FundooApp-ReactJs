@@ -68,7 +68,7 @@ const Login = ({openSnackBar}) => {
 
   return (
     <div className="container">
-      <div className="formDiv">
+      <div className="formDivLogin">
         <div className="fundooTitle">FundooApp</div>
         <div className="signInTitle">SignIn</div>
           <div className="inputDiv1">
