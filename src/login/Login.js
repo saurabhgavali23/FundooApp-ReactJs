@@ -111,7 +111,7 @@ const Login = ({openSnackBar}) => {
           </div>
           <Grid container className="loginAnchor">
             <Grid item xs >
-                <Link href="/reset-password" variant="body2">
+                <Link href="/send-email" variant="body2">
                     Forgot password?
                 </Link>
             </Grid>

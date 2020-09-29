@@ -1,9 +1,9 @@
 import { Button, Grid, Link, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { sendEmail } from "../services/userServices";
-import "./ResetPasswordCss.css";
+import "./SendEmailCss.css";
 
-const ResetPassword = ({openSnackBar}) => {
+const SendEmail = ({openSnackBar}) => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
 
@@ -64,4 +64,4 @@ const ResetPassword = ({openSnackBar}) => {
   );
 };
 
-export default ResetPassword;
+export default SendEmail;

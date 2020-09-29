@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import ResetPassword from '../reset_password/ResetPassword'
 import Login from '../login/Login'
 import Registration from '../registration/Registration'
 import Styles from '../routes/snackBar.module.css'
 import ProtectedRoute from '../config/ProtectedRoute'
 import DashBoard from '../dash_board/DashBoard'
 import config from '../config/config'
+import SendEmail from '../send_email/SendEmail'
 
 const Routes = () => {
     const [state, setState] = useState({ isActive: false, status: ''})
@@ -30,8 +30,8 @@ const Routes = () => {
                 <Route path={'/registration'}>
                     <Registration openSnackBar={openSnackBar}/>
                 </Route>
-                <Route path={'/reset-password'}>
-                    <ResetPassword openSnackBar={openSnackBar}/>
+                <Route path={'/send-email'}>
+                    <SendEmail openSnackBar={openSnackBar}/>
                 </Route>
             </Switch>
             </BrowserRouter>
