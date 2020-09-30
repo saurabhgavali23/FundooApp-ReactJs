@@ -1,9 +1,17 @@
-import { Button, Grid, Link, TextField } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Link,
+  TextField,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { sendEmail } from "../services/userServices";
-import "./SendEmailCss.css";
+import styles from "./SendEmailStyles";
 
-const SendEmail = ({openSnackBar}) => {
+const SendEmail2 = ({ openSnackBar }) => {
+  const classes = styles();
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
 
@@ -17,51 +25,62 @@ const SendEmail = ({openSnackBar}) => {
   };
 
   const handleData = () => {
-    if(email!==null){
-      let data={
-        email: email
-      }
-      sendEmail(data).then(res=>{
-        if(res.status===200){
-          openSnackBar('Email Sent Successfully')
-        }
-      }).catch(err=>{
-        openSnackBar('Faild Sent Email')
-      })
-    }else{
-      openSnackBar('Email Id required')
+    if (email !== undefined) {
+      let data = {
+        email: email,
+      };
+      sendEmail(data)
+        .then((res) => {
+          if (res.status === 200) {
+            openSnackBar("Email Sent Successfully");
+          }
+        })
+        .catch((err) => {
+          openSnackBar("Faild Sent Email");
+        });
+    } else {
+      openSnackBar("Email Id required");
     }
   };
 
   return (
-    <div className="container">
-      <div className="formDiv1">
-        <div className="fundooTitle">FundooApp</div>
-        <div className="signInTitle">Enter your recovery email</div>
-          <div className="emailInputDiv">
-            <TextField
-              placeholder="Email Id"
-              onBlur={validateEmailAddress}
-              onChange={(e) => setEmail(e.target.value)}
-              error={emailError}
-              helperText={emailError?'Invalid Email':null}
-              required
-            />
+    <Container component="main" maxWidth="xs">
+      <div className={classes.loginContainer}>
+        <Box boxShadow={3}>
+          <Box className={classes.title}>FundooApp</Box>
+          <Box className={classes.title2}>Send Email</Box>
+          <form className={classes.formDivLogin}>
+            <div className={classes.inputContainer}>
+              <TextField
+                placeholder="Email"
+                className={classes.emailInput}
+                onBlur={validateEmailAddress}
+                onChange={(e) => setEmail(e.target.value)}
+                error={emailError}
+                helperText={emailError ? "Invalid Email" : null}
+              />
+              <div className={classes.button}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleData}
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
-          <div className="buttonDiv">
-            <Button variant="contained" className="button1" 
-            onClick={handleData}>Submit</Button>
-          </div>
-          <Grid container className="resetAnchor">
-            <Grid item xs >
+            <Grid container className={classes.link}>
+              <Grid item xs>
                 <Link href="/login" variant="body2">
-                    SignIn
+                  SignIn
                 </Link>
+              </Grid>
             </Grid>
-          </Grid>
+          </form>
+        </Box>
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default SendEmail;
+export default SendEmail2;
