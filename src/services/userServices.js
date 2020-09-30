@@ -29,3 +29,16 @@ export const sendEmail = (data) =>{
         }
     )
 }
+
+export const resetPassword = (data) =>{
+
+    let token = localStorage.getItem('userToken')
+    return Axios.post(
+        URL+NoteApi.resetUserPassword,
+        data,{
+            headers:{
+                Authorization: token
+            }
+        }
+    )
+}

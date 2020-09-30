@@ -7,6 +7,7 @@ import ProtectedRoute from '../config/ProtectedRoute'
 import DashBoard from '../dash_board/DashBoard'
 import config from '../config/config'
 import SendEmail from '../send_email/SendEmail'
+import ResetPassword from '../reset_password/ResetPassword'
 
 const Routes = () => {
     const [state, setState] = useState({ isActive: false, status: ''})
@@ -32,6 +33,9 @@ const Routes = () => {
                 </Route>
                 <Route path={'/send-email'}>
                     <SendEmail openSnackBar={openSnackBar}/>
+                </Route>
+                <Route path={'/resetpassword/:token'}>
+                    <ResetPassword openSnackBar={openSnackBar}/>
                 </Route>
             </Switch>
             </BrowserRouter>
