@@ -1,0 +1,26 @@
+.grow{
+    flex-grow: 1;
+}
+.menuButton{
+    margin-left: 2%;
+}
+.title{
+    margin-left: 2% !important;
+}
+.search{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: aliceblue;
+    position: relative;
+    margin-left: 10%;
+    width: 30%;
+}
+.searchIcon{
+    align-items: center;
+    color: lightgray;
+}
+.profile{
+    display: flex;
+    margin-left: 40%;
+}
