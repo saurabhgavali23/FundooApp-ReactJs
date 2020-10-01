@@ -7,6 +7,7 @@ import {
   Container,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { resetPassword } from "../services/userServices";
 import styles from "./ResetPasswordStyle";
 
@@ -16,6 +17,7 @@ const ResetPassword2 = ({ openSnackBar }) => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const resetToken = useParams()
 
   const passwordValidation = () => {
     var passReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/;
@@ -27,7 +29,6 @@ const ResetPassword2 = ({ openSnackBar }) => {
   };
 
   const confirmPasswordValidation = () => {
-    console.log("password", password, confirmPassword);
     if (confirmPassword === password) {
       setConfirmPasswordError(false);
     } else {
@@ -36,12 +37,12 @@ const ResetPassword2 = ({ openSnackBar }) => {
   };
 
   const handleData = () => {
+    let token = resetToken.token
     if (password !== undefined && confirmPassword === password) {
-      const formData = new FormData();
-      formData.append("newPassword", password);
-      resetPassword(formData)
+      let formData = new FormData()
+      formData.append('newPassword', password)
+      resetPassword(formData, token)
         .then((res) => {
-          console.log("response", res);
           if (res.status === 200) {
             openSnackBar("Password Change Successfully");
           }

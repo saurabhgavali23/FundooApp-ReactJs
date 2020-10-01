@@ -30,9 +30,10 @@ export const sendEmail = (data) =>{
     )
 }
 
-export const resetPassword = (data) =>{
-
-    let token = localStorage.getItem('userToken')
+export const resetPassword = (data, token) =>{
+    console.log("data", data);
+    console.log("token", token);
+    //let token = localStorage.getItem('userToken')
     return Axios.post(
         URL+NoteApi.resetUserPassword,
         data,{
