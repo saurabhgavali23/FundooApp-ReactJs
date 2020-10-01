@@ -49,16 +49,17 @@ const Login2 = ({ openSnackBar }) => {
         email: email,
         password: password,
       };
-      console.log("data", data);
       login(data)
         .then((res) => {
           if (res.status === 401) {
             openSnackBar("UnAuthorized User");
           }
+          let userEmail = res.data.email
           let userToken = res.data.id;
           let userId = res.data.userId;
           localStorage.setItem("userToken", userToken);
           localStorage.setItem("userId", userId);
+          localStorage.setItem("userEmail", userEmail)
           openSnackBar("Login Successfull");
         })
         .catch((err) => {

@@ -1,13 +1,15 @@
-import { AppBar, InputBase, Typography } from "@material-ui/core";
+import { AppBar, Button, Card, CardActions, CardContent, InputBase, Typography } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
-import React from "react";
+import React, { useState } from "react";
 import "../app_bar/AppBarCss.css";
+import Profile from "../profile/Profile";
 
 const Appbar = () => {
+const [showProfile, setShowProfile] = useState(false)
+
   return (
     <div className="grow">
       <AppBar position="static">
@@ -29,15 +31,8 @@ const Appbar = () => {
             </div>
             <InputBase placeholder="Search" className="searchInput" />
           </div>
-          <div className="profile">
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <AccountCircle style={{ fontSize: 30 }} />
-            </IconButton>
+          <div className="profile" onClick={()=>setShowProfile(!showProfile)}>
+            <Profile showProfile={showProfile}/>
           </div>
         </Toolbar>
       </AppBar>

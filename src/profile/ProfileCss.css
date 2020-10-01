@@ -1,0 +1,19 @@
+.profileContainer{
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-right: 1%;
+}
+.cardContainer{
+    display: flex; 
+    flex-Direction: 'row';
+    align-items: center;
+}
+.cardActions{
+    display: flex;
+    justify-content: flex-end;
+}
+.profileIcon{
+    font-size: 30;
+    margin-right: 1%;
+}
