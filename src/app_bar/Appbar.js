@@ -1,27 +1,22 @@
-import { AppBar, Button, Card, CardActions, CardContent, InputBase, Typography } from "@material-ui/core";
+import { AppBar, InputBase, Typography } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState } from "react";
 import "../app_bar/AppBarCss.css";
 import Profile from "../profile/Profile";
+import NoteDrawer from "../drawer/NoteDrawer";
 
 const Appbar = () => {
 const [showProfile, setShowProfile] = useState(false)
+const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
     <div className="grow">
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className="menuButton"
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+          <div onClick={()=> setOpenDrawer(!openDrawer)}>
+          <NoteDrawer openDrawer={openDrawer}/>
+          </div>
           <Typography className="title" variant="h6" noWrap>
             FundooAap
           </Typography>

@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => {
     ) : (
       <Redirect
         to={{
-          pathname: "/login",
+          pathname: "/dash-board",
           state: {
             from: location,
           },
