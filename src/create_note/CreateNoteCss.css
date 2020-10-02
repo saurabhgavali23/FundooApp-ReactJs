@@ -1,0 +1,29 @@
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.inputBase{
+    width: 100% !important;
+}
+.cardContainer2{
+    width: 40%;
+    flex-direction: column;
+}
+.subCardContainer2{
+    height: 55%;
+    margin: 2%;
+}
+.inputBaseDiv{
+    display: flex;
+    flex-direction: row;
+}
+.iconStyle{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.actionStyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
