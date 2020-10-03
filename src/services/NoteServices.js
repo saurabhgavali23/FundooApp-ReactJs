@@ -15,3 +15,14 @@ export const saveNotes = (data) =>{
         }
     )
 }
+
+export const getNoteList = () =>{
+
+    return Axios.get(
+        URL+NoteApi.getNotes,{
+            headers:{
+                Authorization: token
+            }
+        }
+    )
+}

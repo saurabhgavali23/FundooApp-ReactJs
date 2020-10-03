@@ -13,5 +13,9 @@
     justify-content: space-between;
 }
 .inputBase{
-    width: 100% !important;
+    width: 100%;
+}
+.displayCardContainer{
+    margin-top: 4%;
+    width: 55% !important;
 }

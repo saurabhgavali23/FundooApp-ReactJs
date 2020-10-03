@@ -1,0 +1,15 @@
+.createMainContainer{
+    padding: 2%;
+}
+.createCardContent{
+    padding: 10%;
+}
+.createContentStyle{
+    padding: 0px !important;
+    margin-bottom: 5%;
+}
+.createCardHeaderContend{
+    padding: 0px !important;
+    margin-bottom: 5%;
+    font-weight: bold;
+}
