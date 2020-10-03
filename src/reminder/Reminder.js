@@ -18,11 +18,22 @@ const Reminder = ({setDateTimeChip}) => {
   const [showReminder, setShowReminder] = useState(false);
   const [showDateTime, setShowDateTime] = useState(false);
 
-  const handleDateChange = () => {
+  const handleDateChange = (day) => {
     setShowDateTime(false)
     setShowReminder(false)
-    let date = moment(selectedDate).format("MMM Do YY")
-    let time = moment(selectedDate).format("LT")
+    let time = ''
+    let date = ''
+    if(day === 'today'){
+        date = moment(selectedDate).format("MMM Do YY")
+        time = '8:00PM'
+    }else if(day === 'tomorrow'){
+        date = moment(selectedDate).add(1,'day').format("MMM Do YY")
+        time = '8:00AM'
+    }
+    else{
+        date = moment(selectedDate).format("MMM Do YY")
+        time = moment(selectedDate).format("LT")
+    }
     setDateTimeChip(date+' '+time)
   };
 
@@ -40,11 +51,15 @@ const Reminder = ({setDateTimeChip}) => {
                 Reminder:
               </CardContent>
               <CardContent className="dateTimeCardContentStyle">
-                <div className="dateTimeSubCardcontentStyle">
+                <div className="dateTimeSubCardcontentStyle"
+                    onClick={()=>handleDateChange('today')}
+                >
                   Later Today
                   <div>8:00PM</div>
                 </div>
-                <div className="dateTimeSubCardcontentStyle">
+                <div className="dateTimeSubCardcontentStyle"
+                    onClick={()=>handleDateChange('tomorrow')}
+                >
                   Tomorrow
                   <div>8:00AM</div>
                 </div>
