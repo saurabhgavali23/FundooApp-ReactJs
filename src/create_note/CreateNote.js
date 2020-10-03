@@ -8,13 +8,13 @@ import {
   InputBase,
   Typography,
 } from "@material-ui/core";
-import ReminderIcon from "@material-ui/icons/Notifications";
 import CollaboratorIcon from "@material-ui/icons/PersonAdd";
 import ImageIcon from "@material-ui/icons/Image";
 import ColorIcon from "@material-ui/icons/ColorLens";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../services/NoteServices";
+import Reminder from "../reminder/Reminder";
 
 const CreateNote = ({ setShowCreateNote }) => {
   const [title, setTitle] = useState("");
@@ -53,8 +53,8 @@ const CreateNote = ({ setShowCreateNote }) => {
           />
         </CardContent>
         <div className="actionStyle">
-          <CardActions>
-            <ReminderIcon className="iconStyle" />
+          <CardActions style={{marginLeft: '3%'}}>
+            <Reminder/>
             <CollaboratorIcon className="iconStyle" />
             <ColorIcon className="iconStyle" />
             <ImageIcon className="iconStyle" />
