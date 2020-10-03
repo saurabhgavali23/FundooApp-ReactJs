@@ -11,14 +11,19 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import "date-fns";
+import moment from "moment";
 
-const Reminder = () => {
+const Reminder = ({setDateTimeChip}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showReminder, setShowReminder] = useState(false);
   const [showDateTime, setShowDateTime] = useState(false);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = () => {
+    setShowDateTime(false)
+    setShowReminder(false)
+    let date = moment(selectedDate).format("MMM Do YY")
+    let time = moment(selectedDate).format("LT")
+    setDateTimeChip(date+' '+time)
   };
 
   return (
@@ -87,7 +92,7 @@ const Reminder = () => {
                     id="time-picker"
                     label="Time picker"
                     value={selectedDate}
-                    onChange={handleDateChange}
+                    onChange={(date) => setSelectedDate(date)}
                     KeyboardButtonProps={{
                       "aria-label": "change time",
                     }}
@@ -95,7 +100,7 @@ const Reminder = () => {
                 </Grid>
               </MuiPickersUtilsProvider>
               <div className="saveButton">
-                <Button color="primary" variant="text">
+                <Button color="primary" variant="text" onClick={()=>handleDateChange()}>
                   save
                 </Button>
               </div>

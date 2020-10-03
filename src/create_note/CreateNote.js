@@ -5,6 +5,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Chip,
   InputBase,
   Typography,
 } from "@material-ui/core";
@@ -15,10 +16,12 @@ import ArchiveIcon from "@material-ui/icons/Archive";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../services/NoteServices";
 import Reminder from "../reminder/Reminder";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const CreateNote = ({ setShowCreateNote }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [dateTimeChip, setDateTimeChip] = useState('')
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -32,6 +35,10 @@ const CreateNote = ({ setShowCreateNote }) => {
         });
     }
   };
+
+  const handleDeleteChip = () =>{
+    setDateTimeChip('')
+  }
   return (
     <div className="mainContainer">
       <Card className="cardContainer2">
@@ -51,10 +58,18 @@ const CreateNote = ({ setShowCreateNote }) => {
             onChange={(e) => setDescription(e.target.value)}
             multiline
           />
+          {dateTimeChip!==''?
+            (<Chip
+              icon={<AccessTimeIcon/>}
+              label={dateTimeChip}
+              clickable
+              color="primary"
+              onDelete={handleDeleteChip}
+            />):null}
         </CardContent>
         <div className="actionStyle">
           <CardActions style={{marginLeft: '3%'}}>
-            <Reminder/>
+            <Reminder setDateTimeChip={setDateTimeChip}/>
             <CollaboratorIcon className="iconStyle" />
             <ColorIcon className="iconStyle" />
             <ImageIcon className="iconStyle" />
