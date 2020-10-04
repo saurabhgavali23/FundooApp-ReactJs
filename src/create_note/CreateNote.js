@@ -28,6 +28,7 @@ const CreateNote = ({ setShowCreateNote }) => {
       let formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
+      formData.append("reminder", dateTimeChip);
       saveNotes(formData)
         .then((res) => {})
         .catch((err) => {
