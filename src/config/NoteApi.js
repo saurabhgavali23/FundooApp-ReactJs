@@ -5,5 +5,6 @@ const NoteApi = {
     resetUserPassword: '/user/reset-password',
     addNotes: '/notes/addNotes',
     getNotes: '/notes/getNotesList',
+    SearchUserDetails: '/user/searchUserList'
   };
   export default NoteApi;
