@@ -71,7 +71,7 @@ const CreateNote = ({ setShowCard }) => {
         <div className="actionStyle">
           <CardActions style={{marginLeft: '3%'}}>
             <Reminder setDateTimeChip={setDateTimeChip}/>
-            <CollaboratorIcon className="iconStyle" />
+            <CollaboratorIcon className="iconStyle" onClick={()=> setShowCard('collaborator')}/>
             <ColorIcon className="iconStyle" />
             <ImageIcon className="iconStyle" />
             <ArchiveIcon className="iconStyle" />

@@ -13,6 +13,7 @@ import "../dash_board/DashBoardCss.css";
 import CreateNote from "../create_note/CreateNote";
 import { getNoteList } from "../services/NoteServices";
 import DisplayCard from "../display_card/DisplayCard";
+import Collaborator from "../collaborator/Collaborator";
 
 const DashBoard = () => {
   const [showCard, setShowCard] = useState('take_note');
@@ -44,6 +45,9 @@ const DashBoard = () => {
         ) : null}
         {showCard === 'create_note' ? (
           <CreateNote setShowCard={setShowCard} />
+        ) : null}
+        {showCard === 'collaborator' ? (
+          <Collaborator setShowCard={setShowCard}/>
         ) : null}
       </div>
       <div>

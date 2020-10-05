@@ -1,0 +1,38 @@
+.collabMainContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.cardMainContainer{
+    width: 40%;
+    flex-direction: column;
+}
+.collabIcon{
+    color: rgb(220,220,220);
+    border: 1px solid rgb(220,220,220);
+    border-radius: 25px;
+    padding: 7px;
+}
+.collabInputEmail{
+    width: 100%;
+    margin-left: 5%;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px !important;
+    margin-left: 3%;
+}
+.userEmail{
+    color: rgb(192,192,192);
+    margin-top: 2%;
+}
+.userInfo{
+    margin-left: 13%;
+}
+.collabButton{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
