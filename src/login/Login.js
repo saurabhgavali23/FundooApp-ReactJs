@@ -54,12 +54,13 @@ const Login2 = ({ openSnackBar }) => {
           if (res.status === 401) {
             openSnackBar("UnAuthorized User");
           }
-          let userData = res.data
+          let userData = []
+          userData[0] = res.data
           let userToken = res.data.id;
           let userId = res.data.userId;
           localStorage.setItem("userToken", userToken);
           localStorage.setItem("userId", userId);
-          localStorage.setItem("userData", userData)
+          localStorage.setItem("userData", JSON.stringify(userData))
           openSnackBar("Login Successfull");
         })
         .catch((err) => {
