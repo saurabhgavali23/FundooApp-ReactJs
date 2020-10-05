@@ -15,7 +15,7 @@ import { getNoteList } from "../services/NoteServices";
 import DisplayCard from "../display_card/DisplayCard";
 
 const DashBoard = () => {
-  const [showCreateNote, setShowCreateNote] = useState(false);
+  const [showCard, setShowCard] = useState('take_note');
   const [noteList, setNoteList] = useState([]);
 
   useEffect(() => {
@@ -28,10 +28,10 @@ const DashBoard = () => {
     <div>
       <Appbar />
       <div className="noteContainer">
-        {showCreateNote === false ? (
+        {showCard === 'take_note' ? (
           <Card
             className="cardContainer"
-            onClick={() => setShowCreateNote(!showCreateNote)}
+            onClick={() => setShowCard('create_note')}
           >
             <CardContent className="subCardContainer">
               <Typography>Take a notes...</Typography>
@@ -42,8 +42,8 @@ const DashBoard = () => {
             </CardContent>
           </Card>
         ) : null}
-        {showCreateNote === true ? (
-          <CreateNote setShowCreateNote={setShowCreateNote} />
+        {showCard === 'create_note' ? (
+          <CreateNote setShowCard={setShowCard} />
         ) : null}
       </div>
       <div>

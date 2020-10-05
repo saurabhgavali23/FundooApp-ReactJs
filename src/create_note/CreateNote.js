@@ -18,7 +18,7 @@ import { saveNotes } from "../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
-const CreateNote = ({ setShowCreateNote }) => {
+const CreateNote = ({ setShowCard }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateTimeChip, setDateTimeChip] = useState('')
@@ -77,7 +77,7 @@ const CreateNote = ({ setShowCreateNote }) => {
             <ArchiveIcon className="iconStyle" />
             <MoreIcon className="iconStyle" />
           </CardActions>
-          <CardActions onClick={() => setShowCreateNote(false)}>
+          <CardActions onClick={() => setShowCard('take_note')}>
             <Button color="primary" variant="text" onClick={saveNote}>
               close
             </Button>
