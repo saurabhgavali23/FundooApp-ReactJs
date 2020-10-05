@@ -12,7 +12,13 @@ import {
 import { useHistory } from "react-router-dom";
 
 const Profile = ({ showProfile }) => {
-  let userEmail = localStorage.getItem("userEmail");
+  let userEmail = 'abcd@gmail.com'
+  let userData = JSON.parse(localStorage.getItem("userData"))
+  if(userData !== null){
+    userData.map((item,index)=>(
+      userEmail = item.email
+    ))
+  }
   let history = useHistory();
 
   const handleLogout = () => {
