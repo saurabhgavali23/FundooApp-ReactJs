@@ -10,15 +10,26 @@ import "../collaborator/CollaboratorCss.css";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 const Collaborator = ({ setShowCard }) => {
-  let userEmail = localStorage.getItem("userEmail");
-
+  let userEmail = 'unknown'
+  let firstName = 'unknown'
+  let lastName = 'unknown'
+  let userData = JSON.parse(localStorage.getItem("userData"))
+  if(userData !== null){
+      userData.map((item)=>{
+         return(
+            userEmail = item.email,
+            firstName = item.firstName,
+            lastName = item.lastName
+         )
+      })
+  }
   return (
     <div className="collabMainContainer">
       <Card className="cardMainContainer">
         <CardContent>Collaborator</CardContent>
         <Divider />
         <CardContent className="userInfo">
-          Saurabh Gavali (Owner)
+          {firstName} {lastName} (Owner)
           <div className="userEmail">{userEmail}</div>
         </CardContent>
         <CardContent className="inputContainer">
