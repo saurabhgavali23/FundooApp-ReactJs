@@ -30,15 +30,17 @@ export default makeStyles((theme)=>
         fontSize: 20,
     },
     inputContainer:{
-        margin: "10%"
+        margin: "10%",
+        marginBottom: '5%'
     },
     emailInput:{
         width: "100%",
+        height: '50px'
     },
     button:{
         display: "flex",
-        justifyContent: "flex-end",
-        marginTop: "5%"
+        marginRight: '10%',
+        alignItems: 'center'
     },
     link:{
         display: "flex",

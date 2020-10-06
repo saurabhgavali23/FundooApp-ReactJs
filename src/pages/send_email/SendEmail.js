@@ -59,23 +59,19 @@ const SendEmail2 = ({ openSnackBar }) => {
                 error={emailError}
                 helperText={emailError ? "Invalid Email" : null}
               />
-              <div className={classes.button}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleData}
-                >
-                  Submit
-                </Button>
-              </div>
             </div>
-            <Grid container className={classes.link}>
-              <Grid item xs>
-                <Link href="/login" variant="body2">
-                  SignIn
-                </Link>
+            <div className={classes.button}>
+              <Grid container className={classes.link}>
+                <Grid item xs>
+                  <Link href="/login" variant="body2">
+                    SignIn
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+              <Button variant="contained" color="primary" onClick={handleData}>
+                Submit
+              </Button>
+            </div>
           </form>
         </Box>
       </div>
