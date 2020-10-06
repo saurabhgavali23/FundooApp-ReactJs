@@ -15,19 +15,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 16px !important;
+    padding: 13px 12px !important;
     color: #808080;
 }
 .imageCheckBoxContainer{
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     width: 15%;
 }
 .noteTitle{
-    font-size: .975rem !important;
+    font-size: .875rem !important;
     font-weight: 550 !important;
-    line-height: 1.25rem !important;
     font-family: Arial, sans-serif !important;
     letter-spacing: .01428571em !important;
 }
