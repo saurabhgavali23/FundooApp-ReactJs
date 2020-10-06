@@ -17,10 +17,11 @@ const Registration2 = ({ openSnackBar }) => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState(false);
   const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -42,11 +43,27 @@ const Registration2 = ({ openSnackBar }) => {
 
   const confirmPasswordValidation = () => {
     if (confirmPassword !== password) {
-      setIsEnabled(false);
       setConfirmPasswordError(true);
     } else {
-      setIsEnabled(true);
       setConfirmPasswordError(false);
+    }
+  };
+
+  const fistNameValidation = () => {
+    var nameReg = /^([a-z,A-Z]{3,}$)/;
+    if (!nameReg.test(firstName)) {
+      setFirstNameError(true);
+    } else {
+      setFirstNameError(false);
+    }
+  };
+
+  const lastNameValidation = () => {
+    var nameReg = /^([a-z,A-Z]{3,}$)/;
+    if (!nameReg.test(lastName)) {
+      setLastNameError(true);
+    } else {
+      setLastNameError(false);
     }
   };
 
@@ -87,13 +104,19 @@ const Registration2 = ({ openSnackBar }) => {
                 <TextField
                   className={classes.firstAndLastName}
                   placeholder="FirstName"
+                  onBlur={fistNameValidation}
                   onChange={(e) => setFirstName(e.target.value)}
+                  error={firstNameError}
+                  helperText={firstNameError ? "Invailid First Name" : null}
                   required
                 />
                 <TextField
-                  className="firstAndLastName"
+                  className={classes.firstAndLastName}
                   placeholder="LastName"
+                  onBlur={lastNameValidation}
                   onChange={(e) => setLastName(e.target.value)}
+                  error={lastNameError}
+                  helperText={lastNameError ? "Invalid Last Name" : null}
                   required
                 />
               </div>
@@ -125,24 +148,19 @@ const Registration2 = ({ openSnackBar }) => {
                 error={confirmPasswordError}
                 helperText={confirmPasswordError ? "Password Mismatch" : null}
               />
-              <div className={classes.button}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={isEnabled ? false : true}
-                  onClick={handleData}
-                >
-                  Register
-                </Button>
-              </div>
             </div>
-            <Grid container className={classes.link}>
-              <Grid item xs>
-                <Link href="/login" variant="body2">
-                  SignIn
-                </Link>
+            <div className={classes.button}>
+              <Grid container className={classes.link}>
+                <Grid item xs>
+                  <Link href="/login" variant="body2">
+                    SignIn
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+              <Button variant="contained" color="primary" onClick={handleData}>
+                Register
+              </Button>
+            </div>
           </form>
         </Box>
       </div>

@@ -30,20 +30,21 @@ export default makeStyles((theme)=>
         fontSize: 20,
     },
     inputContainer:{
-        margin: "10%"
+        margin: "10%",
+        marginBottom: '5%'
     },
     emailInput:{
         width: "100%",
-        marginBottom: "5%"
+        height: '50px'
     },
     passwordInput:{
         width: "100%",
-        marginBottom: "5%"
+        height: '50px',
     },
     button:{
         display: "flex",
-        justifyContent: "flex-end",
-        marginTop: "5%"
+        marginRight: '10%',
+        alignItems: 'center'
     },
     inputError:{
         color: "red",
@@ -58,10 +59,10 @@ export default makeStyles((theme)=>
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: "5%"
     },
     firstAndLastName:{
-        width: "45%"
+        width: "45%",
+        height: '50px',
     }
 })
 );
