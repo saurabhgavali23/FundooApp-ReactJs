@@ -7,8 +7,8 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Appbar from "../app_bar/Appbar";
-import ImageIcon from "@material-ui/icons/Image";
-import ViewListIcon from "@material-ui/icons/ViewList";
+import ImageIcon from "@material-ui/icons/ImageOutlined";
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import "../dash_board/DashBoardCss.css";
 import CreateNote from "../create_note/CreateNote";
 import { getNoteList } from "../services/NoteServices";
@@ -35,9 +35,9 @@ const DashBoard = () => {
             onClick={() => setShowCard('create_note')}
           >
             <CardContent className="subCardContainer">
-              <Typography>Take a notes...</Typography>
-              <div>
-                <ViewListIcon />
+              <Typography className="noteTitle">Take a note...</Typography>
+              <div className="imageCheckBoxContainer">
+                <CheckBoxOutlinedIcon />
                 <ImageIcon />
               </div>
             </CardContent>

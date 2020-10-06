@@ -4,13 +4,32 @@
     margin-top: 3%;
 }
 .cardContainer{
-    width: 40%;
+    width: 50%;
+    height: 46px !important;
+    box-shadow: 1px 1px 6px #A9A9A9 !important;
+    border-radius: 10px !important;
 }
 .subCardContainer{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px !important;
+    color: #808080;
+}
+.imageCheckBoxContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+}
+.noteTitle{
+    font-size: .975rem !important;
+    font-weight: 550 !important;
+    line-height: 1.25rem !important;
+    font-family: Arial, sans-serif !important;
+    letter-spacing: .01428571em !important;
 }
 .inputBase{
     width: 100%;
