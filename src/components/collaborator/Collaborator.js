@@ -6,7 +6,7 @@ import {
   InputBase,
 } from "@material-ui/core";
 import React from "react";
-import "../collaborator/CollaboratorCss.css";
+import "./CollaboratorCss.css";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 const Collaborator = ({ setShowCard }) => {

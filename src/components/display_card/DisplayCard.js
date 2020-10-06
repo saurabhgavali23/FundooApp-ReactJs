@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid } from "@material-ui/core";
 import React from "react";
-import '../display_card/DisplayCardCss.css'
+import './DisplayCardCss.css'
 
 const DisplayCard = ({ item }) => {
   return (

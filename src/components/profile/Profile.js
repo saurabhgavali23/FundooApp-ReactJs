@@ -1,7 +1,7 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import "../profile/ProfileCss.css";
+import "./ProfileCss.css";
 import {
   Button,
   Card,

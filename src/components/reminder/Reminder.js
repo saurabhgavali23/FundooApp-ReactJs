@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReminderIcon from "@material-ui/icons/Notifications";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import "../reminder/ReminderCss.css";
+import "./ReminderCss.css";
 import { Button, Card, CardContent, Divider, Grid } from "@material-ui/core";
 import {
   KeyboardDatePicker,

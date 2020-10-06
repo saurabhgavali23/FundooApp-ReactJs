@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { sendEmail } from "../services/userServices";
+import { sendEmail } from "../../services/userServices";
 import styles from "./SendEmailStyles";
 
 const SendEmail2 = ({ openSnackBar }) => {

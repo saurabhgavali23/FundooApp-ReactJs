@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Styles from '../routes/snackBar.module.css'
 import ProtectedRoute from '../config/ProtectedRoute'
-import DashBoard from '../dash_board/DashBoard'
+import DashBoard from '../components/dash_board/DashBoard'
 import config from '../config/config'
-import Login from '../login/Login'
-import Registration from '../registration/Registration'
-import SendEmail from '../send_email/SendEmail'
-import ResetPassword from '../reset_password/ResetPassword'
+import Login from '../pages/login/Login'
+import Registration from '../pages/registration/Registration'
+import SendEmail from '../pages/send_email/SendEmail'
+import ResetPassword from '../pages/reset_password/ResetPassword'
 
 const Routes = () => {
     const [state, setState] = useState({ isActive: false, status: ''})

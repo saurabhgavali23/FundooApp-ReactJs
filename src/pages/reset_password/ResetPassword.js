@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { resetPassword } from "../services/userServices";
+import { resetPassword } from "../../services/userServices";
 import styles from "./ResetPasswordStyle";
 
 const ResetPassword2 = ({ openSnackBar }) => {

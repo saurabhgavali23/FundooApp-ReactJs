@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../create_note/CreateNoteCss.css";
+import "./CreateNoteCss.css";
 import {
   Button,
   Card,
@@ -15,7 +15,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import ColorIcon from "@material-ui/icons/ColorLens";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { saveNotes } from "../services/NoteServices";
+import { saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 

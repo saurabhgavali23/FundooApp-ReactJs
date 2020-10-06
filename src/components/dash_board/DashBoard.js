@@ -6,14 +6,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import Appbar from "../app_bar/Appbar";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
-import "../dash_board/DashBoardCss.css";
+import "./DashBoardCss.css";
 import CreateNote from "../create_note/CreateNote";
-import { getNoteList } from "../services/NoteServices";
+import { getNoteList } from "../../services/NoteServices";
 import DisplayCard from "../display_card/DisplayCard";
-import Collaborator from "../collaborator/Collaborator";
+import Collaborator from "../collaborator/Collaborator"
+import Appbar from "../app_bar/Appbar";
 
 const DashBoard = () => {
   const [showCard, setShowCard] = useState('take_note');
@@ -27,7 +27,7 @@ const DashBoard = () => {
 
   return (
     <div>
-      <Appbar />
+      <Appbar/>
       <div className="noteContainer">
         {showCard === 'take_note' ? (
           <Card

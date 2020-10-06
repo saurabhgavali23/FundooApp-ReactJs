@@ -13,7 +13,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import TrashIcon from '@material-ui/icons/Delete';
 import NoteIcon from '@material-ui/icons/EmojiObjects';
 import React from "react";
-import '../drawer/DrawerCss.css'
+import './DrawerCss.css'
 
 const NoteDrawer = ({ openDrawer }) => {
 

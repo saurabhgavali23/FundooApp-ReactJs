@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { userRegistration } from "../services/userServices";
+import { userRegistration } from "../../services/userServices";
 import styles from "./RegistrationStyle";
 
 const Registration2 = ({ openSnackBar }) => {
