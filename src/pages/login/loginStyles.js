@@ -7,7 +7,7 @@ export default makeStyles((theme)=>
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        width: "100%",
+        width: "100wh",
         height: "100vh", 
     },
     formDivLogin:{
@@ -33,21 +33,23 @@ export default makeStyles((theme)=>
         margin: "10%"
     },
     emailContainer:{
-        marginBottom: "05%"
+        height: '50px'
     },
     emailInput:{
         width: "100%",
     },
     passwordContainer:{
-        marginBottom: "5%"
+        height: '50px',
+        alignItems: 'center'
     },
     passwordInput:{
         width: "100%",
     },
     button:{
         display: "flex",
-        justifyContent: "flex-end",
-        marginTop: "5%"
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: '10%'
     },
     inputError:{
         color: "red",

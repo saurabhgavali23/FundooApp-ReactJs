@@ -116,16 +116,8 @@ const Login2 = ({ openSnackBar }) => {
                   {passwordError ? passwordText : null}
                 </div>
               </div>
-              <div className={classes.button}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleData}
-                >
-                  Login
-                </Button>
               </div>
-            </div>
+              <div className={classes.button}>
             <Grid container className={classes.link}>
               <Grid item xs>
                 <Link href="/send-email" variant="body2">
@@ -138,6 +130,14 @@ const Login2 = ({ openSnackBar }) => {
                 </Link>
               </Grid>
             </Grid>
+            <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleData}
+                >
+                  Login
+                </Button>
+            </div>
           </form>
         </Box>
       </div>
