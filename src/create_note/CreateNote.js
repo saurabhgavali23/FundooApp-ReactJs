@@ -7,6 +7,7 @@ import {
   CardContent,
   Chip,
   InputBase,
+  makeStyles,
   Typography,
 } from "@material-ui/core";
 import CollaboratorIcon from "@material-ui/icons/PersonAdd";
@@ -18,7 +19,15 @@ import { saveNotes } from "../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
+const Styles = makeStyles({
+
+  root:{
+    padding: 0
+  }
+})
+
 const CreateNote = ({ setShowCard }) => {
+  const classes = Styles();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateTimeChip, setDateTimeChip] = useState('')
@@ -43,8 +52,7 @@ const CreateNote = ({ setShowCard }) => {
   return (
     <div className="mainContainer">
       <Card className="cardContainer2">
-        <CardContent className="subCardContainer2">
-          <div className="inputBaseDiv">
+        <CardContent className="subCardContainer2" classes={{root: classes.root}}>
             <InputBase
               placeholder="Titile"
               className="inputBase"
@@ -52,9 +60,10 @@ const CreateNote = ({ setShowCard }) => {
               multiline
             />
             <Typography>Pin</Typography>
-          </div>
+          </CardContent>
+          <CardContent className="discription" classes={{root: classes.root}}>
           <InputBase
-            placeholder="Take a notes"
+            placeholder="Take a notes..."
             className="inputBase"
             onChange={(e) => setDescription(e.target.value)}
             multiline
