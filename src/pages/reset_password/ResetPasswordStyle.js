@@ -30,16 +30,18 @@ export default makeStyles((theme)=>
         fontSize: 20,
     },
     inputContainer:{
-        margin: "10%"
+        margin: "10%",
+        marginBottom: '5%'
     },
     passwordInput:{
         width: "100%",
-        marginBottom: "5%"
+        height: '50px'
     },
     button:{
         display: "flex",
         justifyContent: "flex-end",
-        marginTop: "5%"
+        marginRight: '10%',
+        alignItems: 'center'
     },
     inputError:{
         color: "red",

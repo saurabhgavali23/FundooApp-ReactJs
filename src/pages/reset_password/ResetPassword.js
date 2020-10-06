@@ -17,7 +17,7 @@ const ResetPassword2 = ({ openSnackBar }) => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const resetToken = useParams()
+  const resetToken = useParams();
 
   const passwordValidation = () => {
     var passReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/;
@@ -37,10 +37,10 @@ const ResetPassword2 = ({ openSnackBar }) => {
   };
 
   const handleData = () => {
-    let token = resetToken.token
+    let token = resetToken.token;
     if (password !== undefined && confirmPassword === password) {
-      let formData = new FormData()
-      formData.append('newPassword', password)
+      let formData = new FormData();
+      formData.append("newPassword", password);
       resetPassword(formData, token)
         .then((res) => {
           if (res.status === 200) {
@@ -81,23 +81,19 @@ const ResetPassword2 = ({ openSnackBar }) => {
                 helperText={confirmPasswordError ? "Password MissMatch" : null}
                 required
               />
-              <div className={classes.button}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleData}
-                >
-                  Submit
-                </Button>
-              </div>
             </div>
-            <Grid container className={classes.link}>
-              <Grid item xs>
-                <Link href="/login" variant="body2">
-                  SignIn
-                </Link>
+            <div className={classes.button}>
+              <Grid container className={classes.link}>
+                <Grid item xs>
+                  <Link href="/login" variant="body2">
+                    SignIn
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+              <Button variant="contained" color="primary" onClick={handleData}>
+                Submit
+              </Button>
+            </div>
           </form>
         </Box>
       </div>
