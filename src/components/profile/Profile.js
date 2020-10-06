@@ -38,7 +38,7 @@ const Profile = ({ showProfile }) => {
       {showProfile ? (
         <div className="profileContainer">
           <Card>
-            <CardContent className="cardContainer">
+            <CardContent className="profielCardContainer">
               <AccountCircle className="profileIcon" />
               <Typography style={{ fontSize: 15 }} gutterBottom>
                 {userEmail}
@@ -47,7 +47,7 @@ const Profile = ({ showProfile }) => {
             <CardActions className="cardActions">
               <Button
                 size="small"
-                variant="contained"
+                variant="text"
                 color="primary"
                 onClick={handleLogout}
               >
