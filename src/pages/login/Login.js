@@ -6,6 +6,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import { useHistory } from "react-router-dom";
 
 const Login2 = ({ openSnackBar }) => {
   const classes = styles();
@@ -16,6 +17,7 @@ const Login2 = ({ openSnackBar }) => {
   const [passwordText, setPasswordText] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory()
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -62,6 +64,7 @@ const Login2 = ({ openSnackBar }) => {
           localStorage.setItem("userId", userId);
           localStorage.setItem("userData", JSON.stringify(userData))
           openSnackBar("Login Successfull");
+          history.push('/dash-board')
         })
         .catch((err) => {
           openSnackBar("Login Faild");
