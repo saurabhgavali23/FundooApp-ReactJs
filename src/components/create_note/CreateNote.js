@@ -13,7 +13,8 @@ import {
 import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ColorIcon from "@material-ui/icons/ColorLensOutlined";
-import ArchiveIcon from "@material-ui/icons/ArchiveOutlined";
+import ArchiveFilled from "@material-ui/icons/Archive";
+import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
@@ -31,6 +32,7 @@ const CreateNote = ({ setShowCard }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateTimeChip, setDateTimeChip] = useState('')
+  const [isArchived, setIsArchived] = useState(false)
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -38,6 +40,7 @@ const CreateNote = ({ setShowCard }) => {
       formData.append("title", title);
       formData.append("description", description);
       formData.append("reminder", dateTimeChip);
+      formData.append("isArchived", isArchived)
       saveNotes(formData)
         .then((res) => {})
         .catch((err) => {
@@ -83,7 +86,9 @@ const CreateNote = ({ setShowCard }) => {
             <CollaboratorIcon className="iconStyle" onClick={()=> setShowCard('collaborator')}/>
             <ColorIcon className="iconStyle" />
             <ImageIcon className="iconStyle" />
-            <ArchiveIcon className="iconStyle" />
+            <div onClick={() => setIsArchived(!isArchived)}>
+            {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
+            </div>
             <MoreIcon className="iconStyle" />
           </CardActions>
           <CardActions onClick={() => setShowCard('take_note')}>

@@ -24,6 +24,7 @@
 .iconStyle{
     margin-left: 4%;
     margin-right: 4%;
+    cursor: pointer;
 }
 .actionStyle{
     display: flex;
