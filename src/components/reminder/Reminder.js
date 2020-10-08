@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReminderIcon from "@material-ui/icons/Notifications";
+import ReminderIcon from "@material-ui/icons/NotificationsOutlined";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "./ReminderCss.css";
