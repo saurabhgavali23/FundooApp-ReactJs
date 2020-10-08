@@ -1,28 +1,10 @@
-import Axios from "axios"
-import NoteApi from "../config/NoteApi"
+import NoteApi from "../config/NoteApi";
+import apiServices from "./apiServices";
 
-const URL = process.env.REACT_APP_BASE_URL
-let token = localStorage.getItem('userToken')
+export const saveNotes = (data) => {
+  return apiServices.postWithHeader(NoteApi.addNotes, data);
+};
 
-export const saveNotes = (data) =>{
-
-    return Axios.post(
-        `${URL}${NoteApi.addNotes}`,
-        data,{
-            headers:{
-                Authorization: token
-            }
-        }
-    )
-}
-
-export const getNoteList = () =>{
-
-    return Axios.get(
-        `${URL}${NoteApi.getNotes}`,{
-            headers:{
-                Authorization: token
-            }
-        }
-    )
-}
+export const getNoteList = () => {
+  return apiServices.getWithHeader(NoteApi.getNotes);
+};
