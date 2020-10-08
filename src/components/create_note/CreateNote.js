@@ -12,13 +12,13 @@ import {
 } from "@material-ui/core";
 import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
-import ColorIcon from "@material-ui/icons/ColorLensOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import ColorList from "../color_list/ColorList";
 
 const Styles = makeStyles({
 
@@ -33,6 +33,7 @@ const CreateNote = ({ setShowCard }) => {
   const [description, setDescription] = useState("");
   const [dateTimeChip, setDateTimeChip] = useState('')
   const [isArchived, setIsArchived] = useState(false)
+  const [bgColor, setBgColor] = useState('#fff')
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -40,7 +41,8 @@ const CreateNote = ({ setShowCard }) => {
       formData.append("title", title);
       formData.append("description", description);
       formData.append("reminder", dateTimeChip);
-      formData.append("isArchived", isArchived)
+      formData.append("isArchived", isArchived);
+      formData.append("color", bgColor);
       saveNotes(formData)
         .then((res) => {})
         .catch((err) => {
@@ -54,7 +56,7 @@ const CreateNote = ({ setShowCard }) => {
   }
   return (
     <div className="mainContainer">
-      <Card className="cardContainer2">
+      <Card className="cardContainer2" style={{ backgroundColor: bgColor }}>
         <CardContent className="subCardContainer2" classes={{root: classes.root}}>
             <InputBase
               placeholder="Titile"
@@ -84,7 +86,7 @@ const CreateNote = ({ setShowCard }) => {
           <CardActions style={{marginLeft: '3%'}}>
             <Reminder setDateTimeChip={setDateTimeChip}/>
             <CollaboratorIcon className="iconStyle" onClick={()=> setShowCard('collaborator')}/>
-            <ColorIcon className="iconStyle" />
+            <ColorList setBgColor={setBgColor}/>
             <ImageIcon className="iconStyle" />
             <div onClick={() => setIsArchived(!isArchived)}>
             {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
