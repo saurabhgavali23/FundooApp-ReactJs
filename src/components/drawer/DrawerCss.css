@@ -11,5 +11,9 @@
     cursor: pointer;
 }
 .note:hover{
-    background-color: lightyellow;
+    background-color: #feefc3;
+}
+#drawer-container{
+    width: 20%;
+    overflow-x: hidden;
 }

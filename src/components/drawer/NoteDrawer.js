@@ -1,24 +1,50 @@
 import {
-    Divider,
+  createMuiTheme,
   Drawer,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  ThemeProvider,
 } from "@material-ui/core";
-import ArchiveIcon from '@material-ui/icons/Archive';
+import ArchiveIcon from '@material-ui/icons/ArchiveOutlined';
 import IconButton from "@material-ui/core/IconButton";
-import ReminderIcon from '@material-ui/icons/Notifications';
+import ReminderIcon from '@material-ui/icons/NotificationsOutlined';
 import MenuIcon from "@material-ui/icons/Menu";
-import TrashIcon from '@material-ui/icons/Delete';
-import NoteIcon from '@material-ui/icons/EmojiObjects';
+import TrashIcon from '@material-ui/icons/DeleteOutlined';
+import NoteIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import React from "react";
 import './DrawerCss.css'
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiDrawer: {
+        paper: {
+            top: '10%',
+        },
+        paperAnchorDockedLeft:{
+          borderRight: 0
+        }
+    },
+    MuiPaper: {
+        root: {
+            backgroundColor: 'transparent'
+        }
+    },
+    MuiListItem:{
+      gutters:{
+        borderBottomRightRadius: 20,
+        borderTopRightRadius: 20
+      }
+    }
+}
+})
 
 const NoteDrawer = ({ openDrawer }) => {
 
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <IconButton
         edge="start"
         className="menuButton"
@@ -27,9 +53,9 @@ const NoteDrawer = ({ openDrawer }) => {
       >
         <MenuIcon />
       </IconButton>
-      <div >
         <Drawer open={openDrawer} 
-        className="drawer"
+        id="drawer-container"
+        variant="persistent"
         >
         <div className="list">
         <List>
@@ -45,7 +71,6 @@ const NoteDrawer = ({ openDrawer }) => {
               </ListItemIcon>
               <ListItemText>Reminder</ListItemText>
             </ListItem>
-            <Divider/>
             <ListItem className="note">
               <ListItemIcon>
                 <ArchiveIcon/>
@@ -61,7 +86,7 @@ const NoteDrawer = ({ openDrawer }) => {
           </List>
         </div>
         </Drawer>
-      </div>
+        </ThemeProvider>
     </div>
   );
 };
