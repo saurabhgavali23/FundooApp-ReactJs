@@ -6,23 +6,22 @@ let token = localStorage.getItem('userToken');
 
 export const userRegistration = (data) =>{
  return Axios.post(
-        URL+NoteApi.userSignUp,
+        `${URL}${NoteApi.userSignUp}`,
         data
     )
 }
 
 export const login = (data) =>{
     return Axios.post(
-        URL+NoteApi.userLogin,
+        `${URL}${NoteApi.userLogin}`,
         data
     )
 }
 
 export const sendEmail = (data) =>{
     
-    let token = localStorage.getItem('userToken')
     return Axios.post(
-        URL+NoteApi.userReset,
+        `${URL}${NoteApi.userReset}`,
         data,{
             headers:{
                 Authorization: token
@@ -32,9 +31,7 @@ export const sendEmail = (data) =>{
 }
 
 export const resetPassword = (data, token) =>{
-    console.log("data", data);
-    console.log("token", token);
-    //let token = localStorage.getItem('userToken')
+    
     return Axios.post(
         URL+NoteApi.resetUserPassword,
         data,{
@@ -48,7 +45,7 @@ export const resetPassword = (data, token) =>{
 export const searchUserDetails = (data) =>{
 
     return Axios.post(
-        URL+NoteApi.SearchUserDetails,
+        `${URL}${NoteApi.SearchUserDetails}`,
         data,{
             headers:{
                 Authorization: token

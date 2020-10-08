@@ -7,7 +7,7 @@ let token = localStorage.getItem('userToken')
 export const saveNotes = (data) =>{
 
     return Axios.post(
-        URL+NoteApi.addNotes,
+        `${URL}${NoteApi.addNotes}`,
         data,{
             headers:{
                 Authorization: token
@@ -19,7 +19,7 @@ export const saveNotes = (data) =>{
 export const getNoteList = () =>{
 
     return Axios.get(
-        URL+NoteApi.getNotes,{
+        `${URL}${NoteApi.getNotes}`,{
             headers:{
                 Authorization: token
             }
