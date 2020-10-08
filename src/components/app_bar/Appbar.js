@@ -21,10 +21,8 @@ const [openDrawer, setOpenDrawer] = useState(false)
             FundooAap
           </Typography>
           <div className="search">
-            <div className="searchIcon">
-              <SearchIcon />
-            </div>
-            <InputBase placeholder="Search" className="searchInput" />
+            <SearchIcon className="searchIcon" />
+            <InputBase placeholder="Search" className="searchInput" multiline />
           </div>
           <div className="profile" onClick={()=>setShowProfile(!showProfile)}>
             <Profile showProfile={showProfile}/>
