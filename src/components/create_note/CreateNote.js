@@ -10,10 +10,10 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import CollaboratorIcon from "@material-ui/icons/PersonAdd";
-import ImageIcon from "@material-ui/icons/Image";
-import ColorIcon from "@material-ui/icons/ColorLens";
-import ArchiveIcon from "@material-ui/icons/Archive";
+import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
+import ImageIcon from "@material-ui/icons/ImageOutlined";
+import ColorIcon from "@material-ui/icons/ColorLensOutlined";
+import ArchiveIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
