@@ -4,7 +4,7 @@
     width: 100%;
 }
 .cardMainContainer{
-    width: 40%;
+    width: 50%;
     flex-direction: column;
 }
 .collabIcon{

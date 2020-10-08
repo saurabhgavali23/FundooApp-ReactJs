@@ -39,7 +39,7 @@ const Collaborator = ({ setShowCard }) => {
             className="collabInputEmail"
           />
         </CardContent>
-        <div className="collabButton" onClick={() => setShowCard("take_note")}>
+        <div className="collabButton" onClick={() => setShowCard("create_note")}>
           <Button color="primary" variant="text">
             save
           </Button>
