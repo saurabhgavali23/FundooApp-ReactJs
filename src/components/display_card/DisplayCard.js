@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@material-ui/core";
+import { Card, CardContent, Chip, Grid } from "@material-ui/core";
 import React from "react";
 import './DisplayCardCss.css'
 
@@ -12,6 +12,16 @@ const DisplayCard = ({ item }) => {
               {item.title}
             </CardContent>
             <CardContent className="createContentStyle">{item.description}</CardContent>
+            <div>
+              {item.noteLabels !== undefined ? (
+                item.noteLabels.map((item,index)=>(
+                  <Chip
+                    label={item.label}
+                    key={index}
+                  />
+                ))
+              ):null}
+            </div>
           </div>
         </Card>
       </Grid>
