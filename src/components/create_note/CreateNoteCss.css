@@ -14,12 +14,12 @@
 
 }
 .subCardContainer2{
-    padding: 10px 15px !important;
+    padding: 1% 4% !important;
     display: flex;
     flex-direction: row;
 }
 .discription{
-    padding: 12px 16px !important;
+    padding: 1% 4% !important;
 }
 .iconStyle{
     margin-left: 4%;
@@ -33,4 +33,15 @@
 }
 .showLabel{
     margin-right: 1%;
+}
+
+@media (max-width: 360px) {
+    .cardContainer2{
+        width: 57%;
+        height: 200px;
+    }
+    .actionStyle{
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

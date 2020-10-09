@@ -15,7 +15,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 13px 12px !important;
+    padding: 1.5% 2% !important;
     color: #808080;
 }
 .imageCheckBoxContainer{
@@ -38,4 +38,15 @@
     padding-right: 0 !important;
     margin-top: 4%;
     width: 52% !important;
+}
+
+@media (max-Width: 360px){
+    .cardContainer{
+        width: 56%;
+    }
+    .subCardContainer{
+        padding: 5% 10% !important;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
