@@ -3,7 +3,7 @@ import ReminderIcon from "@material-ui/icons/NotificationsOutlined";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "./ReminderCss.css";
-import { Button, Card, CardContent, Divider, Grid } from "@material-ui/core";
+import { Button, Card, CardContent, ClickAwayListener, Divider, Grid } from "@material-ui/core";
 import {
   KeyboardDatePicker,
   KeyboardTimePicker,
@@ -38,6 +38,7 @@ const Reminder = ({setDateTimeChip}) => {
   };
 
   return (
+    <ClickAwayListener onClickAway={()=> setShowReminder(false)}>
     <div>
       <ReminderIcon
         className="reminderContainer"
@@ -124,6 +125,7 @@ const Reminder = ({setDateTimeChip}) => {
         </div>
       ) : null}
     </div>
+    </ClickAwayListener>
   );
 };
 
