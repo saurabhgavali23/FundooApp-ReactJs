@@ -14,11 +14,11 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import { saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
+import MoreOptions from "../more_options/MoreOptions";
 
 const Styles = makeStyles({
 
@@ -91,7 +91,7 @@ const CreateNote = ({ setShowCard }) => {
             <div onClick={() => setIsArchived(!isArchived)}>
             {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
             </div>
-            <MoreIcon className="iconStyle" />
+            <MoreOptions/>
           </CardActions>
           <CardActions onClick={() => setShowCard('take_note')}>
             <Button color="primary" variant="text" onClick={saveNote}>

@@ -1,0 +1,30 @@
+.labelCardContainer{
+    position: absolute;
+    padding: 1%;
+}
+.labelCardContent{
+    padding: 0% !important;
+}
+.labelInput{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.labelBaseInput{
+    font-size: 10;
+}
+.labelCreateLabelContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3%;
+    cursor: pointer;
+}
+.createLabelText{
+    font-size: small;
+    margin-left: 3%;
+}
+.labelCheckBoxContainer{
+    display: flex;
+    flex-direction: column;
+}

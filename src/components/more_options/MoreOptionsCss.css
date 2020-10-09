@@ -1,0 +1,14 @@
+.moreIcon{
+    cursor: pointer;
+}
+.moreOptionCardContainer{
+    padding: 1%;
+    position: absolute;
+}
+.moreOptionCardContent{
+    padding: 0% !important;
+    cursor: pointer;
+}
+.moreOptionCardContent:hover{
+    background-color: #feefc3;
+}
