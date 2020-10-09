@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CreateNoteCss.css";
 import {
   Button,
@@ -14,7 +14,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { saveNotes } from "../../services/NoteServices";
+import { saveNoteLabels, saveNotes } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -35,6 +35,7 @@ const CreateNote = ({ setShowCard }) => {
   const [isArchived, setIsArchived] = useState(false)
   const [bgColor, setBgColor] = useState('#fff')
   const [showLabels, setShowLabels] = useState([])
+  var labelId = []
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -43,6 +44,7 @@ const CreateNote = ({ setShowCard }) => {
       formData.append("description", description);
       formData.append("reminder", dateTimeChip);
       formData.append("isArchived", isArchived);
+      formData.append("labelIdList", JSON.stringify(labelId))
       formData.append("color", bgColor);
       saveNotes(formData)
         .then((res) => {})
@@ -51,6 +53,27 @@ const CreateNote = ({ setShowCard }) => {
         });
     }
   };
+
+  useEffect(() => {
+    let labels = [];
+    let userId = localStorage.getItem('userId')
+
+    if(showLabels.length !== 0){
+      showLabels.map(item=>(
+        labels.push(item.value)
+      ))
+      let data={
+        "label": labels.toString(),
+        "isDeleted": false,
+        "userId": userId
+      }
+      saveNoteLabels(data).then(res=>{
+        labelId.push(res.data.id)
+      }).catch(err=>{
+        console.warn("error", err);
+      })
+    }
+  }, [showLabels])
 
   const handleDeleteChip = () =>{
     setDateTimeChip('')

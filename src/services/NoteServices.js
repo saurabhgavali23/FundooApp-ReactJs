@@ -8,3 +8,7 @@ export const saveNotes = (data) => {
 export const getNoteList = () => {
   return apiServices.getWithHeader(NoteApi.getNotes);
 };
+
+export const saveNoteLabels = (data) => {
+  return apiServices.postWithHeader(NoteApi.saveNoteLabels, data);
+};
