@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import "./LabelsCss.css";
 
-const Labels = () => {
+const Labels = ({ setShowLabels }) => {
   const [label, setLabel] = useState("");
   const [addLabel, setAddLabel] = useState([]);
   const [isChecked, setIsChecked] = useState(Math.random());
@@ -23,6 +23,7 @@ const Labels = () => {
   const handleCheckedValue = (item, index) => {
     addLabel[index] = { ...addLabel[index], check: !item.check };
     setAddLabel(addLabel);
+    setShowLabels(addLabel);
     setIsChecked(Math.random());
   };
 

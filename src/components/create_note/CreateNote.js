@@ -34,6 +34,7 @@ const CreateNote = ({ setShowCard }) => {
   const [dateTimeChip, setDateTimeChip] = useState('')
   const [isArchived, setIsArchived] = useState(false)
   const [bgColor, setBgColor] = useState('#fff')
+  const [showLabels, setShowLabels] = useState([])
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -54,6 +55,7 @@ const CreateNote = ({ setShowCard }) => {
   const handleDeleteChip = () =>{
     setDateTimeChip('')
   }
+
   return (
     <div className="mainContainer">
       <Card className="cardContainer2" style={{ backgroundColor: bgColor }}>
@@ -81,6 +83,16 @@ const CreateNote = ({ setShowCard }) => {
               color="primary"
               onDelete={handleDeleteChip}
             />):null}
+            {showLabels.length ? 
+              (<div>
+                {showLabels.map((item,index)=>(
+                  <Chip 
+                    className="showLabel"
+                    key={index}
+                    label={item.value}
+                  />
+              ))}
+              </div>):null}
         </CardContent>
         <div className="actionStyle">
           <CardActions style={{marginLeft: '3%'}}>
@@ -91,7 +103,7 @@ const CreateNote = ({ setShowCard }) => {
             <div onClick={() => setIsArchived(!isArchived)}>
             {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
             </div>
-            <MoreOptions/>
+            <MoreOptions setShowLabels={setShowLabels}/>
           </CardActions>
           <CardActions onClick={() => setShowCard('take_note')}>
             <Button color="primary" variant="text" onClick={saveNote}>

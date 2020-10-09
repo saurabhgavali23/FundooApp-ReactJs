@@ -31,3 +31,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.showLabel{
+    margin-right: 1%;
+}
