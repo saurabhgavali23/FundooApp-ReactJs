@@ -6,7 +6,7 @@ const DisplayCard = ({ item }) => {
   return (
       <div className="createMainContainer">
       <Grid item >
-        <Card style={{ height: 200, width: 200}}>
+        <Card style={{ height: 200, width: 200, backgroundColor: item.color}}>
           <div className="createCardContent">
             <CardContent className="createCardHeaderContend">
               {item.title}
