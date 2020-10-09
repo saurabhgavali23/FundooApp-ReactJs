@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ColorIcon from "@material-ui/icons/ColorLensOutlined";
-import { Card } from "@material-ui/core";
+import { Card, ClickAwayListener } from "@material-ui/core";
 import "./ColorListCss.css";
 
 const ColorList = ({ setBgColor }) => {
@@ -32,6 +32,7 @@ const ColorList = ({ setBgColor }) => {
   };
 
   return (
+    <ClickAwayListener onClickAway={()=>setShowColorList(false)}>
     <div>
       <ColorIcon onClick={() => setShowColorList(!showColorList)} className="colorIcon"/>
       {showColorList ? (
@@ -50,6 +51,7 @@ const ColorList = ({ setBgColor }) => {
         </Card>
       ) : null}
     </div>
+    </ClickAwayListener>
   );
 };
 
