@@ -23,8 +23,8 @@ const theme = createMuiTheme({
         paper: {
             top: '10%',
         },
-        paperAnchorDockedLeft:{
-          borderRight: 0
+        paperAnchorDockedRight:{
+          borderRight: 20
         }
     },
     MuiPaper: {
