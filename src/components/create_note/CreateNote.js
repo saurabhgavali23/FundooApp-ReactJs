@@ -8,7 +8,6 @@ import {
   Chip,
   InputBase,
   makeStyles,
-  Typography,
 } from "@material-ui/core";
 import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
@@ -99,11 +98,13 @@ const CreateNote = ({ setShowCard }) => {
             <img
               src={Pin}
               style={{ width: '10px', height: '20px' }}
+              alt="pin"
               onClick={() => setIsPined(!isPined)}
             />
           ) : (
             <img
               style={{ width: '20px', height: '20px' }}
+              alt="unPin"
               src={PinOutlined}
               onClick={() => setIsPined(!isPined)}
             />
