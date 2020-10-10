@@ -75,7 +75,7 @@ const CreateNote = ({ setShowCard }) => {
           console.warn("error", err);
         });
     }
-  }, [showLabels]);
+  }, [showLabels,labelId]);
 
   const handleDeleteChip = () => {
     setDateTimeChip("");
