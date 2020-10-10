@@ -13,3 +13,6 @@
     margin-bottom: 5%;
     font-weight: bold;
 }
+.createCardContainer{
+    box-shadow: 1px 1px 6px #A9A9A9 !important;
+}
