@@ -19,23 +19,25 @@ import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
 import MoreOptions from "../more_options/MoreOptions";
+import Pin from "../../images/Pin.png";
+import PinOutlined from "../../images/PinOutlined.png";
 
 const Styles = makeStyles({
-
-  root:{
-    padding: 0
-  }
-})
+  root: {
+    padding: 0,
+  },
+});
 
 const CreateNote = ({ setShowCard }) => {
   const classes = Styles();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [dateTimeChip, setDateTimeChip] = useState('')
-  const [isArchived, setIsArchived] = useState(false)
-  const [bgColor, setBgColor] = useState('#fff')
-  const [showLabels, setShowLabels] = useState([])
-  var labelId = []
+  const [dateTimeChip, setDateTimeChip] = useState("");
+  const [isArchived, setIsArchived] = useState(false);
+  const [bgColor, setBgColor] = useState("#fff");
+  const [showLabels, setShowLabels] = useState([]);
+  const [isPined, setIsPined] = useState(false);
+  var labelId = [];
 
   const saveNote = () => {
     if (title !== "" && description !== "") {
@@ -43,8 +45,9 @@ const CreateNote = ({ setShowCard }) => {
       formData.append("title", title);
       formData.append("description", description);
       formData.append("reminder", dateTimeChip);
+      formData.append("isPined", isPined)
       formData.append("isArchived", isArchived);
-      formData.append("labelIdList", JSON.stringify(labelId))
+      formData.append("labelIdList", JSON.stringify(labelId));
       formData.append("color", bgColor);
       saveNotes(formData)
         .then((res) => {})
@@ -56,83 +59,100 @@ const CreateNote = ({ setShowCard }) => {
 
   useEffect(() => {
     let labels = [];
-    let userId = localStorage.getItem('userId')
+    let userId = localStorage.getItem("userId");
 
-    if(showLabels.length !== 0){
-      showLabels.map(item=>(
-        labels.push(item.value)
-      ))
-      let data={
-        "label": labels.toString(),
-        "isDeleted": false,
-        "userId": userId
-      }
-      saveNoteLabels(data).then(res=>{
-        labelId.push(res.data.id)
-      }).catch(err=>{
-        console.warn("error", err);
-      })
+    if (showLabels.length !== 0) {
+      showLabels.map((item) => labels.push(item.value));
+      let data = {
+        label: labels.toString(),
+        isDeleted: false,
+        userId: userId,
+      };
+      saveNoteLabels(data)
+        .then((res) => {
+          labelId.push(res.data.id);
+        })
+        .catch((err) => {
+          console.warn("error", err);
+        });
     }
-  }, [showLabels])
+  }, [showLabels]);
 
-  const handleDeleteChip = () =>{
-    setDateTimeChip('')
-  }
+  const handleDeleteChip = () => {
+    setDateTimeChip("");
+  };
 
   return (
     <div className="mainContainer">
       <Card className="cardContainer2" style={{ backgroundColor: bgColor }}>
-        <CardContent className="subCardContainer2" classes={{root: classes.root}}>
-            <InputBase
-              placeholder="Titile"
-              className="inputBase"
-              onChange={(e) => setTitle(e.target.value)}
-              multiline
+        <CardContent
+          className="subCardContainer2"
+          classes={{ root: classes.root }}
+        >
+          <InputBase
+            placeholder="Titile"
+            className="inputBase"
+            onChange={(e) => setTitle(e.target.value)}
+            multiline
+          />
+          {isPined ? (
+            <img
+              src={Pin}
+              style={{ width: '10px', height: '20px' }}
+              onClick={() => setIsPined(!isPined)}
             />
-            <Typography>Pin</Typography>
-          </CardContent>
-          <CardContent className="discription" classes={{root: classes.root}}>
+          ) : (
+            <img
+              style={{ width: '20px', height: '20px' }}
+              src={PinOutlined}
+              onClick={() => setIsPined(!isPined)}
+            />
+          )}
+        </CardContent>
+        <CardContent className="discription" classes={{ root: classes.root }}>
           <InputBase
             placeholder="Take a notes..."
             className="inputBase"
             onChange={(e) => setDescription(e.target.value)}
             multiline
           />
-          {dateTimeChip!==''?
-            (<Chip
-              icon={<AccessTimeIcon/>}
+          {dateTimeChip !== "" ? (
+            <Chip
+              icon={<AccessTimeIcon />}
               label={dateTimeChip}
               clickable
               color="primary"
               onDelete={handleDeleteChip}
-            />):null}
-            {showLabels.length ? 
-              (<div>
-                {showLabels.map((item,index)=>(
-                  <Chip 
-                    className="showLabel"
-                    key={index}
-                    label={item.value}
-                  />
+            />
+          ) : null}
+          {showLabels.length ? (
+            <div>
+              {showLabels.map((item, index) => (
+                <Chip className="showLabel" key={index} label={item.value} />
               ))}
-              </div>):null}
+            </div>
+          ) : null}
         </CardContent>
         <div className="actionStyle">
           <CardActions className="createOptions">
-            <Reminder setDateTimeChip={setDateTimeChip}/>
+            <Reminder setDateTimeChip={setDateTimeChip} />
             <div className="iconStyle">
-            <CollaboratorIcon onClick={()=> setShowCard('collaborator')}/>
+              <CollaboratorIcon onClick={() => setShowCard("collaborator")} />
             </div>
-            <ColorList setBgColor={setBgColor}/>
+            <ColorList setBgColor={setBgColor} />
             <div>
-            <ImageIcon className="iconStyle" />
+              <ImageIcon className="iconStyle" />
             </div>
             <div onClick={() => setIsArchived(!isArchived)}>
-            {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
+              {isArchived ? (
+                <ArchiveFilled className="iconStyle" />
+              ) : (
+                <ArchiveOutlined className="iconStyle" />
+              )}
             </div>
-            <MoreOptions setShowLabels={setShowLabels}/>
+            <MoreOptions setShowLabels={setShowLabels} />
           </CardActions>
-          <CardActions onClick={() => setShowCard('take_note')}>
+          <CardActions onClick={() => setShowCard("take_note")}>
             <Button color="primary" variant="text" onClick={saveNote}>
               close
             </Button>
