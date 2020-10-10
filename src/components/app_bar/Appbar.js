@@ -1,7 +1,7 @@
 import { AppBar, InputBase, makeStyles, Typography } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
-import React, { useState } from "react";
+import React from "react";
 import "./AppBarCss.css";
 import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
@@ -20,16 +20,13 @@ const Styles = makeStyles((theme)=>({
 
 const Appbar = () => {
 const classes = Styles()
-const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
     <div className="grow">
       <AppBar position="static">
         <Toolbar>
           <div className="appBarMenuAndTitile">
-          <div onClick={()=> setOpenDrawer(!openDrawer)}>
-          <NoteDrawer openDrawer={openDrawer}/>
-          </div>
+          <NoteDrawer />
           <Typography className="title" variant="h6" noWrap>
             FundooAap
           </Typography>

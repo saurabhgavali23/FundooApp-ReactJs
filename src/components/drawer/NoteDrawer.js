@@ -1,4 +1,5 @@
 import {
+  ClickAwayListener,
   createMuiTheme,
   Drawer,
   List,
@@ -13,7 +14,7 @@ import ReminderIcon from '@material-ui/icons/NotificationsOutlined';
 import MenuIcon from "@material-ui/icons/Menu";
 import TrashIcon from '@material-ui/icons/DeleteOutlined';
 import NoteIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import React from "react";
+import React, { useState } from "react";
 import './DrawerCss.css'
 
 const theme = createMuiTheme({
@@ -40,9 +41,11 @@ const theme = createMuiTheme({
 }
 })
 
-const NoteDrawer = ({ openDrawer }) => {
+const NoteDrawer = () => {
+  const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
+    <ClickAwayListener onClickAway={() => setOpenDrawer(false)}>
     <div>
       <ThemeProvider theme={theme}>
       <IconButton
@@ -50,6 +53,7 @@ const NoteDrawer = ({ openDrawer }) => {
         className="menuButton"
         color="inherit"
         aria-label="open drawer"
+        onClick={()=> setOpenDrawer(!openDrawer)}
       >
         <MenuIcon />
       </IconButton>
@@ -88,6 +92,7 @@ const NoteDrawer = ({ openDrawer }) => {
         </Drawer>
         </ThemeProvider>
     </div>
+    </ClickAwayListener>
   );
 };
 
