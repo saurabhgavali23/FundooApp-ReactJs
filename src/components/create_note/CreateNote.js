@@ -118,11 +118,15 @@ const CreateNote = ({ setShowCard }) => {
               </div>):null}
         </CardContent>
         <div className="actionStyle">
-          <CardActions style={{marginLeft: '3%'}}>
+          <CardActions className="createOptions">
             <Reminder setDateTimeChip={setDateTimeChip}/>
-            <CollaboratorIcon className="iconStyle" onClick={()=> setShowCard('collaborator')}/>
+            <div className="iconStyle">
+            <CollaboratorIcon onClick={()=> setShowCard('collaborator')}/>
+            </div>
             <ColorList setBgColor={setBgColor}/>
+            <div>
             <ImageIcon className="iconStyle" />
+            </div>
             <div onClick={() => setIsArchived(!isArchived)}>
             {isArchived ? <ArchiveFilled className="iconStyle"/> : <ArchiveOutlined className="iconStyle"/>}
             </div>
