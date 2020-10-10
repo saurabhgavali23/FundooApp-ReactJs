@@ -22,8 +22,10 @@ const DashBoard = () => {
   useEffect(() => {
     getNoteList().then((res) => {
       setNoteList(res.data.data.data);
+    }).catch(err=>{
+      console.warn("error", err);
     });
-  }, []);
+  }, [showCard]);
 
   return (
     <div>
