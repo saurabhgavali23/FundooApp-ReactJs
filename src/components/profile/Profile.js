@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import "./ProfileCss.css";
@@ -7,11 +7,13 @@ import {
   Card,
   CardActions,
   CardContent,
+  ClickAwayListener,
   Typography,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-const Profile = ({ showProfile }) => {
+const Profile = () => {
+  const [showProfile, setShowProfile] = useState(false)
   let userEmail = 'abcd@gmail.com'
   let userData = JSON.parse(localStorage.getItem("userData"))
   if(userData !== null){
@@ -26,12 +28,14 @@ const Profile = ({ showProfile }) => {
     history.push("/login");
   };
   return (
+    <ClickAwayListener onClickAway={()=>setShowProfile(false)}>
     <div>
       <IconButton
         edge="end"
         aria-label="account of current user"
         aria-haspopup="true"
         color="inherit"
+        onClick={()=>setShowProfile(!showProfile)}
       >
         <AccountCircle style={{ fontSize: 30 }} />
       </IconButton>
@@ -58,6 +62,7 @@ const Profile = ({ showProfile }) => {
         </div>
       ) : null}
     </div>
+    </ClickAwayListener>
   );
 };
 

@@ -19,8 +19,7 @@ const Styles = makeStyles((theme)=>({
 }))
 
 const Appbar = () => {
-  const classes = Styles()
-const [showProfile, setShowProfile] = useState(false)
+const classes = Styles()
 const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
@@ -43,8 +42,8 @@ const [openDrawer, setOpenDrawer] = useState(false)
             className="searchInput" multiline 
             />
           </div>
-          <div className="profile" onClick={()=>setShowProfile(!showProfile)}>
-            <Profile showProfile={showProfile}/>
+          <div className="profile">
+            <Profile/>
           </div>
         </Toolbar>
       </AppBar>
