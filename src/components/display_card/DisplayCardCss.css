@@ -12,7 +12,22 @@
     padding: 0px !important;
     margin-bottom: 5%;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .createCardContainer{
     box-shadow: 1px 1px 6px #A9A9A9 !important;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5%;
+}
+.displayCardContainerwithOption{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
