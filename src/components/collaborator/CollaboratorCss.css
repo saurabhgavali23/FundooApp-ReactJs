@@ -36,3 +36,25 @@
     justify-content: flex-end;
     margin-right: 2%;
 }
+.emailError{
+    color: red;
+    font-size: 15;
+    margin-left: 18%;
+}
+.showUserEmailWithAvatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2%;
+    margin-left: 2%;
+}
+.avatar{
+    color: #f5a453;
+    margin-right: 5%;
+}
+.checkIconContainer{
+    margin-right: 5%;
+}
+.checkIcon{
+    cursor: pointer;
+}
