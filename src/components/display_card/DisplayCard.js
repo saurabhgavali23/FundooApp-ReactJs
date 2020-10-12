@@ -1,4 +1,4 @@
-import { Card, CardContent, Chip, Grid } from "@material-ui/core";
+import { Avatar, Card, CardContent, Chip, Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import "./DisplayCardCss.css";
 import Reminder from "../reminder/Reminder";
@@ -58,6 +58,13 @@ const DisplayCard = ({ item }) => {
                       <Chip label={item.label} key={index} />
                     ))
                   : null}
+              </div>
+              <div>
+                {item.collaborators !== undefined && (
+                  item.collaborators.map((item,index)=>(
+                  <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
+                  ))
+                )}
               </div>
             </div>
             <div>
