@@ -16,3 +16,7 @@ export const saveNoteLabels = (data) => {
 export const updateNotePin = (data) => {
   return apiServices.postWithHeader(NoteApi.pinUnpinNotes, data)
 }
+
+export const updateNoteArchive = (data) => {
+  return apiServices.postWithHeader(NoteApi.ArchiveNote, data)
+}

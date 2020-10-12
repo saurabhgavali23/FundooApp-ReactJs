@@ -10,11 +10,11 @@ import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
 import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
-import { updateNotePin } from "../../services/NoteServices";
+import { updateNoteArchive, updateNotePin } from "../../services/NoteServices";
 
 const DisplayCard = ({ item }) => {
   const [isHover, setIsHover] = useState(false);
-  const [isArchived, setIsArchived] = useState(false);
+  const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
   var noteId = []
   noteId.push(item.id)
@@ -26,6 +26,17 @@ const DisplayCard = ({ item }) => {
       noteIdList: noteId
     }
     updateNotePin(data).catch(err=>{
+      console.warn("error", err);
+    })
+  }
+
+  const handleNoteArchive = (value) => {
+    setIsArchived(value)
+    let data = {
+      isArchived: value,
+      noteIdList: noteId
+    }
+    updateNoteArchive(data).catch(err=>{
       console.warn("error", err);
     })
   }
@@ -88,11 +99,11 @@ const DisplayCard = ({ item }) => {
                   <CollaboratorIcon />
                   <ColorList />
                   <ImageIcon />
-                  <div onClick={() => setIsArchived(!isArchived)}>
+                  <div>
                     {isArchived ? (
-                      <ArchiveFilled className="iconStyle" />
+                      <ArchiveFilled className="iconStyle" onClick={() => handleNoteArchive(!isArchived)}/>
                     ) : (
-                      <ArchiveOutlined className="iconStyle" />
+                      <ArchiveOutlined className="iconStyle" onClick={() => handleNoteArchive(!isArchived)}/>
                     )}
                   </div>
                   <MoreOptions />
