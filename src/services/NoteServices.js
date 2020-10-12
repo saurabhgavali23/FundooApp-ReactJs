@@ -12,3 +12,7 @@ export const getNoteList = () => {
 export const saveNoteLabels = (data) => {
   return apiServices.postWithHeader(NoteApi.saveNoteLabels, data);
 };
+
+export const updateNotePin = (data) => {
+  return apiServices.postWithHeader(NoteApi.pinUnpinNotes, data)
+}

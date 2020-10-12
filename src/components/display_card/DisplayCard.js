@@ -10,11 +10,25 @@ import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
 import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
+import { updateNotePin } from "../../services/NoteServices";
 
 const DisplayCard = ({ item }) => {
   const [isHover, setIsHover] = useState(false);
   const [isArchived, setIsArchived] = useState(false);
-  const [isPined, setIsPined] = useState(false);
+  const [isPined, setIsPined] = useState(item.isPined);
+  var noteId = []
+  noteId.push(item.id)
+
+  const handleNotePin = (value) => {
+    setIsPined(value)
+    let data = {
+      isPined: value,
+      noteIdList: noteId
+    }
+    updateNotePin(data).catch(err=>{
+      console.warn("error", err);
+    })
+  }
 
   return (
     <div className="createMainContainer">
@@ -36,14 +50,14 @@ const DisplayCard = ({ item }) => {
                         src={Pin}
                         style={{ width: "20px", height: "15px" }}
                         alt="pin"
-                        onClick={() => setIsPined(!isPined)}
+                        onClick={() => handleNotePin(!isPined)}
                       />
                     ) : (
                       <img
                         style={{ width: "20px", height: "15px" }}
                         alt="unPin"
                         src={PinOutlined}
-                        onClick={() => setIsPined(!isPined)}
+                        onClick={() => handleNotePin(!isPined)}
                       />
                     )}
                   </div>

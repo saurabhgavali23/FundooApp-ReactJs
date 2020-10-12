@@ -7,5 +7,6 @@ const NoteApi = {
     getNotes: '/notes/getNotesList',
     SearchUserDetails: '/user/searchUserList',
     saveNoteLabels: '/noteLabels',
+    pinUnpinNotes: '/notes/pinUnpinNotes',
   };
   export default NoteApi;
