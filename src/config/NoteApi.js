@@ -9,5 +9,6 @@ const NoteApi = {
     saveNoteLabels: '/noteLabels',
     pinUnpinNotes: '/notes/pinUnpinNotes',
     ArchiveNote: '/notes/archiveNotes',
+    NoteColor: '/notes/changesColorNotes',
   };
   export default NoteApi;

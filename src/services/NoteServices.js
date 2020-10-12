@@ -20,3 +20,7 @@ export const updateNotePin = (data) => {
 export const updateNoteArchive = (data) => {
   return apiServices.postWithHeader(NoteApi.ArchiveNote, data)
 }
+
+export const updateNoteColor = (data) => {
+  return apiServices.postWithHeader(NoteApi.NoteColor, data)
+}

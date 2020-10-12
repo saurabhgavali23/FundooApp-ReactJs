@@ -1,5 +1,5 @@
 import { Avatar, Card, CardContent, Chip, Grid } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayCardCss.css";
 import Reminder from "../reminder/Reminder";
 import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
@@ -10,42 +10,62 @@ import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
 import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
-import { updateNoteArchive, updateNotePin } from "../../services/NoteServices";
+import {
+  updateNoteArchive,
+  updateNoteColor,
+  updateNotePin,
+} from "../../services/NoteServices";
 
 const DisplayCard = ({ item }) => {
   const [isHover, setIsHover] = useState(false);
   const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
-  var noteId = []
-  noteId.push(item.id)
+  const [bgColor, setBgColor] = useState("");
+  const [itemBgColor, setItemBgColor] = useState(item.color);
+  var noteId = [];
+  noteId.push(item.id);
 
   const handleNotePin = (value) => {
-    setIsPined(value)
+    setIsPined(value);
     let data = {
       isPined: value,
-      noteIdList: noteId
-    }
-    updateNotePin(data).catch(err=>{
+      noteIdList: noteId,
+    };
+    updateNotePin(data).catch((err) => {
       console.warn("error", err);
-    })
-  }
+    });
+  };
 
   const handleNoteArchive = (value) => {
-    setIsArchived(value)
+    setIsArchived(value);
     let data = {
       isArchived: value,
-      noteIdList: noteId
-    }
-    updateNoteArchive(data).catch(err=>{
+      noteIdList: noteId,
+    };
+    updateNoteArchive(data).catch((err) => {
       console.warn("error", err);
-    })
-  }
+    });
+  };
+
+  useEffect(() => {
+    if (bgColor !== "") {
+      setItemBgColor(bgColor);
+      let data = {
+        color: bgColor,
+        noteIdList: noteId,
+      };
+      updateNoteColor(data).catch((err) => {
+        console.warn("error", err);
+      });
+      setBgColor("");
+    }
+  }, [bgColor, noteId]);
 
   return (
     <div className="createMainContainer">
       <Grid item>
         <Card
-          style={{ height: 200, width: 200, backgroundColor: item.color }}
+          style={{ height: 200, width: 200, backgroundColor: itemBgColor }}
           className="createCardContainer"
           onMouseEnter={() => setIsHover(!isHover)}
           onMouseLeave={() => setIsHover(!isHover)}
@@ -85,11 +105,10 @@ const DisplayCard = ({ item }) => {
                   : null}
               </div>
               <div>
-                {item.collaborators !== undefined && (
-                  item.collaborators.map((item,index)=>(
-                  <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
-                  ))
-                )}
+                {item.collaborators !== undefined &&
+                  item.collaborators.map((item, index) => (
+                    <Avatar key={index}>{item.firstName.slice(0, 1)}</Avatar>
+                  ))}
               </div>
             </div>
             <div>
@@ -97,13 +116,19 @@ const DisplayCard = ({ item }) => {
                 <div className="options">
                   <Reminder />
                   <CollaboratorIcon />
-                  <ColorList />
+                  <ColorList setBgColor={setBgColor} />
                   <ImageIcon />
                   <div>
                     {isArchived ? (
-                      <ArchiveFilled className="iconStyle" onClick={() => handleNoteArchive(!isArchived)}/>
+                      <ArchiveFilled
+                        className="iconStyle"
+                        onClick={() => handleNoteArchive(!isArchived)}
+                      />
                     ) : (
-                      <ArchiveOutlined className="iconStyle" onClick={() => handleNoteArchive(!isArchived)}/>
+                      <ArchiveOutlined
+                        className="iconStyle"
+                        onClick={() => handleNoteArchive(!isArchived)}
+                      />
                     )}
                   </div>
                   <MoreOptions />
