@@ -34,7 +34,7 @@ const DisplayCard = ({ item }) => {
                     {isPined ? (
                       <img
                         src={Pin}
-                        style={{ width: "10px", height: "15px" }}
+                        style={{ width: "20px", height: "15px" }}
                         alt="pin"
                         onClick={() => setIsPined(!isPined)}
                       />
