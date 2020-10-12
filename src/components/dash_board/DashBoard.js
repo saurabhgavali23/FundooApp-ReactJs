@@ -18,6 +18,7 @@ import Appbar from "../app_bar/Appbar";
 const DashBoard = () => {
   const [showCard, setShowCard] = useState('take_note');
   const [noteList, setNoteList] = useState([]);
+  const [collabUser, setCollabUser] = useState([])
 
   useEffect(() => {
     getNoteList().then((res) => {
@@ -46,10 +47,10 @@ const DashBoard = () => {
           </Card>
         ) : null}
         {showCard === 'create_note' ? (
-          <CreateNote setShowCard={setShowCard} />
+          <CreateNote collabUser={collabUser} setShowCard={setShowCard} />
         ) : null}
         {showCard === 'collaborator' ? (
-          <Collaborator setShowCard={setShowCard}/>
+          <Collaborator setCollabUser={setCollabUser} setShowCard={setShowCard}/>
         ) : null}
       </div>
       <div>

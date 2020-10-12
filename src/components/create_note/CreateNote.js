@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CreateNoteCss.css";
 import {
+  Avatar,
   Button,
   Card,
   CardActions,
@@ -27,7 +28,7 @@ const Styles = makeStyles({
   },
 });
 
-const CreateNote = ({ setShowCard }) => {
+const CreateNote = ({ collabUser, setShowCard }) => {
   const classes = Styles();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -47,6 +48,7 @@ const CreateNote = ({ setShowCard }) => {
       formData.append("isPined", isPined)
       formData.append("isArchived", isArchived);
       formData.append("labelIdList", JSON.stringify(labelId));
+      formData.append("collaberators", JSON.stringify(collabUser))
       formData.append("color", bgColor);
       saveNotes(formData)
         .then((res) => {})
@@ -133,6 +135,13 @@ const CreateNote = ({ setShowCard }) => {
               ))}
             </div>
           ) : null}
+          {collabUser !== undefined && (
+            <div>
+              {collabUser.map((item,index)=>(
+                <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
+              ))}
+            </div>
+          )}
         </CardContent>
         <div className="actionStyle">
           <CardActions className="createOptions">
