@@ -39,6 +39,12 @@
     margin-top: 4%;
     width: 52% !important;
 }
+.progressBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
 
 @media (max-Width: 360px){
     .cardContainer{
