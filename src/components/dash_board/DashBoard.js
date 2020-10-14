@@ -37,7 +37,7 @@ const DashBoard = () => {
 
   return (
     <div>
-      <Appbar setSelectCard={setSelectCard}/>
+      <Appbar selectCard={selectCard} setSelectCard={setSelectCard}/>
       <div className="noteContainer">
         {showCard === "take_note" ? (
           <Card

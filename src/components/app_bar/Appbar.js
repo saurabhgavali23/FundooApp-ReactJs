@@ -6,7 +6,15 @@ import "./AppBarCss.css";
 import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
 
-const Appbar = ({setSelectCard}) => {
+const Appbar = ({selectCard, setSelectCard}) => {
+
+  var title = selectCard;
+  if(title === 'note'){
+    title = 'FundooAap'
+  }
+  else if(title === 'isArchived'){
+    title = 'Archived'
+  }
 
   return (
     <div className="grow">
@@ -16,7 +24,7 @@ const Appbar = ({setSelectCard}) => {
           <div className="appBarMenuAndTitile">
           <NoteDrawer setSelectCard={setSelectCard}/>
           <Typography variant="h6" noWrap>
-            FundooAap
+            {title}
           </Typography>
           <div className="search">
             <div className="searchIcon">
