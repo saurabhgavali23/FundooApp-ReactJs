@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./CreateNoteCss.css";
 import {
   Avatar,
+  Backdrop,
   Button,
   Card,
   CardActions,
   CardContent,
   Chip,
+  Fade,
   InputBase,
   makeStyles,
+  Modal,
 } from "@material-ui/core";
 import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
@@ -21,6 +24,7 @@ import ColorList from "../color_list/ColorList";
 import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
+import Collaborator from "../collaborator/Collaborator";
 
 const Styles = makeStyles({
   root: {
@@ -37,6 +41,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
   const [bgColor, setBgColor] = useState(item !== undefined ? item.color : "#fff");
   const [showLabels, setShowLabels] = useState([]);
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
+  const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   var labelId = [];
 
   const saveNote = () => {
@@ -159,7 +164,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
           <CardActions className="createOptions">
             <Reminder setDateTimeChip={setDateTimeChip} />
             <div className="iconStyle">
-              <CollaboratorIcon onClick={() => setShowCard("collaborator")} />
+              <CollaboratorIcon onClick={() => item !== undefined ? setIsCollabModalOpen(true) : setShowCard("collaborator")} />
             </div>
             <ColorList setBgColor={setBgColor} />
             <div>
@@ -181,6 +186,22 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
           </CardActions>
         </div>
       </Card>
+      <div>
+      <Modal
+        open={isCollabModalOpen}
+        onClose={() => setIsCollabModalOpen(!isCollabModalOpen)}
+        className="modal"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isCollabModalOpen}>
+            <Collaborator item={item} setIsCollabModalOpen={setIsCollabModalOpen}/>
+        </Fade>
+      </Modal>
+      </div>
     </div>
   );
 };

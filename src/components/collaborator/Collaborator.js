@@ -12,7 +12,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { searchUserDetails } from "../../services/userServices";
 import CheckIcon from "@material-ui/icons/Check";
 
-const Collaborator = ({ setCollabUser, setShowCard }) => {
+const Collaborator = ({ setCollabUser, setShowCard, setIsCollabModalOpen, item }) => {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [searchEmail, setSearchEmail] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -108,10 +108,10 @@ const Collaborator = ({ setCollabUser, setShowCard }) => {
         </CardContent>
         {isValidEmail && <div className="emailError">{errorText}</div>}
         <div className="collabButton">
-          <Button color="primary" variant="text" onClick={() => setShowCard("create_note")}>
+          <Button color="primary" variant="text" onClick={() => item !== undefined ? setIsCollabModalOpen(false) : setShowCard("create_note")}>
             cancel
           </Button>
-          <div onClick={() => handleUserData('save')}>
+          <div onClick={() => item !== undefined ? setIsCollabModalOpen(false) : handleUserData('save')}>
           <Button color="primary" variant="text">
             save
           </Button>
