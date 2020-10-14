@@ -14,7 +14,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { saveNoteLabels, saveNotes } from "../../services/NoteServices";
+import { saveNoteLabels, saveNotes, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -34,7 +34,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
   const [description, setDescription] = useState(item !== undefined ? item.description : null);
   const [dateTimeChip, setDateTimeChip] = useState("");
   const [isArchived, setIsArchived] = useState(item !== undefined ? item.isArchived : false);
-  const [bgColor, setBgColor] = useState("#fff");
+  const [bgColor, setBgColor] = useState(item !== undefined ? item.color : "#fff");
   const [showLabels, setShowLabels] = useState([]);
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   var labelId = [];
@@ -57,6 +57,16 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
         });
     }
   };
+
+  const updateNotes = () => {
+    let formData = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('noteId', item.id)
+    updateNoteTitleDescription(formData).catch(err=>{
+      console.warn("error", err);
+    })
+  }
 
   useEffect(() => {
     let labels = [];
@@ -165,7 +175,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
             <MoreOptions setShowLabels={setShowLabels} />
           </CardActions>
           <CardActions onClick={() => item !== undefined ? setIsModalOpen(false) : setShowCard("take_note")}>
-            <Button color="primary" variant="text" onClick={saveNote}>
+            <Button color="primary" variant="text" onClick={item !== undefined ? updateNotes : saveNote}>
               close
             </Button>
           </CardActions>

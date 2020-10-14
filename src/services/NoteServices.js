@@ -24,3 +24,7 @@ export const updateNoteArchive = (data) => {
 export const updateNoteColor = (data) => {
   return apiServices.postWithHeader(NoteApi.NoteColor, data)
 }
+
+export const updateNoteTitleDescription = (data) => {
+  return apiServices.postWithHeader(NoteApi.updateNotes, data)
+}
