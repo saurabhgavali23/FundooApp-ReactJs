@@ -17,7 +17,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { saveNoteLabels, saveNotes, updateNoteTitleDescription } from "../../services/NoteServices";
+import { saveNoteLabels, saveNotes, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -34,18 +34,38 @@ const Styles = makeStyles({
 
 const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
   const classes = Styles();
-  const [title, setTitle] = useState(item !== undefined ? item.title : null);
-  const [description, setDescription] = useState(item !== undefined ? item.description : null);
+  const [title, setTitle] = useState(item !== undefined ? item.title : '');
+  const [description, setDescription] = useState(item !== undefined ? item.description : '');
   const [dateTimeChip, setDateTimeChip] = useState("");
   const [isArchived, setIsArchived] = useState(item !== undefined ? item.isArchived : false);
-  const [bgColor, setBgColor] = useState(item !== undefined ? item.color : "#fff");
+  const [bgColor, setBgColor] = useState("");
+  const [itemBgColor, setItemBgColor] = useState(item !== undefined ? item.color : null);
   const [showLabels, setShowLabels] = useState([]);
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   var labelId = [];
+  var noteId = [];
+  noteId.push(item !== undefined ? item.id : null);
+
+  useEffect(() => {
+    if(item === undefined){
+      setItemBgColor(bgColor)
+    }
+    if (bgColor !== "" && item !== undefined) {
+      setItemBgColor(bgColor);
+      let data = {
+        color: bgColor,
+        noteIdList: noteId,
+      };
+      updateNoteColor(data).catch((err) => {
+        console.warn("error", err);
+      });
+      setBgColor("");
+    }
+  }, [bgColor, noteId, itemBgColor, item]);
 
   const saveNote = () => {
-    if (title !== null && description !== null) {
+    if (title !== '' && description !== '') {
       let formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -100,7 +120,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
 
   return (
     <div className="mainContainer">
-      <Card className="cardContainer2" style={{ backgroundColor: bgColor }}>
+      <Card className="cardContainer2" style={{ backgroundColor: itemBgColor }}>
         <CardContent
           className="subCardContainer2"
           classes={{ root: classes.root }}
