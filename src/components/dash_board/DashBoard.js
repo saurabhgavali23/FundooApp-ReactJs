@@ -115,7 +115,7 @@ const DashBoard = () => {
               {noteList.map((item, index) => {    
                 if(selectCard === 'note'){
                   return(
-                    <div key={index} style={{marginTop: '1%'}}>
+                    <div key={index} style={{marginTop: '1%',marginRight: '1%'}}>
                   {(!item.isPined && !item.isArchived) &&
                    <DisplayCard key={index} item={item} setPinText={setPinText}/>}
                     </div>

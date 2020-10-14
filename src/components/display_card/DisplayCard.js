@@ -1,4 +1,4 @@
-import { Avatar, Card, CardContent, Chip, Grid } from "@material-ui/core";
+import { Avatar, Backdrop, Card, CardContent, Chip, Fade, Grid, Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./DisplayCardCss.css";
 import Reminder from "../reminder/Reminder";
@@ -15,6 +15,7 @@ import {
   updateNoteColor,
   updateNotePin,
 } from "../../services/NoteServices";
+import CreateNote from "../create_note/CreateNote";
 
 const DisplayCard = ({ item, setPinText }) => {
   const [isHover, setIsHover] = useState(false);
@@ -22,6 +23,7 @@ const DisplayCard = ({ item, setPinText }) => {
   const [isPined, setIsPined] = useState(item.isPined);
   const [bgColor, setBgColor] = useState("");
   const [itemBgColor, setItemBgColor] = useState(item.color);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   var noteId = [];
   noteId.push(item.id);
 
@@ -77,7 +79,7 @@ const DisplayCard = ({ item, setPinText }) => {
           onMouseLeave={() => setIsHover(!isHover)}
         >
           <div className="displayCardContainerwithOption">
-            <div className="createCardContent">
+            <div className="createCardContent" onClick={() => setIsModalOpen(!isModalOpen)}>
               <CardContent className="createCardHeaderContend">
                 {item.title}
                 {isHover && (
@@ -144,6 +146,22 @@ const DisplayCard = ({ item, setPinText }) => {
           </div>
         </Card>
       </Grid>
+      <div>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(!isModalOpen)}
+        className="modal"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isModalOpen}>
+            <CreateNote item={item} setIsModalOpen={setIsModalOpen}/>
+        </Fade>
+      </Modal>
+      </div>
     </div>
   );
 };

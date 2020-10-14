@@ -28,19 +28,19 @@ const Styles = makeStyles({
   },
 });
 
-const CreateNote = ({ collabUser, setShowCard }) => {
+const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
   const classes = Styles();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(item !== undefined ? item.title : null);
+  const [description, setDescription] = useState(item !== undefined ? item.description : null);
   const [dateTimeChip, setDateTimeChip] = useState("");
-  const [isArchived, setIsArchived] = useState(false);
+  const [isArchived, setIsArchived] = useState(item !== undefined ? item.isArchived : false);
   const [bgColor, setBgColor] = useState("#fff");
   const [showLabels, setShowLabels] = useState([]);
-  const [isPined, setIsPined] = useState(false);
+  const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   var labelId = [];
 
   const saveNote = () => {
-    if (title !== "" && description !== "") {
+    if (title !== null && description !== null) {
       let formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -91,6 +91,7 @@ const CreateNote = ({ collabUser, setShowCard }) => {
           classes={{ root: classes.root }}
         >
           <InputBase
+            value={title}
             placeholder="Titile"
             className="inputBase"
             onChange={(e) => setTitle(e.target.value)}
@@ -114,6 +115,7 @@ const CreateNote = ({ collabUser, setShowCard }) => {
         </CardContent>
         <CardContent className="discription" classes={{ root: classes.root }}>
           <InputBase
+            value={description}
             placeholder="Take a notes..."
             className="inputBase"
             onChange={(e) => setDescription(e.target.value)}
@@ -162,7 +164,7 @@ const CreateNote = ({ collabUser, setShowCard }) => {
             </div>
             <MoreOptions setShowLabels={setShowLabels} />
           </CardActions>
-          <CardActions onClick={() => setShowCard("take_note")}>
+          <CardActions onClick={() => item !== undefined ? setIsModalOpen(false) : setShowCard("take_note")}>
             <Button color="primary" variant="text" onClick={saveNote}>
               close
             </Button>
