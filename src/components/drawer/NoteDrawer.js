@@ -41,7 +41,7 @@ const theme = createMuiTheme({
 }
 })
 
-const NoteDrawer = () => {
+const NoteDrawer = ({setSelectCard}) => {
   const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
@@ -63,25 +63,25 @@ const NoteDrawer = () => {
         >
         <div className="list">
         <List>
-            <ListItem className="note">
+            <ListItem className="note" onClick={()=> setSelectCard('note')}>
               <ListItemIcon>
                 <NoteIcon/>
               </ListItemIcon>
               <ListItemText>Note</ListItemText>
             </ListItem>
-            <ListItem className="note">
+            <ListItem className="note" onClick={()=> setSelectCard('reminder')}>
               <ListItemIcon>
                 <ReminderIcon/>
               </ListItemIcon>
               <ListItemText>Reminder</ListItemText>
             </ListItem>
-            <ListItem className="note">
+            <ListItem className="note" onClick={()=> setSelectCard('isArchived')}>
               <ListItemIcon>
                 <ArchiveIcon/>
               </ListItemIcon>
               <ListItemText>Archive</ListItemText>
             </ListItem>
-            <ListItem className="note">
+            <ListItem className="note" onClick={()=> setSelectCard('trash')}>
               <ListItemIcon>
                 <TrashIcon/>
               </ListItemIcon>

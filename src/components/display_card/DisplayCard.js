@@ -16,7 +16,7 @@ import {
   updateNotePin,
 } from "../../services/NoteServices";
 
-const DisplayCard = ({ item }) => {
+const DisplayCard = ({ item, setPinText }) => {
   const [isHover, setIsHover] = useState(false);
   const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
@@ -46,6 +46,12 @@ const DisplayCard = ({ item }) => {
       console.warn("error", err);
     });
   };
+
+  useEffect(() => {
+    if(item.isPined || item.isArchived) {
+      setPinText(item.isPined)
+    }
+  }, [item.isPined, setPinText, item.isArchived])
 
   useEffect(() => {
     if (bgColor !== "") {

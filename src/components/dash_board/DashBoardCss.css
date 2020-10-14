@@ -45,6 +45,15 @@
     align-items: center;
     margin-top: 10%;
 }
+.pinText{
+    font-size: 1rem;
+    margin-bottom: 1%;
+}
+.otherText{
+    font-size: 1rem;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
 
 @media (max-Width: 360px){
     .cardContainer{

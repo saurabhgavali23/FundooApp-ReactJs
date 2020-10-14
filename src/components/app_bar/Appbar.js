@@ -6,7 +6,7 @@ import "./AppBarCss.css";
 import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
 
-const Appbar = () => {
+const Appbar = ({setSelectCard}) => {
 
   return (
     <div className="grow">
@@ -14,7 +14,7 @@ const Appbar = () => {
         <Toolbar>
           <div className="toolbarContainer">
           <div className="appBarMenuAndTitile">
-          <NoteDrawer />
+          <NoteDrawer setSelectCard={setSelectCard}/>
           <Typography variant="h6" noWrap>
             FundooAap
           </Typography>
