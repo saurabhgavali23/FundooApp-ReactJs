@@ -28,3 +28,7 @@ export const updateNoteColor = (data) => {
 export const updateNoteTitleDescription = (data) => {
   return apiServices.postWithHeader(NoteApi.updateNotes, data)
 }
+
+export const getNoteLabelList = () => {
+  return apiServices.getWithHeader(NoteApi.getLabelList)
+}

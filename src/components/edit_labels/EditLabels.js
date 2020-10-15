@@ -1,5 +1,5 @@
 import { Button, Card, Divider, Input, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 import CheckIcon from "@material-ui/icons/Check";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
@@ -7,10 +7,12 @@ import "./EditLabelsCss.css";
 import { Label } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/EditOutlined";
+import { getNoteLabelList } from "../../services/NoteServices";
 
 const EditLabels = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [editLabel, setEditLabel] = useState("");
+  const [label, setLabel] = useState('')
   const [editLabelList, setEditLabelList] = useState([]);
   const [isLabel, setIsLabel] = useState(true);
   const [isLabelEditable, setIsLabelEditable] = useState(true);
@@ -19,6 +21,14 @@ const EditLabels = () => {
     setEditLabelList([...editLabelList, { label: editLabel }]);
     setEditLabel("");
   };
+
+  useEffect(() => {
+     getNoteLabelList().then(res=>{
+         setEditLabelList(res.data.data.details)
+     }).catch(err=>{
+         console.warn("error", err);
+     })
+  }, [])
 
   return (
     <div>
@@ -38,12 +48,12 @@ const EditLabels = () => {
               />
             )}
             <Input
-              value={editLabel}
+              value={label}
               placeholder="Create new label"
               className="input"
               disableUnderline={isEditable}
               disabled={isEditable}
-              onChange={(e) => setEditLabel(e.target.value)}
+              onChange={(e) => setLabel(e.target.value)}
               onBlur={() => setIsEditable(!isEditable)}
             />
             <CheckIcon
@@ -57,8 +67,8 @@ const EditLabels = () => {
                 <div key={index} className="editLabels">
                   <div
                     className="labelIcon"
-                    onMouseEnter={() => setIsLabel(!isLabel)}
-                    onMouseLeave={() => setIsLabel(!isLabel)}
+                    onMouseEnter={() => setIsLabel(false)}
+                    onMouseLeave={() => setIsLabel(true)}
                   >
                     {isLabel ? (
                       <Label style={{ fontSize: "1rem" }} />
@@ -68,14 +78,14 @@ const EditLabels = () => {
                   </div>
                   <div className="editUpdateLabel">
                     <Input
-                      value={item.label}
+                      value={editLabel !== "" ? editLabel : item.label}
                       className="input"
                       disableUnderline={isLabelEditable}
                       disabled={isLabelEditable}
                       onChange={(e) => setEditLabel(e.target.value)}
                     />
                     {isLabelEditable ? (
-                      <EditIcon className="editIcon" />
+                      <EditIcon className="editIcon" onClick={() => setIsLabelEditable(!isLabelEditable)}/>
                     ) : (
                       <CheckIcon className="editCheckIcon" />
                     )}

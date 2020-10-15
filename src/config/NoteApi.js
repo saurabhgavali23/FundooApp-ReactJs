@@ -11,5 +11,6 @@ const NoteApi = {
     ArchiveNote: '/notes/archiveNotes',
     NoteColor: '/notes/changesColorNotes',
     updateNotes: '/notes/updateNotes',
+    getLabelList: '/noteLabels/getNoteLabelList'
   };
   export default NoteApi;
