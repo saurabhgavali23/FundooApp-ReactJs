@@ -14,6 +14,7 @@ import ReminderIcon from '@material-ui/icons/NotificationsOutlined';
 import MenuIcon from "@material-ui/icons/Menu";
 import TrashIcon from '@material-ui/icons/DeleteOutlined';
 import NoteIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import EditIcon from '@material-ui/icons/EditOutlined';
 import React, { useState } from "react";
 import './DrawerCss.css'
 
@@ -74,6 +75,12 @@ const NoteDrawer = ({setSelectCard}) => {
                 <ReminderIcon/>
               </ListItemIcon>
               <ListItemText>Reminder</ListItemText>
+            </ListItem>
+            <ListItem className="note" onClick={()=> setSelectCard('noteLabels')}>
+              <ListItemIcon>
+               <EditIcon/>
+              </ListItemIcon>
+              <ListItemText>Edit labels</ListItemText>
             </ListItem>
             <ListItem className="note" onClick={()=> setSelectCard('isArchived')}>
               <ListItemIcon>
