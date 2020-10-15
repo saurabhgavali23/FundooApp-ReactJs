@@ -9,7 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/EditOutlined";
 import { getNoteLabelList, updateNoteLables } from "../../services/NoteServices";
 
-const EditLabels = () => {
+const EditLabels = ({setOpenEditLabels}) => {
   const [isEditable, setIsEditable] = useState(false);
   const [editLabel, setEditLabel] = useState("");
   const [label, setLabel] = useState('')
@@ -111,7 +111,7 @@ const EditLabels = () => {
         </div>
         <Divider />
         <div className="editButton">
-          <Button color="primary" variant="text">
+          <Button color="primary" variant="text" onClick={() => setOpenEditLabels(false)}>
             Done
           </Button>
         </div>

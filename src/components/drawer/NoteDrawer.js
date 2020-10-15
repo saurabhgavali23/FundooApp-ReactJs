@@ -114,7 +114,7 @@ const NoteDrawer = ({setSelectCard}) => {
         }}
       >
         <Fade in={openEditLabels}>
-            <EditLabels/>
+            <EditLabels setOpenEditLabels={setOpenEditLabels}/>
         </Fade>
       </Modal>
       </div>
