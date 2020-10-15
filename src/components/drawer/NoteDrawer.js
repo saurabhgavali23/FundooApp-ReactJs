@@ -1,11 +1,14 @@
 import {
+  Backdrop,
   ClickAwayListener,
   createMuiTheme,
   Drawer,
+  Fade,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Modal,
   ThemeProvider,
 } from "@material-ui/core";
 import ArchiveIcon from '@material-ui/icons/ArchiveOutlined';
@@ -17,6 +20,7 @@ import NoteIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import EditIcon from '@material-ui/icons/EditOutlined';
 import React, { useState } from "react";
 import './DrawerCss.css'
+import EditLabels from "../edit_labels/EditLabels";
 
 const theme = createMuiTheme({
   overrides: {
@@ -44,7 +48,7 @@ const theme = createMuiTheme({
 
 const NoteDrawer = ({setSelectCard}) => {
   const [openDrawer, setOpenDrawer] = useState(false)
-
+  const [openEditLabels, setOpenEditLabels] = useState(false)
   return (
     <ClickAwayListener onClickAway={() => setOpenDrawer(false)}>
     <div>
@@ -76,7 +80,7 @@ const NoteDrawer = ({setSelectCard}) => {
               </ListItemIcon>
               <ListItemText>Reminder</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('noteLabels')}>
+            <ListItem className="note" onClick={()=> setOpenEditLabels(!openEditLabels)}>
               <ListItemIcon>
                <EditIcon/>
               </ListItemIcon>
@@ -98,6 +102,22 @@ const NoteDrawer = ({setSelectCard}) => {
         </div>
         </Drawer>
         </ThemeProvider>
+        <div>
+      <Modal
+        open={openEditLabels}
+        onClose={() => setOpenEditLabels(!openEditLabels) }
+        closeAfterTransition
+        className="modal"
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openEditLabels}>
+            <EditLabels/>
+        </Fade>
+      </Modal>
+      </div>
     </div>
     </ClickAwayListener>
   );

@@ -1,0 +1,60 @@
+.editCardContainer{
+    padding: 5%;
+    width: 300px;
+    height: 100%;
+}
+.editTitle{
+    padding: 2%;
+}
+.editinputContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.editClearIcon{
+    padding: 1%;
+    cursor: pointer;
+}
+.editCheckIcon{
+    padding: 1%;
+    cursor: pointer;
+}
+.input{
+    margin-left: 3%;
+    margin-right: 4%;
+}
+.editSubCardContainer{
+    margin-bottom: 7%;
+}
+.editButton{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4%;
+}
+.editLabels{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.labelIcon{
+    margin-left: 2%;
+    cursor: pointer;
+}
+.editLablesContainer{
+    margin-top: 5%;
+}
+.editUpdateLabel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.editIcon{
+    padding: 1%;
+    margin-left: 1%;
+    cursor: pointer;
+}
+.editInputLabel{
+    margin-left: 3%;
+    margin-right: 4%;
+}
