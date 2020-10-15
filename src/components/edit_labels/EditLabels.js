@@ -121,4 +121,3 @@ const EditLabels = () => {
 };
 
 export default EditLabels;
-console.log("res", res);console.log("res", res);
