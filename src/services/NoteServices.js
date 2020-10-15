@@ -32,3 +32,7 @@ export const updateNoteTitleDescription = (data) => {
 export const getNoteLabelList = () => {
   return apiServices.getWithHeader(NoteApi.getLabelList)
 }
+
+export const updateNoteLables = (id, data) => {
+  return apiServices.postWithHeader(NoteApi.saveNoteLabels+'/'+id+NoteApi.updateNoteLabel, data)
+}

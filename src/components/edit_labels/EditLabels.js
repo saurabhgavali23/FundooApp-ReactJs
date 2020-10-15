@@ -7,7 +7,7 @@ import "./EditLabelsCss.css";
 import { Label } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/EditOutlined";
-import { getNoteLabelList } from "../../services/NoteServices";
+import { getNoteLabelList, updateNoteLables } from "../../services/NoteServices";
 
 const EditLabels = () => {
   const [isEditable, setIsEditable] = useState(false);
@@ -16,6 +16,7 @@ const EditLabels = () => {
   const [editLabelList, setEditLabelList] = useState([]);
   const [isLabel, setIsLabel] = useState(true);
   const [isLabelEditable, setIsLabelEditable] = useState(true);
+  const [refresh, setRefresh] = useState(Math.random())
 
   const handleLabelList = () => {
     setEditLabelList([...editLabelList, { label: editLabel }]);
@@ -28,7 +29,20 @@ const EditLabels = () => {
      }).catch(err=>{
          console.warn("error", err);
      })
-  }, [])
+  }, [refresh])
+
+  const handleUpdateNoteLabel = (value) =>{
+      let data={
+          label: editLabel,
+            id: value.id,
+            userId: value.userId
+      }
+      updateNoteLables(value.id, data).then(res=>{
+          setRefresh(Math.random())
+      }).catch(err=>{
+          console.warn("error", err);
+      })
+  }
 
   return (
     <div>
@@ -87,7 +101,7 @@ const EditLabels = () => {
                     {isLabelEditable ? (
                       <EditIcon className="editIcon" onClick={() => setIsLabelEditable(!isLabelEditable)}/>
                     ) : (
-                      <CheckIcon className="editCheckIcon" />
+                      <CheckIcon className="editCheckIcon" onClick={()=> handleUpdateNoteLabel(item)}/>
                     )}
                   </div>
                 </div>
@@ -107,3 +121,4 @@ const EditLabels = () => {
 };
 
 export default EditLabels;
+console.log("res", res);console.log("res", res);
