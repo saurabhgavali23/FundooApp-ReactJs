@@ -7,42 +7,62 @@ import "./EditLabelsCss.css";
 import { Label } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/EditOutlined";
-import { getNoteLabelList, updateNoteLables } from "../../services/NoteServices";
+import {
+  getNoteLabelList,
+  saveNoteLabels,
+  updateNoteLables,
+} from "../../services/NoteServices";
 
-const EditLabels = ({setOpenEditLabels}) => {
+const EditLabels = ({ setOpenEditLabels }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [editLabel, setEditLabel] = useState("");
-  const [label, setLabel] = useState('')
+  const [label, setLabel] = useState("");
   const [editLabelList, setEditLabelList] = useState([]);
   const [isLabel, setIsLabel] = useState(true);
   const [isLabelEditable, setIsLabelEditable] = useState(true);
-  const [refresh, setRefresh] = useState(Math.random())
+  const [refresh, setRefresh] = useState(Math.random());
 
   const handleLabelList = () => {
-    setEditLabelList([...editLabelList, { label: editLabel }]);
-    setEditLabel("");
+    let userId = localStorage.getItem("userId");
+    let data = {
+      label: label,
+      isDeleted: false,
+      userId: userId,
+    };
+    saveNoteLabels(data)
+      .then((res) => {
+        setRefresh(Math.random());
+        setLabel("");
+      })
+      .catch((err) => {
+        console.warn("error", err);
+      });
   };
 
   useEffect(() => {
-     getNoteLabelList().then(res=>{
-         setEditLabelList(res.data.data.details)
-     }).catch(err=>{
-         console.warn("error", err);
-     })
-  }, [refresh])
-
-  const handleUpdateNoteLabel = (value) =>{
-      let data={
-          label: editLabel,
-            id: value.id,
-            userId: value.userId
-      }
-      updateNoteLables(value.id, data).then(res=>{
-          setRefresh(Math.random())
-      }).catch(err=>{
-          console.warn("error", err);
+    getNoteLabelList()
+      .then((res) => {
+        setEditLabelList(res.data.data.details);
       })
-  }
+      .catch((err) => {
+        console.warn("error", err);
+      });
+  }, [refresh]);
+
+  const handleUpdateNoteLabel = (value) => {
+    let data = {
+      label: editLabel,
+      id: value.id,
+      userId: value.userId,
+    };
+    updateNoteLables(value.id, data)
+      .then((res) => {
+        setRefresh(Math.random());
+      })
+      .catch((err) => {
+        console.warn("error", err);
+      });
+  };
 
   return (
     <div>
@@ -99,9 +119,15 @@ const EditLabels = ({setOpenEditLabels}) => {
                       onChange={(e) => setEditLabel(e.target.value)}
                     />
                     {isLabelEditable ? (
-                      <EditIcon className="editIcon" onClick={() => setIsLabelEditable(!isLabelEditable)}/>
+                      <EditIcon
+                        className="editIcon"
+                        onClick={() => setIsLabelEditable(!isLabelEditable)}
+                      />
                     ) : (
-                      <CheckIcon className="editCheckIcon" onClick={()=> handleUpdateNoteLabel(item)}/>
+                      <CheckIcon
+                        className="editCheckIcon"
+                        onClick={() => handleUpdateNoteLabel(item)}
+                      />
                     )}
                   </div>
                 </div>
@@ -111,7 +137,11 @@ const EditLabels = ({setOpenEditLabels}) => {
         </div>
         <Divider />
         <div className="editButton">
-          <Button color="primary" variant="text" onClick={() => setOpenEditLabels(false)}>
+          <Button
+            color="primary"
+            variant="text"
+            onClick={() => setOpenEditLabels(false)}
+          >
             Done
           </Button>
         </div>
