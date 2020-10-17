@@ -15,4 +15,8 @@ export default {
   getWithHeader: (path) => {
     return Axios.get(`${URL}${path}`, authHeader());
   },
+
+  deleteWithHeader: (path) => {
+    return Axios.delete(`${URL}${path}`, authHeader());
+  }
 };

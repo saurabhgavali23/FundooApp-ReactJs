@@ -12,6 +12,7 @@ const NoteApi = {
     NoteColor: '/notes/changesColorNotes',
     updateNotes: '/notes/updateNotes',
     getLabelList: '/noteLabels/getNoteLabelList',
-    updateNoteLabel: '/updateNoteLabel'
+    updateNoteLabel: '/updateNoteLabel',
+    deleteNoteLabel: '/deleteNoteLabel'
   };
   export default NoteApi;

@@ -8,6 +8,7 @@ import { Label } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/EditOutlined";
 import {
+  deleteNoteLabels,
   getNoteLabelList,
   saveNoteLabels,
   updateNoteLables,
@@ -61,6 +62,14 @@ const EditLabels = ({ setOpenEditLabels }) => {
       .then((res) => {
         setRefresh(Math.random());
       })
+      .catch((err) => {
+        console.warn("error", err);
+      });
+  };
+
+  const handleDeleteNoteLabel = (value) => {
+    deleteNoteLabels(value.id)
+      .then(setRefresh(Math.random()))
       .catch((err) => {
         console.warn("error", err);
       });
@@ -127,7 +136,10 @@ const EditLabels = ({ setOpenEditLabels }) => {
                     onMouseLeave={() => setIsLabel(false)}
                   >
                     {isLabel && itemIndex === index ? (
-                      <DeleteIcon style={{ fontSize: "1rem" }} />
+                      <DeleteIcon
+                        style={{ fontSize: "1rem" }}
+                        onClick={() => handleDeleteNoteLabel(item)}
+                      />
                     ) : (
                       <Label style={{ fontSize: "1rem" }} />
                     )}
