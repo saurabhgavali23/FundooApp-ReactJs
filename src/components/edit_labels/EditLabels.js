@@ -18,10 +18,12 @@ const EditLabels = ({ setOpenEditLabels }) => {
   const [editLabel, setEditLabel] = useState("");
   const [label, setLabel] = useState("");
   const [editLabelList, setEditLabelList] = useState([]);
-  const [isLabel, setIsLabel] = useState(true);
-  const [isLabelEditable, setIsLabelEditable] = useState(true);
+  const [isLabel, setIsLabel] = useState(false);
+  const [isLabelEditable, setIsLabelEditable] = useState(false);
   const [refresh, setRefresh] = useState(Math.random());
-
+  const [itemIndex, setItemIndex] = useState("");
+  const [editItemIndex, setEditItemIndex] = useState("");
+  const [showLabelIndex, setShowLabelIndex] = useState("");
   const handleLabelList = () => {
     let userId = localStorage.getItem("userId");
     let data = {
@@ -64,6 +66,26 @@ const EditLabels = ({ setOpenEditLabels }) => {
       });
   };
 
+  const toggleHover = (item, index) => {
+    setItemIndex(index);
+    if (editLabelList.indexOf(item) === index) {
+      setIsLabel(true);
+    } else {
+      setIsLabel(false);
+    }
+  };
+
+  const editLableToggleHover = (item, index) => {
+    setEditItemIndex(index);
+    setShowLabelIndex(index);
+    if (editLabelList.indexOf(item) === index) {
+      setEditLabel(item.label);
+      return setIsLabelEditable(true);
+    } else {
+      return setIsLabelEditable(false);
+    }
+  };
+
   return (
     <div>
       <Card className="editCardContainer">
@@ -101,27 +123,35 @@ const EditLabels = ({ setOpenEditLabels }) => {
                 <div key={index} className="editLabels">
                   <div
                     className="labelIcon"
-                    onMouseEnter={() => setIsLabel(false)}
-                    onMouseLeave={() => setIsLabel(true)}
+                    onMouseEnter={() => toggleHover(item, index)}
+                    onMouseLeave={() => setIsLabel(false)}
                   >
-                    {isLabel ? (
-                      <Label style={{ fontSize: "1rem" }} />
-                    ) : (
+                    {isLabel && itemIndex === index ? (
                       <DeleteIcon style={{ fontSize: "1rem" }} />
+                    ) : (
+                      <Label style={{ fontSize: "1rem" }} />
                     )}
                   </div>
                   <div className="editUpdateLabel">
                     <Input
-                      value={editLabel !== "" ? editLabel : item.label}
+                      value={
+                        showLabelIndex === index
+                          ? editLabel !== ""
+                            ? editLabel
+                            : item.label
+                          : item.label
+                      }
                       className="input"
-                      disableUnderline={isLabelEditable}
-                      disabled={isLabelEditable}
+                      disableUnderline={
+                        !(isLabelEditable && editItemIndex === index)
+                      }
+                      disabled={!(isLabelEditable && editItemIndex === index)}
                       onChange={(e) => setEditLabel(e.target.value)}
                     />
-                    {isLabelEditable ? (
+                    {!(isLabelEditable && editItemIndex === index) ? (
                       <EditIcon
                         className="editIcon"
-                        onClick={() => setIsLabelEditable(!isLabelEditable)}
+                        onClick={() => editLableToggleHover(item, index)}
                       />
                     ) : (
                       <CheckIcon
