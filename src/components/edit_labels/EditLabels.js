@@ -14,7 +14,7 @@ import {
   updateNoteLables,
 } from "../../services/NoteServices";
 
-const EditLabels = ({ setOpenEditLabels }) => {
+const EditLabels = ({ setOpenEditLabels, setDrawerLabelRefresh }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [editLabel, setEditLabel] = useState("");
   const [label, setLabel] = useState("");
@@ -25,6 +25,7 @@ const EditLabels = ({ setOpenEditLabels }) => {
   const [itemIndex, setItemIndex] = useState("");
   const [editItemIndex, setEditItemIndex] = useState("");
   const [showLabelIndex, setShowLabelIndex] = useState("");
+
   const handleLabelList = () => {
     let userId = localStorage.getItem("userId");
     let data = {
@@ -46,11 +47,12 @@ const EditLabels = ({ setOpenEditLabels }) => {
     getNoteLabelList()
       .then((res) => {
         setEditLabelList(res.data.data.details);
+        setDrawerLabelRefresh(Math.random())
       })
       .catch((err) => {
         console.warn("error", err);
       });
-  }, [refresh]);
+  }, [refresh, setDrawerLabelRefresh]);
 
   const handleUpdateNoteLabel = (value) => {
     let data = {
@@ -69,7 +71,9 @@ const EditLabels = ({ setOpenEditLabels }) => {
 
   const handleDeleteNoteLabel = (value) => {
     deleteNoteLabels(value.id)
-      .then(setRefresh(Math.random()))
+      .then(()=>
+        setRefresh(Math.random())
+        )
       .catch((err) => {
         console.warn("error", err);
       });
@@ -119,7 +123,6 @@ const EditLabels = ({ setOpenEditLabels }) => {
               disableUnderline={isEditable}
               disabled={isEditable}
               onChange={(e) => setLabel(e.target.value)}
-              onBlur={() => setIsEditable(!isEditable)}
             />
             <CheckIcon
               className="editCheckIcon"

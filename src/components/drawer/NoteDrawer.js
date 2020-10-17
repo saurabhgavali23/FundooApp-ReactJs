@@ -18,9 +18,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import TrashIcon from '@material-ui/icons/DeleteOutlined';
 import NoteIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import EditIcon from '@material-ui/icons/EditOutlined';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './DrawerCss.css'
 import EditLabels from "../edit_labels/EditLabels";
+import { getNoteLabelList } from "../../services/NoteServices";
+import { Label } from "@material-ui/icons";
 
 const theme = createMuiTheme({
   overrides: {
@@ -49,6 +51,18 @@ const theme = createMuiTheme({
 const NoteDrawer = ({setSelectCard}) => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const [openEditLabels, setOpenEditLabels] = useState(false)
+  const [labelList, setLabelList] = useState([])
+  const [drawerLabelRefresh, setDrawerLabelRefresh] = useState(Math.random())
+
+  useEffect(() => {
+    getNoteLabelList().then(res=>{
+        setLabelList(res.data.data.details);
+      })
+      .catch((err) => {
+        console.warn("error", err);
+      });
+  }, [drawerLabelRefresh])
+
   return (
     <ClickAwayListener onClickAway={() => setOpenDrawer(false)}>
     <div>
@@ -80,6 +94,16 @@ const NoteDrawer = ({setSelectCard}) => {
               </ListItemIcon>
               <ListItemText>Reminder</ListItemText>
             </ListItem>
+            {labelList.length !== 0 && (
+              labelList.map((item, index)=>(
+            <ListItem key={index} className="note" onClick={()=> setSelectCard(item.label)}>
+              <ListItemIcon>
+                <Label/>
+              </ListItemIcon>
+              <ListItemText>{item.label}</ListItemText>
+            </ListItem>
+              )))
+            }
             <ListItem className="note" onClick={()=> setOpenEditLabels(!openEditLabels)}>
               <ListItemIcon>
                <EditIcon/>
@@ -114,7 +138,7 @@ const NoteDrawer = ({setSelectCard}) => {
         }}
       >
         <Fade in={openEditLabels}>
-            <EditLabels setOpenEditLabels={setOpenEditLabels}/>
+            <EditLabels setOpenEditLabels={setOpenEditLabels} setDrawerLabelRefresh={setDrawerLabelRefresh}/>
         </Fade>
       </Modal>
       </div>
