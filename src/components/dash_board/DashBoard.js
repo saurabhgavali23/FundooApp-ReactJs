@@ -104,6 +104,8 @@ const DashBoard = () => {
                 }
               )}
             </Grid>
+            </Container>
+            <Container className="displayCardContainer">
             {pinText ? <div className="otherText">Other</div>: null}
             <Grid
               container
@@ -115,15 +117,15 @@ const DashBoard = () => {
               {noteList.map((item, index) => {    
                 if(selectCard === 'note'){
                   return(
-                    <div key={index} style={{marginTop: '1%',marginRight: '1%'}}>
+                  <div key={index} style={{marginRight: '1%'}}>
                   {(!item.isPined && !item.isArchived) &&
                    <DisplayCard key={index} item={item} setPinText={setPinText}/>}
-                    </div>
+                  </div>
                   )
                 }    
                 if(selectCard === 'isArchived'){
                   return(
-                    <div key={index} style={{marginRight: '1%'}} >
+                    <div key={index} style={{marginRight: '1%'}}>
                   {item.isArchived &&
                    <DisplayCard key={index} item={item} setPinText={setPinText}/>}
                     </div>
