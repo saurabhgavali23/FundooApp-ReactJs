@@ -23,7 +23,7 @@ const DashBoard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectCard, setSelectCard] = useState('note')
   const [pinText, setPinText] = useState(false)
-
+  const [refresh, setRefresh] = useState(Math.random())
   useEffect(() => {
     getNoteList()
       .then((res) => {
@@ -33,7 +33,7 @@ const DashBoard = () => {
       .catch((err) => {
         console.warn("error", err);
       });
-  }, [showCard]);
+  }, [showCard,refresh]);
 
   return (
     <div>
@@ -82,25 +82,25 @@ const DashBoard = () => {
                 
                 if(selectCard === 'note'){
                   return(
-                    <div style={{padding: '0.5%'}}>
+                    <div key={index} style={{padding: '0.5%'}}>
                       {item.isPined && item.isDeleted === false ?
-                        <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                     </div>
                   )
                 }
                 if(selectCard === 'isArchived'){
                   return(
-                    <div style={{padding: '0.5%'}}>
+                    <div key={index} style={{padding: '0.5%'}}>
                       {item.isPined && item.isArchived ?
-                        <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                     </div>
                   )
                 }
                 if(selectCard === 'Trash'){
                   return(
-                    <div style={{padding: '0.5%'}}>
+                    <div key={index} style={{padding: '0.5%'}}>
                     {item.isPined && item.isDeleted === true ?
-                      <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                   </div>
                   )
                 }
@@ -124,33 +124,31 @@ const DashBoard = () => {
               {noteList.map((item, index) => {         
               if(selectCard === 'note'){
                 return(
-                  <div style={{padding: '0.5%'}}>
+                  <div key={index} style={{padding: '0.5%'}}>
                     {!item.isPined && !item.isArchived && item.isDeleted === false ?
-                    <DisplayCard key={index} item={item} />:null}
+                    <DisplayCard key={index} item={item} setRefresh={setRefresh} />:null}
                   </div>
                 )
               }
 
               if(selectCard === 'isArchived'){
                 return(
-                  <div style={{padding: '0.5%'}}>
+                  <div key={index} style={{padding: '0.5%'}}>
                     {!item.isPined && item.isArchived ?
-                      <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                   </div>
                 )
               }
               if(selectCard === 'Trash'){
                 return(
-                  <div style={{padding: '0.1%'}}>
+                  <div key={index} style={{padding: '0.1%'}}>
                   {!item.isPined && item.isDeleted === true ?
-                    <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                    <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                 </div>
                 )
               }
                return ( 
-                 <div>
                    <DisplayCard key={index} item={item} />
-                </div>
                   )
                 }
               )}

@@ -4,7 +4,8 @@ import { Card, CardContent, ClickAwayListener } from "@material-ui/core";
 import "./MoreOptionsCss.css";
 import Labels from "../labels/Labels";
 import { deleteNotePermanently, trashNotes } from "../../services/NoteServices";
-const MoreOptions = ({item, setShowLabels}) => {
+
+const MoreOptions = ({item, setShowLabels, setRefresh}) => {
   const [isMoreIcon, setIsMoreIcon] = useState(false);
   const [showAddLabel, setShowAddLabel] = useState(false);
   let noteId = []
@@ -25,8 +26,9 @@ const MoreOptions = ({item, setShowLabels}) => {
       isDeleted: value,
       noteIdList: noteId
     }
-    trashNotes(data).then(
-    ).catch(err=>{
+    trashNotes(data).then(res=>{
+      setRefresh(Math.random())
+    }).catch(err=>{
       console.warn("error",err);
     })
   }
@@ -36,7 +38,9 @@ const MoreOptions = ({item, setShowLabels}) => {
       isDeleted: true,
       noteIdList: noteId
     }
-    deleteNotePermanently(data).then()
+    deleteNotePermanently(data).then(res=>{
+      setRefresh(Math.random())
+    })
     .catch(err=>{
       console.warn("error", err);
     })

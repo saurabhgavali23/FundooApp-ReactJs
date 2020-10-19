@@ -17,7 +17,7 @@ import {
 } from "../../services/NoteServices";
 import CreateNote from "../create_note/CreateNote";
 
-const DisplayCard = ({ item, setPinText }) => {
+const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isHover, setIsHover] = useState(false);
   const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
@@ -139,7 +139,7 @@ const DisplayCard = ({ item, setPinText }) => {
                       />
                     )}
                   </div>
-                  <MoreOptions item={item}/>
+                  <MoreOptions item={item} setRefresh={setRefresh}/>
                 </div>
               )}
             </div>
