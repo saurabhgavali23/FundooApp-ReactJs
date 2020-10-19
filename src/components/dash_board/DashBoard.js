@@ -78,34 +78,41 @@ const DashBoard = () => {
               direction="row"
               alignItems="center"
             >
-              {noteList.map((item, index) => { 
+              {noteList.map((item, index) => {
+                
                 if(selectCard === 'note'){
                   return(
-                    <div key={index} style={{marginRight: '1%'}}>
-                  {item.isPined &&
-                   <DisplayCard key={index} item={item} setPinText={setPinText}/>}
+                    <div style={{padding: '0.5%'}}>
+                      {item.isPined && item.isDeleted === false ?
+                        <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
                     </div>
                   )
                 }
                 if(selectCard === 'isArchived'){
                   return(
-                    <div key={index} style={{marginRight: '1%'}} >
-                  {item.isPined && item.isArchived &&
-                   <DisplayCard key={index} item={item} setPinText={setPinText} />}
+                    <div style={{padding: '0.5%'}}>
+                      {item.isPined && item.isArchived ?
+                        <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
                     </div>
                   )
-                }            
+                }
+                if(selectCard === 'Trash'){
+                  return(
+                    <div style={{padding: '0.5%'}}>
+                    {item.isPined && item.isDeleted === true ?
+                      <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                  </div>
+                  )
+                }
                return ( 
                  <div>
-                   {!item.isPined && !item.isArchived &&
-                   <DisplayCard key={index} item={item} />}
-                 </div> 
+                   {false && 
+                   <DisplayCard key={index} item={item}/>}
+                </div>
                   )
                 }
               )}
             </Grid>
-            </Container>
-            <Container className="displayCardContainer">
             {pinText ? <div className="otherText">Other</div>: null}
             <Grid
               container
@@ -114,28 +121,36 @@ const DashBoard = () => {
               direction="row"
               alignItems="center"
             >
-              {noteList.map((item, index) => {    
-                if(selectCard === 'note'){
-                  return(
-                  <div key={index} style={{marginRight: '1%'}}>
-                  {(!item.isPined && !item.isArchived) &&
-                   <DisplayCard key={index} item={item} setPinText={setPinText}/>}
+              {noteList.map((item, index) => {         
+              if(selectCard === 'note'){
+                return(
+                  <div style={{padding: '0.5%'}}>
+                    {!item.isPined && !item.isArchived && item.isDeleted === false ?
+                    <DisplayCard key={index} item={item} />:null}
                   </div>
-                  )
-                }    
-                if(selectCard === 'isArchived'){
-                  return(
-                    <div key={index} style={{marginRight: '1%'}}>
-                  {item.isArchived &&
-                   <DisplayCard key={index} item={item} setPinText={setPinText}/>}
-                    </div>
-                  )
-                }         
+                )
+              }
+
+              if(selectCard === 'isArchived'){
+                return(
+                  <div style={{padding: '0.5%'}}>
+                    {!item.isPined && item.isArchived ?
+                      <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                  </div>
+                )
+              }
+              if(selectCard === 'Trash'){
+                return(
+                  <div style={{padding: '0.1%'}}>
+                  {!item.isPined && item.isDeleted === true ?
+                    <DisplayCard key={index} item={item} setPinText={setPinText}/> : null}
+                </div>
+                )
+              }
                return ( 
-                 <div key={index}>
-                   {(!item.isPined && !item.isArchived && !item.collaborators) &&
-                   <DisplayCard key={index} item={item} />}
-                 </div> 
+                 <div>
+                   <DisplayCard key={index} item={item} />
+                </div>
                   )
                 }
               )}

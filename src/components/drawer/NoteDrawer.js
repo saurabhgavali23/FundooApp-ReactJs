@@ -116,7 +116,7 @@ const NoteDrawer = ({setSelectCard}) => {
               </ListItemIcon>
               <ListItemText>Archive</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('trash')}>
+            <ListItem className="note" onClick={()=> setSelectCard('Trash')}>
               <ListItemIcon>
                 <TrashIcon/>
               </ListItemIcon>

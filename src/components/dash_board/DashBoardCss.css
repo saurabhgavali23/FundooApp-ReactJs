@@ -52,6 +52,7 @@
 .otherText{
     font-size: 1rem;
     margin-bottom: 1%;
+    margin-top: 2%;
 }
 
 @media (max-Width: 360px){

@@ -50,10 +50,10 @@ const DisplayCard = ({ item, setPinText }) => {
   };
 
   useEffect(() => {
-    if(item.isPined || item.isArchived) {
+    if((item.isPined || item.isArchived) && item.isDeleted === false) {
       setPinText(item.isPined)
     }
-  }, [item.isPined, setPinText, item.isArchived])
+  }, [item.isPined, setPinText, item.isArchived, item.isDeleted])
 
   useEffect(() => {
     if (bgColor !== "") {
@@ -73,7 +73,7 @@ const DisplayCard = ({ item, setPinText }) => {
     <div className="createMainContainer">
       <Grid item>
         <Card
-          style={{ height: 200, width: 200, backgroundColor: itemBgColor }}
+          style={{ height: 200, width: 200, backgroundColor: itemBgColor}}
           className="createCardContainer"
           onMouseEnter={() => setIsHover(!isHover)}
           onMouseLeave={() => setIsHover(!isHover)}
