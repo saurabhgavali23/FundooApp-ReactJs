@@ -139,7 +139,7 @@ const DisplayCard = ({ item, setPinText }) => {
                       />
                     )}
                   </div>
-                  <MoreOptions />
+                  <MoreOptions item={item}/>
                 </div>
               )}
             </div>

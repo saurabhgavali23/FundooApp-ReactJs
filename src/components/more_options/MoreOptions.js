@@ -3,7 +3,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Card, CardContent, ClickAwayListener } from "@material-ui/core";
 import "./MoreOptionsCss.css";
 import Labels from "../labels/Labels";
-const MoreOptions = ({setShowLabels}) => {
+const MoreOptions = ({item, setShowLabels}) => {
   const [isMoreIcon, setIsMoreIcon] = useState(false);
   const [showAddLabel, setShowAddLabel] = useState(false);
 
@@ -34,6 +34,13 @@ const MoreOptions = ({setShowLabels}) => {
             >
               Add label
             </CardContent>
+            {item !== undefined && (
+                <CardContent
+                className="deleteOption"
+                >
+                  Delete note
+                </CardContent>
+            )}
           </Card>
         ) : null}
         {showAddLabel ? <Labels setShowLabels={setShowLabels} /> : null}
