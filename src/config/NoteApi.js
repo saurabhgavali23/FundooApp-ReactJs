@@ -15,5 +15,6 @@ const NoteApi = {
     updateNoteLabel: '/updateNoteLabel',
     deleteNoteLabel: '/deleteNoteLabel',
     TrashNotes: '/notes/trashNotes',
+    PermanentDeleteNotes: '/notes/deleteForeverNotes',
   };
   export default NoteApi;

@@ -3,7 +3,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Card, CardContent, ClickAwayListener } from "@material-ui/core";
 import "./MoreOptionsCss.css";
 import Labels from "../labels/Labels";
-import { trashNotes } from "../../services/NoteServices";
+import { deleteNotePermanently, trashNotes } from "../../services/NoteServices";
 const MoreOptions = ({item, setShowLabels}) => {
   const [isMoreIcon, setIsMoreIcon] = useState(false);
   const [showAddLabel, setShowAddLabel] = useState(false);
@@ -28,6 +28,17 @@ const MoreOptions = ({item, setShowLabels}) => {
     trashNotes(data).then(
     ).catch(err=>{
       console.warn("error",err);
+    })
+  }
+
+  const handleDeleteNotePermanently = () => {
+    let data={
+      isDeleted: true,
+      noteIdList: noteId
+    }
+    deleteNotePermanently(data).then()
+    .catch(err=>{
+      console.warn("error", err);
     })
   }
 
@@ -75,6 +86,7 @@ const MoreOptions = ({item, setShowLabels}) => {
             {(item !== undefined && item.isDeleted === true) &&(
                 <CardContent
                 className="deleteOption"
+                onClick={() => handleDeleteNotePermanently()}
                 >
                   Delete permanetaly
                 </CardContent>
