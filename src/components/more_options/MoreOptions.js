@@ -20,9 +20,9 @@ const MoreOptions = ({item, setShowLabels}) => {
     setIsMoreIcon(false);
   };
 
-  const handleTrashNotes = () => {
+  const handleTrashNotes = (value) => {
     let data={
-      isDeleted: true,
+      isDeleted: value,
       noteIdList: noteId
     }
     trashNotes(data).then(
@@ -42,18 +42,41 @@ const MoreOptions = ({item, setShowLabels}) => {
           <Card
             className="moreOptionCardContainer"
           >
-            <CardContent
+            {item === undefined &&
+              <CardContent
               className="moreOptionCardContent"
               onClick={() => handleOptions()}
             >
               Add label
-            </CardContent>
-            {item !== undefined && (
+            </CardContent>}
+            {(item !== undefined && item.isDeleted === false) &&
+              <CardContent
+              className="moreOptionCardContent"
+              onClick={() => handleOptions()}
+            >
+              Add label
+            </CardContent>}
+            {(item !== undefined && item.isDeleted === false) &&(
                 <CardContent
                 className="deleteOption"
-                onClick={() => handleTrashNotes()}
+                onClick={() => handleTrashNotes(true)}
                 >
                   Delete note
+                </CardContent>
+            )}
+            {(item !== undefined && item.isDeleted === true) &&(
+                <CardContent
+                className="deleteOption"
+                onClick={() => handleTrashNotes(false)}
+                >
+                  Restore
+                </CardContent>
+            )}
+            {(item !== undefined && item.isDeleted === true) &&(
+                <CardContent
+                className="deleteOption"
+                >
+                  Delete permanetaly
                 </CardContent>
             )}
           </Card>
