@@ -24,6 +24,7 @@ const DashBoard = () => {
   const [selectCard, setSelectCard] = useState('note')
   const [pinText, setPinText] = useState(false)
   const [refresh, setRefresh] = useState(Math.random())
+
   useEffect(() => {
     getNoteList()
       .then((res) => {
@@ -105,7 +106,7 @@ const DashBoard = () => {
                   )
                 }
                return ( 
-                 <div>
+                 <div key={index}>
                    {false && 
                    <DisplayCard key={index} item={item}/>}
                 </div>
@@ -148,7 +149,21 @@ const DashBoard = () => {
                 )
               }
                return ( 
-                   <DisplayCard key={index} item={item} />
+                 <div key={index}>
+                   {item.noteLabels.map((labelItem,labelIndex)=>{
+                     if(labelItem.label === selectCard){
+                      return(
+                        <DisplayCard key={labelIndex} item={item} setRefresh={setRefresh}/>
+                      )
+                    }
+                    return(
+                      <div key={labelIndex}>
+                        {false &&
+                      <DisplayCard key={index} item={item} />}
+                      </div>
+                    )
+                    })}
+                </div>
                   )
                 }
               )}

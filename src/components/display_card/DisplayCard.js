@@ -50,10 +50,10 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
   };
 
   useEffect(() => {
-    if((item.isPined || item.isArchived ) && item.isDeleted === false) {
+    if((item.isPined || item.isArchived ) && item.isDeleted === false && setPinText !== undefined) {
       setPinText(item.isPined)
     }
-  }, [item.isPined, setPinText, item.isArchived, item.isDeleted])
+  }, [item.isPined, setPinText, item.isArchived, item.isDeleted, item.noteLabels])
 
   useEffect(() => {
     if (bgColor !== "") {
