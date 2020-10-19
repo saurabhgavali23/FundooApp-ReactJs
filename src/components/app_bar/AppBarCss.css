@@ -40,3 +40,12 @@
     display: flex;
     align-items: center;
 }
+
+@media (max-Width: 360px){
+    .searchInput{
+        width: 90px !important;
+    }
+    .search{
+        width: fit-content;
+    }
+}
