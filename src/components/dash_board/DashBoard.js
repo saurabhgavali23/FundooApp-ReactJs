@@ -91,7 +91,7 @@ const DashBoard = () => {
                 if(selectCard === 'isArchived'){
                   return(
                     <div key={index} style={{padding: '0.5%'}}>
-                      {item.isPined && item.isArchived ?
+                      {item.isPined && item.isArchived && item.isDeleted === false ?
                         <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                     </div>
                   )
@@ -134,7 +134,7 @@ const DashBoard = () => {
               if(selectCard === 'isArchived'){
                 return(
                   <div key={index} style={{padding: '0.5%'}}>
-                    {!item.isPined && item.isArchived ?
+                    {!item.isPined && item.isArchived && item.isDeleted === false?
                       <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                   </div>
                 )
