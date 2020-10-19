@@ -37,6 +37,10 @@ export const updateNoteLables = (id, data) => {
   return apiServices.postWithHeader(NoteApi.saveNoteLabels+'/'+id+NoteApi.updateNoteLabel, data)
 }
 
-export const deleteNoteLabels = (id) =>{
+export const deleteNoteLabels = (id) => {
   return apiServices.deleteWithHeader(NoteApi.saveNoteLabels+'/'+id+NoteApi.deleteNoteLabel)
+}
+
+export const trashNotes = (data) => {
+  return apiServices.postWithHeader(NoteApi.TrashNotes, data)
 }

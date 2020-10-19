@@ -3,9 +3,12 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Card, CardContent, ClickAwayListener } from "@material-ui/core";
 import "./MoreOptionsCss.css";
 import Labels from "../labels/Labels";
+import { trashNotes } from "../../services/NoteServices";
 const MoreOptions = ({item, setShowLabels}) => {
   const [isMoreIcon, setIsMoreIcon] = useState(false);
   const [showAddLabel, setShowAddLabel] = useState(false);
+  let noteId = []
+  noteId.push(item !== undefined ? item.id : null)
 
   const handleOptions = () => {
     setShowAddLabel(!showAddLabel);
@@ -16,6 +19,17 @@ const MoreOptions = ({item, setShowLabels}) => {
     setShowAddLabel(false);
     setIsMoreIcon(false);
   };
+
+  const handleTrashNotes = () => {
+    let data={
+      isDeleted: true,
+      noteIdList: noteId
+    }
+    trashNotes(data).then(
+    ).catch(err=>{
+      console.warn("error",err);
+    })
+  }
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
@@ -37,6 +51,7 @@ const MoreOptions = ({item, setShowLabels}) => {
             {item !== undefined && (
                 <CardContent
                 className="deleteOption"
+                onClick={() => handleTrashNotes()}
                 >
                   Delete note
                 </CardContent>

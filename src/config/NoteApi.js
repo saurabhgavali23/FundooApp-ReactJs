@@ -13,6 +13,7 @@ const NoteApi = {
     updateNotes: '/notes/updateNotes',
     getLabelList: '/noteLabels/getNoteLabelList',
     updateNoteLabel: '/updateNoteLabel',
-    deleteNoteLabel: '/deleteNoteLabel'
+    deleteNoteLabel: '/deleteNoteLabel',
+    TrashNotes: '/notes/trashNotes',
   };
   export default NoteApi;
