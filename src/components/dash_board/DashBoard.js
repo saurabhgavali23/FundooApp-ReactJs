@@ -83,7 +83,7 @@ const DashBoard = () => {
                 
                 if(selectCard === 'note'){
                   return(
-                    <React.Fragment key={index} >
+                    <React.Fragment key={index}>
                       {item.isPined && item.isDeleted === false ?
                         <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                     </React.Fragment>
@@ -142,7 +142,7 @@ const DashBoard = () => {
               }
               if(selectCard === 'Trash'){
                 return(
-                  <React.Fragment key={index} style={{padding: '0.1%'}}>
+                  <React.Fragment key={index}>
                   {!item.isPined && item.isDeleted === true ?
                     <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                   </React.Fragment>
