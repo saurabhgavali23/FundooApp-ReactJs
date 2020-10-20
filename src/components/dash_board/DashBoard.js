@@ -55,7 +55,7 @@ const DashBoard = () => {
           </Card>
         ) : null}
         {showCard === "create_note" ? (
-          <CreateNote collabUser={collabUser} setShowCard={setShowCard} />
+          <CreateNote collabUser={collabUser} setShowCard={setShowCard} setRefresh={setRefresh}/>
         ) : null}
         {showCard === "collaborator" ? (
           <Collaborator

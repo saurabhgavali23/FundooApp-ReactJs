@@ -32,7 +32,7 @@ const Styles = makeStyles({
   },
 });
 
-const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
+const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh }) => {
   const classes = Styles();
   const [title, setTitle] = useState(item !== undefined ? item.title : '');
   const [description, setDescription] = useState(item !== undefined ? item.description : '');
@@ -88,7 +88,10 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen }) => {
     formData.append('title', title)
     formData.append('description', description)
     formData.append('noteId', item.id)
-    updateNoteTitleDescription(formData).catch(err=>{
+    updateNoteTitleDescription(formData).then(
+      ()=> {setRefresh(Math.random)}
+    )
+    .catch(err=>{
       console.warn("error", err);
     })
   }

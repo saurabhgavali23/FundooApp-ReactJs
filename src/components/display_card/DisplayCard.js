@@ -158,7 +158,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
         }}
       >
         <Fade in={isModalOpen}>
-            <CreateNote item={item} setIsModalOpen={setIsModalOpen}/>
+            <CreateNote item={item} setIsModalOpen={setIsModalOpen} setRefresh={setRefresh}/>
         </Fade>
       </Modal>
       </div>
