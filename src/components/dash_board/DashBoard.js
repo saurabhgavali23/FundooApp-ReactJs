@@ -83,33 +83,33 @@ const DashBoard = () => {
                 
                 if(selectCard === 'note'){
                   return(
-                    <div key={index} style={{padding: '0.5%'}}>
+                    <React.Fragment key={index} >
                       {item.isPined && item.isDeleted === false ?
                         <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
-                    </div>
+                    </React.Fragment>
                   )
                 }
                 if(selectCard === 'isArchived'){
                   return(
-                    <div key={index} style={{padding: '0.5%'}}>
+                    <React.Fragment key={index}>
                       {item.isPined && item.isArchived && item.isDeleted === false ?
                         <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
-                    </div>
+                    </React.Fragment>
                   )
                 }
                 if(selectCard === 'Trash'){
                   return(
-                    <div key={index} style={{padding: '0.5%'}}>
+                    <React.Fragment key={index}>
                     {item.isPined && item.isDeleted === true ?
                       <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
-                  </div>
+                  </React.Fragment>
                   )
                 }
                return ( 
-                 <div key={index}>
+                 <React.Fragment key={index}>
                    {false && 
                    <DisplayCard key={index} item={item}/>}
-                </div>
+                </React.Fragment>
                   )
                 }
               )}
@@ -125,31 +125,31 @@ const DashBoard = () => {
               {noteList.map((item, index) => {         
               if(selectCard === 'note'){
                 return(
-                  <div key={index} style={{padding: '0.5%'}}>
+                  <React.Fragment key={index}>
                     {!item.isPined && !item.isArchived && item.isDeleted === false ?
                     <DisplayCard key={index} item={item} setRefresh={setRefresh} />:null}
-                  </div>
+                  </React.Fragment>
                 )
               }
 
               if(selectCard === 'isArchived'){
                 return(
-                  <div key={index} style={{padding: '0.5%'}}>
+                  <React.Fragment key={index}>
                     {!item.isPined && item.isArchived && item.isDeleted === false?
                       <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
-                  </div>
+                  </React.Fragment>
                 )
               }
               if(selectCard === 'Trash'){
                 return(
-                  <div key={index} style={{padding: '0.1%'}}>
+                  <React.Fragment key={index} style={{padding: '0.1%'}}>
                   {!item.isPined && item.isDeleted === true ?
                     <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
-                </div>
+                  </React.Fragment>
                 )
               }
                return ( 
-                 <div key={index}>
+                 <React.Fragment key={index}>
                    {item.noteLabels.map((labelItem,labelIndex)=>{
                      if(labelItem.label === selectCard){
                       return(
@@ -163,7 +163,7 @@ const DashBoard = () => {
                       </div>
                     )
                     })}
-                </div>
+                </React.Fragment>
                   )
                 }
               )}
