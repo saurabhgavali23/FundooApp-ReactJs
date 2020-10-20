@@ -40,7 +40,7 @@ const DashBoard = () => {
     <div>
       <Appbar selectCard={selectCard} setSelectCard={setSelectCard}/>
       <div className="noteContainer">
-        {showCard === "take_note" ? (
+        {(showCard === "take_note" && selectCard !== 'Trash') ? (
           <Card
             className="cardContainer"
             onClick={() => setShowCard("create_note")}
