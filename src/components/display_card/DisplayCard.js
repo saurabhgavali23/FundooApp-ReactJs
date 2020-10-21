@@ -11,11 +11,13 @@ import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
 import {
+  addCollaborator,
   updateNoteArchive,
   updateNoteColor,
   updateNotePin,
 } from "../../services/NoteServices";
 import CreateNote from "../create_note/CreateNote";
+import Collaborator from "../collaborator/Collaborator";
 
 const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isHover, setIsHover] = useState(false);
@@ -24,8 +26,22 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [bgColor, setBgColor] = useState("");
   const [itemBgColor, setItemBgColor] = useState(item.color);
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
+  const [addCollabUser, setAddCollabUser] = useState([])
   var noteId = [];
   noteId.push(item.id);
+
+  useEffect(() => {
+    if(item !== undefined && addCollabUser.length !== 0){
+      let data = ''
+      addCollabUser.map(item => data = item)
+      addCollaborator(item.id, data).then(
+        () => {setRefresh(Math.random())}
+      ).catch(err=>{
+        console.log("error", err);
+      })
+   }
+  }, [addCollabUser, setRefresh, item])
 
   const handleNotePin = (value) => {
     setIsPined(value);
@@ -125,7 +141,8 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
               {isHover && (
                 <div className="options">
                   <Reminder />
-                  <CollaboratorIcon />
+                  <CollaboratorIcon style={{ cursor: 'pointer' }} 
+                  onClick={() => setIsCollabModalOpen(!isCollabModalOpen)}/>
                   <ColorList setBgColor={setBgColor} />
                   <ImageIcon />
                   <div>
@@ -161,6 +178,22 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
       >
         <Fade in={isModalOpen}>
             <CreateNote item={item} setIsModalOpen={setIsModalOpen} setRefresh={setRefresh}/>
+        </Fade>
+      </Modal>
+      </div>
+      <div>
+      <Modal
+        open={isCollabModalOpen}
+        onClose={() => setIsCollabModalOpen(!isCollabModalOpen)}
+        className="modal"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isCollabModalOpen}>
+            <Collaborator item={item} setIsCollabModalOpen={setIsCollabModalOpen} setAddCollabUser={setAddCollabUser} />
         </Fade>
       </Modal>
       </div>
