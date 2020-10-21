@@ -223,6 +223,13 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               ))}
             </div>
           )}
+          {item !== undefined && (
+            <div>
+              {item.collaborators.map((item,index)=>(
+                <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
+              ))}
+            </div>
+          )}
           {addCollabUser !== undefined && (
             <div>
               {addCollabUser.map((item,index)=>(
