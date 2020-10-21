@@ -17,7 +17,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { addNoteLabels, saveNoteLabels, saveNotes, updateNoteArchive, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
+import { addCollaborator, addNoteLabels, saveNoteLabels, saveNotes, updateNoteArchive, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -43,6 +43,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   const [showLabels, setShowLabels] = useState([]);
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
+  const [addCollabUser, setAddCollabUser] = useState([])
   var labelId = [];
   var noteId = [];
   noteId.push(item !== undefined ? item.id : null);
@@ -82,6 +83,16 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
         });
     }
   };
+
+  useEffect(() => {
+   if(item !== undefined && addCollabUser.length !== 0){
+      let data = ''
+      addCollabUser.map(item => data = item)
+      addCollaborator(item.id, data).catch(err=>{
+        console.log("error", err);
+      })
+   }
+  }, [addCollabUser, item])
 
   const updateNotes = () => {
     let formData = new FormData()
@@ -212,6 +223,13 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               ))}
             </div>
           )}
+          {addCollabUser !== undefined && (
+            <div>
+              {addCollabUser.map((item,index)=>(
+                <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
+              ))}
+            </div>
+          )}
         </CardContent>
         <div className="actionStyle">
           <CardActions className="createOptions">
@@ -251,7 +269,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
         }}
       >
         <Fade in={isCollabModalOpen}>
-            <Collaborator item={item} setIsCollabModalOpen={setIsCollabModalOpen}/>
+            <Collaborator item={item} setIsCollabModalOpen={setIsCollabModalOpen} setAddCollabUser={setAddCollabUser}/>
         </Fade>
       </Modal>
       </div>

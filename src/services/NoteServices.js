@@ -52,3 +52,7 @@ export const deleteNotePermanently = (data) => {
 export const addNoteLabels = (id, data) => {
   return apiServices.postWithHeader(NoteApi.notes+id+NoteApi.addNoteLabels, data)
 }
+
+export const addCollaborator = (id, data) => {
+  return apiServices.postWithHeader(NoteApi.notes+id+NoteApi.addCollaborator, data)
+}

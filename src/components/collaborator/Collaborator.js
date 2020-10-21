@@ -13,7 +13,7 @@ import { searchUserDetails } from "../../services/userServices";
 import CheckIcon from "@material-ui/icons/Check";
 import { Autocomplete } from "@material-ui/lab";
 
-const Collaborator = ({ setCollabUser, setShowCard, setIsCollabModalOpen, item }) => {
+const Collaborator = ({ setCollabUser, setShowCard, setIsCollabModalOpen, item, setAddCollabUser }) => {
   const [searchEmail, setSearchEmail] = useState("");
   const [userDetails, setUserDetails] = useState([]);
   const [displayUserDetails, setDisplayUserDetails] = useState([])
@@ -37,7 +37,7 @@ const Collaborator = ({ setCollabUser, setShowCard, setIsCollabModalOpen, item }
       if(item.email === searchEmail){
         let data = []
         data.push(item)
-        setCollabUser(data)
+      item !== undefined ? setAddCollabUser(data) : setCollabUser(data)
       return (
         setDisplayUserDetails([
           ...displayUserDetails,
