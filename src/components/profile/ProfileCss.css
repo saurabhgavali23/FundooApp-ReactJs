@@ -15,5 +15,13 @@
 }
 .profileIcon{
     font-size: 30;
-    margin-right: 1%;
+    display: flex;
+    align-items: center;
+}
+@media (max-Width: 360px){
+    .profileIcon{
+        padding: 0px !important;
+        display: flex;
+        align-items: center;
+    }
 }

@@ -37,7 +37,7 @@ const Profile = () => {
         color="inherit"
         onClick={()=>setShowProfile(!showProfile)}
       >
-        <AccountCircle style={{ fontSize: 30 }} />
+        <AccountCircle className="profileIcon"/>
       </IconButton>
       {showProfile ? (
         <div className="profileContainer">

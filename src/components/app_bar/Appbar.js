@@ -5,6 +5,7 @@ import React from "react";
 import "./AppBarCss.css";
 import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 const Appbar = ({selectCard, setSelectCard}) => {
 
@@ -23,17 +24,20 @@ const Appbar = ({selectCard, setSelectCard}) => {
           <div className="toolbarContainer">
           <div className="appBarMenuAndTitile">
           <NoteDrawer setSelectCard={setSelectCard}/>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className="title">
             {title}
           </Typography>
           <div className="search">
             <div className="searchIcon">
-            <SearchIcon style={{ fontSize: 20}}/>
+            <SearchIcon style={{ fontSize: 30}}/>
             </div>
             <InputBase placeholder="Search" 
             className="searchInput" multiline 
             />
           </div>
+          </div>
+          <div className="refreshIcon">
+          <RefreshIcon style={{ fontSize: 30}}/>
           </div>
           <div className="profile">
             <Profile/>
