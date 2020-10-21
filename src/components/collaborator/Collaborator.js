@@ -33,23 +33,23 @@ const Collaborator = ({ setCollabUser, setShowCard, setIsCollabModalOpen, item, 
   }
 
   const handleUserEmail = () => {
-    userDetails.map((item)=>{
-      if(item.email === searchEmail){
+    userDetails.map((addItem)=>{
+      if(addItem.email === searchEmail){
         let data = []
-        data.push(item)
+        data.push(addItem)
       item !== undefined ? setAddCollabUser(data) : setCollabUser(data)
       return (
         setDisplayUserDetails([
           ...displayUserDetails,
           {
-            firstName: item.firstName,
-            email: item.email,
+            firstName: addItem.firstName,
+            email: addItem.email,
           },
         ])
       );
       }
       return(
-        item.email
+        addItem.email
       )
     })
   }
