@@ -44,7 +44,9 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
       isArchived: value,
       noteIdList: noteId,
     };
-    updateNoteArchive(data).catch((err) => {
+    updateNoteArchive(data).then(
+      () => {setRefresh(Math.random())}
+    ).catch((err) => {
       console.warn("error", err);
     });
   };

@@ -17,7 +17,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { addNoteLabels, saveNoteLabels, saveNotes, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
+import { addNoteLabels, saveNoteLabels, saveNotes, updateNoteArchive, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -134,6 +134,19 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
     }
   }, [showLabels,labelId, item]);
 
+  const handleNoteArchive = (value) => {
+    setIsArchived(value);
+    let data = {
+      isArchived: value,
+      noteIdList: noteId,
+    };
+    updateNoteArchive(data).then(
+      () => {setRefresh(Math.random())}
+    ).catch((err) => {
+      console.warn("error", err);
+    });
+  };
+
   const handleDeleteChip = () => {
     setDateTimeChip("");
   };
@@ -210,7 +223,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
             <div>
               <ImageIcon className="iconStyle" />
             </div>
-            <div onClick={() => setIsArchived(!isArchived)}>
+            <div onClick={() => item !==undefined ? handleNoteArchive(!isArchived) : setIsArchived(!isArchived)}>
               {isArchived ? (
                 <ArchiveFilled className="iconStyle" />
               ) : (
