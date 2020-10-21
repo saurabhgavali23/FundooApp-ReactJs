@@ -7,7 +7,7 @@ import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-const Appbar = ({selectCard, setSelectCard}) => {
+const Appbar = ({selectCard, setSelectCard, setRefresh}) => {
 
   var title = selectCard;
   if(title === 'note'){
@@ -36,7 +36,7 @@ const Appbar = ({selectCard, setSelectCard}) => {
             />
           </div>
           </div>
-          <div className="refreshIcon">
+          <div className="refreshIcon" onClick={() => setRefresh(Math.random())}>
           <RefreshIcon style={{ fontSize: 30}}/>
           </div>
           <div className="profile">

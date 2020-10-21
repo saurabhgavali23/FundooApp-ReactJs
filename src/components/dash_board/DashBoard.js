@@ -38,7 +38,7 @@ const DashBoard = () => {
 
   return (
     <div>
-      <Appbar selectCard={selectCard} setSelectCard={setSelectCard}/>
+      <Appbar selectCard={selectCard} setSelectCard={setSelectCard} setRefresh={setRefresh}/>
       <div className="noteContainer">
         {(showCard === "take_note" && selectCard !== 'Trash') ? (
           <Card
