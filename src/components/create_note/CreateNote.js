@@ -17,7 +17,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { saveNoteLabels, saveNotes, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
+import { addNoteLabels, saveNoteLabels, saveNotes, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -97,10 +97,27 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   }
 
   useEffect(() => {
+    let updateLabels = [];
+
+    if(showLabels.length !== 0 && item !== undefined){
+      showLabels.map((item) => updateLabels.push(item.value));
+      let data = {
+      label: updateLabels.toString(),
+      isDeleted: false,
+      userId: item.userId,
+    };
+    addNoteLabels(item.id, data)
+      .catch((err) => {
+        console.warn("error", err);
+      });
+    }
+  }, [showLabels, item, setRefresh])
+
+  useEffect(() => {
     let labels = [];
     let userId = localStorage.getItem("userId");
 
-    if (showLabels.length !== 0) {
+    if (showLabels.length !== 0 && item === undefined) {
       showLabels.map((item) => labels.push(item.value));
       let data = {
         label: labels.toString(),
@@ -115,7 +132,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
           console.warn("error", err);
         });
     }
-  }, [showLabels,labelId]);
+  }, [showLabels,labelId, item]);
 
   const handleDeleteChip = () => {
     setDateTimeChip("");

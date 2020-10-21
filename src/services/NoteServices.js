@@ -48,3 +48,7 @@ export const trashNotes = (data) => {
 export const deleteNotePermanently = (data) => {
   return apiServices.postWithHeader(NoteApi.PermanentDeleteNotes, data)
 }
+
+export const addNoteLabels = (id, data) => {
+  return apiServices.postWithHeader(NoteApi.notes+id+NoteApi.addNoteLabels, data)
+}
