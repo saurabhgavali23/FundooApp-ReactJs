@@ -216,6 +216,13 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               ))}
             </div>
           ) : null}
+          {item !== undefined ? (
+            <div>
+              {item.noteLabels.map((item, index) => (
+                <Chip className="showLabel" key={index} label={item.label} />
+              ))}
+            </div>
+          ) : null}
           {collabUser !== undefined && (
             <div>
               {collabUser.map((item,index)=>(
