@@ -74,7 +74,7 @@ const DashBoard = () => {
           {pinText ? <div className="pinText">Pin</div>: null}
            <Grid
               container
-              style={{ flexGrow: 1 }}
+              className="gridContainer"
               spacing={2}
               direction="row"
               alignItems="center"
@@ -117,10 +117,10 @@ const DashBoard = () => {
             {pinText ? <div className="otherText">Other</div>: null}
             <Grid
               container
-              style={{ flexGrow: 1 }}
               spacing={2}
               direction="row"
               alignItems="center"
+              className="gridContainer"
             >
               {noteList.map((item, index) => {         
               if(selectCard === 'note'){

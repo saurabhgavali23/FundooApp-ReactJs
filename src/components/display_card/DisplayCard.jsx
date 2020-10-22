@@ -91,7 +91,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
     <div className="createMainContainer">
       <Grid item>
         <Card
-          style={{ height: 200, width: 200, backgroundColor: itemBgColor}}
+          style={{backgroundColor: itemBgColor}}
           className="createCardContainer"
           onMouseEnter={() => setIsHover(!isHover)}
           onMouseLeave={() => setIsHover(!isHover)}

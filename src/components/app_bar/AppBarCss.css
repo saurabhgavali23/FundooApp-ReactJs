@@ -53,17 +53,18 @@
 
 @media (max-Width: 360px){
     .searchInput{
-        width: 90px !important;
+        width: 60px !important;
     }
     .search{
         width: fit-content;
+        margin-left: 10px;
     }
     .searchIcon{
-        padding: 0%;
-        font-size: 10 !important;
+        padding: 0% !important;
+        font-size: 0 !important;
     }
     .refreshIcon{
-        margin-left: 0;
+        margin-left: 10px;
     }
     .title{
         overflow: hidden !important;

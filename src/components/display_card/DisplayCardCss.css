@@ -4,6 +4,7 @@
 .createCardContent{
     padding: 10%;
     padding-bottom: 0%;
+    
 }
 .createContentStyle{
     padding: 0px !important;
@@ -30,7 +31,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 200px;
+    width: 200px;
 }
 .modal{
     display: flex;
@@ -40,4 +42,11 @@
 .modalPaper{
     border: 0% !important;
     width: 100% !important;
+}
+
+@media (max-Width: 360px){
+    .displayCardContainerwithOption{
+        height: 220px;
+        width: 290px;
+    }
 }

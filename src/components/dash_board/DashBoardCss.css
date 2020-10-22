@@ -54,14 +54,26 @@
     margin-bottom: 1%;
     margin-top: 2%;
 }
+.gridContainer{
+    flex-grow: 1;
+}
 
 @media (max-Width: 360px){
     .cardContainer{
-        width: 56%;
+        width: 82%;
     }
     .subCardContainer{
-        padding: 5% 10% !important;
+        padding: 4% 10% !important;
         align-items: center;
         justify-content: space-between;
+    }
+    .displayCardContainer{
+        margin-top: 10%;
+    }
+    .noteContainer{
+        margin-top: 7%;
+    }
+    .gridContainer{
+        justify-content: center;
     }
 }
