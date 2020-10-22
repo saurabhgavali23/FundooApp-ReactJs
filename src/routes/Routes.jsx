@@ -25,9 +25,8 @@ const Routes = () => {
             <Switch>
                 <Redirect path='/' exact to={'/dash-board'}/>
                 <ProtectedRoute exact path="/dash-board" component={DashBoard} isAuthenticated={isAuthenticated}/>
-                <Route path={'/login'} exact>
-                    <Login openSnackBar={openSnackBar}/>
-                </Route>
+                <Route exact path='/login'
+                    component={(props)=> <Login openSnackBar={openSnackBar} {...props}/>}/>
                 <Route path={'/registration'}>
                     <Registration openSnackBar={openSnackBar}/>
                 </Route>

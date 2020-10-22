@@ -6,9 +6,9 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
-const Login2 = ({ openSnackBar }) => {
+const Login = ({ openSnackBar, location, history }) => {
   const classes = styles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,7 +17,14 @@ const Login2 = ({ openSnackBar }) => {
   const [passwordText, setPasswordText] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const history = useHistory()
+  const {from} = location.state || {from: {pathname: "/"}};
+
+  useEffect(() => {
+    let token = localStorage.getItem("userToken")
+    if(token !== null){
+      history.replace(from);
+    } 
+  })
 
   const validateEmailAddress = () => {
     const regexp3 = /^[a-zA-Z]+[.+-]?[a-zA-Z0-9]+[@][a-zA-Z]{3,}[.][a-z]{2,4}[.]?[a-zA-Z]*[.,]?$/;
@@ -64,7 +71,6 @@ const Login2 = ({ openSnackBar }) => {
           localStorage.setItem("userId", userId);
           localStorage.setItem("userData", JSON.stringify(userData))
           openSnackBar("Login Successfull");
-          history.push('/dash-board')
         })
         .catch((err) => {
           openSnackBar("Login Faild");
@@ -148,4 +154,4 @@ const Login2 = ({ openSnackBar }) => {
   );
 };
 
-export default Login2;
+export default Login;

@@ -2,15 +2,14 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
 const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-  
   const renderdComponent = (props) => {
     const { location } = props;
-    return isAuthenticated ? (
+    return localStorage.getItem('userToken') !== null ? (
       <Component {...props} />
     ) : (
       <Redirect
         to={{
-          pathname: "/dash-board",
+          pathname: "/login",
           state: {
             from: location,
           },
