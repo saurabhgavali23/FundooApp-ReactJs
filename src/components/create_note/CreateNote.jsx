@@ -17,7 +17,7 @@ import CollaboratorIcon from "@material-ui/icons/PersonAddOutlined";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import ArchiveFilled from "@material-ui/icons/Archive";
 import ArchiveOutlined from "@material-ui/icons/ArchiveOutlined";
-import { addCollaborator, addNoteLabels, saveNoteLabels, saveNotes, updateNoteArchive, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
+import { addCollaborator, addNoteLabels, addReminder, saveNoteLabels, saveNotes, updateNoteArchive, updateNoteColor, updateNoteTitleDescription } from "../../services/NoteServices";
 import Reminder from "../reminder/Reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ColorList from "../color_list/ColorList";
@@ -25,6 +25,7 @@ import MoreOptions from "../more_options/MoreOptions";
 import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
 import Collaborator from "../collaborator/Collaborator";
+import moment from "moment";
 
 const Styles = makeStyles({
   root: {
@@ -95,6 +96,18 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
    }
   }, [addCollabUser, item])
 
+  useEffect(() => {
+    if(item !== undefined && dateTimeChip !== ''){
+      let data = {
+        reminder: dateTimeChip,
+        noteIdList: noteId
+      }
+      addReminder(data).catch(err=>{
+        console.warn("error", err);
+      })
+    }
+  }, [dateTimeChip, item, noteId])
+
   const updateNotes = () => {
     let formData = new FormData()
     formData.append('title', title)
@@ -163,6 +176,14 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
     setDisplayDateTime("");
   };
 
+  const handleDateAndTime = (value) =>{
+    let todaysDate = new Date().toString()
+    if(value.slice(0, 7) === todaysDate.slice(0, 7)){
+        return ('today '+moment(value).format("LT"))
+    }
+   return (value.slice(4,13)+' '+moment(value).format("LT"))
+  }
+
   return (
     <div className="mainContainer">
       <Card className="cardContainer2" style={{ backgroundColor: itemBgColor }}>
@@ -210,6 +231,17 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               onDelete={handleDeleteChip}
             />
           ) : null}
+          {item !== undefined
+            ? item.reminder.map((item, index)=>{
+              let data = handleDateAndTime(item)
+              return(
+                <Chip 
+                  avatar={<AccessTimeIcon/>}
+                  key={index} 
+                  label={data}/>
+                )})
+            : null
+          }
           {showLabels.length ? (
             <div>
               {showLabels.map((item, index) => (

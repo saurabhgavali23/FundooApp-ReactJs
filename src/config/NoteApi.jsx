@@ -18,6 +18,7 @@ const NoteApi = {
     PermanentDeleteNotes: '/notes/deleteForeverNotes',
     notes: '/notes/',
     addNoteLabels: '/noteLabels',
-    addCollaborator: '/AddcollaboratorsNotes'
+    addCollaborator: '/AddcollaboratorsNotes',
+    addReminder: '/notes/addUpdateReminderNotes'
   };
   export default NoteApi;
