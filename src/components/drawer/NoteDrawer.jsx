@@ -88,7 +88,7 @@ const NoteDrawer = ({setSelectCard}) => {
               </ListItemIcon>
               <ListItemText>Note</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('reminder')}>
+            <ListItem className="note" onClick={()=> setSelectCard('Reminder')}>
               <ListItemIcon>
                 <ReminderIcon/>
               </ListItemIcon>

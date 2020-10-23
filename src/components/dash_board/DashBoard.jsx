@@ -105,6 +105,17 @@ const DashBoard = () => {
                   </React.Fragment>
                   )
                 }
+                if(selectCard === 'Reminder'){
+                  return(
+                    <React.Fragment key={index}>
+                    {item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
+                      item.reminder.map((reminderIndex)=>(
+                        <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh}/>
+                      )): null
+                    }
+                  </React.Fragment>
+                  )
+                }
                return ( 
                  <React.Fragment key={index}>
                    {false && 
@@ -146,6 +157,17 @@ const DashBoard = () => {
                   {!item.isPined && item.isDeleted === true ?
                     <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
                   </React.Fragment>
+                )
+              }
+              if(selectCard === 'Reminder'){
+                return(
+                  <React.Fragment key={index}>
+                  {!item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
+                    item.reminder.map((reminderIndex)=>(
+                      <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh}/>
+                    )): null
+                  }
+                </React.Fragment>
                 )
               }
                return ( 
