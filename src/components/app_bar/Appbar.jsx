@@ -10,7 +10,7 @@ import ListIcon from '@material-ui/icons/ViewAgendaOutlined';
 import GridOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
 import { useState } from "react";
 
-const Appbar = ({selectCard, setSelectCard, setRefresh}) => {
+const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote}) => {
   const [isGrid, setIsGrid] = useState(false)
 
   var title = selectCard;
@@ -37,6 +37,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh}) => {
             </div>
             <InputBase placeholder="Search" 
             className="searchInput" multiline 
+            onChange={(e) => setSearchNote(e.target.value)}
             />
           </div>
           </div>

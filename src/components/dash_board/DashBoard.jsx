@@ -24,6 +24,7 @@ const DashBoard = () => {
   const [selectCard, setSelectCard] = useState('note')
   const [pinText, setPinText] = useState(false)
   const [refresh, setRefresh] = useState(Math.random())
+  const [searchNote, setSearchNote] = useState('')
 
   useEffect(() => {
     getNoteList()
@@ -38,9 +39,10 @@ const DashBoard = () => {
 
   return (
     <div>
-      <Appbar selectCard={selectCard} setSelectCard={setSelectCard} setRefresh={setRefresh}/>
+      <Appbar selectCard={selectCard} 
+      setSelectCard={setSelectCard} setRefresh={setRefresh} setSearchNote={setSearchNote}/>
       <div className="noteContainer">
-        {(showCard === "take_note" && selectCard !== 'Trash') ? (
+        {(showCard === "take_note" && selectCard !== 'Trash' && searchNote === '') ? (
           <Card
             className="cardContainer"
             onClick={() => setShowCard("create_note")}
@@ -72,7 +74,8 @@ const DashBoard = () => {
         <div>
           <Container className="displayCardContainer">
           {pinText ? <div className="pinText">Pin</div>: null}
-           <Grid
+           {searchNote === '' ?
+             <Grid
               container
               className="gridContainer"
               spacing={2}
@@ -124,9 +127,10 @@ const DashBoard = () => {
                   )
                 }
               )}
-            </Grid>
+            </Grid> : null}
             {pinText ? <div className="otherText">Other</div>: null}
-            <Grid
+            {searchNote === '' ?
+              <Grid
               container
               spacing={2}
               direction="row"
@@ -189,7 +193,25 @@ const DashBoard = () => {
                   )
                 }
               )}
-            </Grid>
+            </Grid> : null}
+            {searchNote !== '' ?
+              <Grid
+              container
+              className="gridContainer"
+              spacing={2}
+              direction="row"
+              alignItems="center"
+            >
+              { noteList.map((searchItem, searchIndex)=>{
+                return(
+                  <React.Fragment key={searchIndex}>
+                    {searchItem.title.includes(searchNote) && searchItem.isDeleted === false ?
+                    <DisplayCard item={searchItem}/>: null
+                    }
+                  </React.Fragment>
+                )
+              })}
+            </Grid>: null}
             </Container>
         </div>
       )}
