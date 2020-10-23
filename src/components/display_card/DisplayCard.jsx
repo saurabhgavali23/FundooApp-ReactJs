@@ -19,6 +19,7 @@ import {
 import CreateNote from "../create_note/CreateNote";
 import Collaborator from "../collaborator/Collaborator";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import moment from "moment";
 
 const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isHover, setIsHover] = useState(false);
@@ -89,6 +90,14 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
     }
   }, [bgColor, noteId, setRefresh]);
 
+  const handleDateAndTime = (value) =>{
+    let todaysDate = new Date().toString()
+    if(value.slice(0, 7) === todaysDate.slice(0, 7)){
+        return ('today '+moment(value).format("LT"))
+    }
+   return (value.slice(4,13)+' '+moment(value).format("LT"))
+  }
+
   return (
     <div className="createMainContainer">
       <Grid item>
@@ -127,11 +136,14 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
               </CardContent>
               <div>
                 {item.reminder !== undefined
-                  ? item.reminder.map((item, index)=>(
-                    <Chip 
-                    avatar={<AccessTimeIcon/>}
-                    key={index} label={item.slice(4, 21)}/>
-                  ))
+                  ? item.reminder.map((item, index)=>{
+                    let data = handleDateAndTime(item)
+                    return(
+                      <Chip 
+                        avatar={<AccessTimeIcon/>}
+                        key={index} 
+                        label={data}/>
+                      )})
                   : null
                 }
               </div>
