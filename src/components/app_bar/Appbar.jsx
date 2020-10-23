@@ -6,8 +6,12 @@ import "./AppBarCss.css";
 import Profile from "../profile/Profile";
 import NoteDrawer from "../drawer/NoteDrawer";
 import RefreshIcon from '@material-ui/icons/Refresh';
+import ListIcon from '@material-ui/icons/ViewAgendaOutlined';
+import GridOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
+import { useState } from "react";
 
 const Appbar = ({selectCard, setSelectCard, setRefresh}) => {
+  const [isGrid, setIsGrid] = useState(false)
 
   var title = selectCard;
   if(title === 'note'){
@@ -38,6 +42,16 @@ const Appbar = ({selectCard, setSelectCard, setRefresh}) => {
           </div>
           <div className="refreshIcon" onClick={() => setRefresh(Math.random())}>
           <RefreshIcon style={{ fontSize: 30}}/>
+          </div>
+          <div className="listAndGridViewContainer">
+            {isGrid ?
+              <ListIcon 
+              style={{ fontSize: '1.8rem'}}
+              onClick={ () => setIsGrid(!isGrid)}/>:
+              <GridOutlinedIcon 
+              style={{ fontSize: '2.2rem'}}
+              onClick={ () => setIsGrid(!isGrid)}/>
+            }
           </div>
           <div className="profile">
             <Profile/>

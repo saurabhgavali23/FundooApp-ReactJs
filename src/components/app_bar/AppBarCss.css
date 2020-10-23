@@ -12,6 +12,12 @@
 .title{
     overflow: unset !important;
 }
+.listAndGridViewContainer{
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    cursor: pointer;
+}
 .search{
     display: flex;
     align-items: center;
