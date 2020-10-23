@@ -12,6 +12,7 @@ import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
 import {
   addCollaborator,
+  addReminder,
   updateNoteArchive,
   updateNoteColor,
   updateNotePin,
@@ -29,6 +30,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   const [addCollabUser, setAddCollabUser] = useState([])
+  const [dateTimeChip, setDateTimeChip] = useState("");
   var noteId = [];
   noteId.push(item.id);
 
@@ -89,6 +91,22 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
       setBgColor("");
     }
   }, [bgColor, noteId, setRefresh]);
+
+  useEffect(() => {
+    if(dateTimeChip !== ""){
+      let data = {
+        reminder: dateTimeChip,
+        noteIdList: noteId
+      }
+      addReminder(data).then(
+        () => {setRefresh(Math.random())}
+      )
+      .catch(err=>{
+        console.warn("error", err);
+      })
+    }
+    setDateTimeChip("")
+  }, [dateTimeChip, noteId, setRefresh])
 
   const handleDateAndTime = (value) =>{
     let todaysDate = new Date().toString()
@@ -164,7 +182,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
             <div>
               {isHover && (
                 <div className="options">
-                  <Reminder />
+                  <Reminder setDateTimeChip={setDateTimeChip} item={item}/>
                   <CollaboratorIcon style={{ cursor: 'pointer' }} 
                   onClick={() => setIsCollabModalOpen(!isCollabModalOpen)}/>
                   <ColorList setBgColor={setBgColor} />

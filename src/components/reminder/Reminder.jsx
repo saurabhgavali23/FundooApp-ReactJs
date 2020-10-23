@@ -13,7 +13,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import "date-fns";
 import moment from "moment";
 
-const Reminder = ({setDateTimeChip, setDisplayDateTime}) => {
+const Reminder = ({setDateTimeChip, setDisplayDateTime, item}) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showReminder, setShowReminder] = useState(false);
   const [showDateTime, setShowDateTime] = useState(false);
@@ -34,8 +34,12 @@ const Reminder = ({setDateTimeChip, setDisplayDateTime}) => {
         date = moment(selectedDate).format("MMM Do YY")
         time = moment(selectedDate).format("LT")
     }
-    setDateTimeChip(selectedDate)
-    setDisplayDateTime(date+' '+time)
+    if(item !== undefined){
+      setDateTimeChip(selectedDate)
+    }else{
+      setDateTimeChip(selectedDate)
+      setDisplayDateTime(date+' '+time)
+    }
   };
 
   return (
