@@ -37,6 +37,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   const [title, setTitle] = useState(item !== undefined ? item.title : '');
   const [description, setDescription] = useState(item !== undefined ? item.description : '');
   const [dateTimeChip, setDateTimeChip] = useState("");
+  const [displayDateTime, setDisplayDateTime] = useState("")
   const [isArchived, setIsArchived] = useState(item !== undefined ? item.isArchived : false);
   const [bgColor, setBgColor] = useState("");
   const [itemBgColor, setItemBgColor] = useState(item !== undefined ? item.color : null);
@@ -159,7 +160,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   };
 
   const handleDeleteChip = () => {
-    setDateTimeChip("");
+    setDisplayDateTime("");
   };
 
   return (
@@ -200,10 +201,10 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
             onChange={(e) => setDescription(e.target.value)}
             multiline
           />
-          {dateTimeChip !== "" ? (
+          {displayDateTime !== "" ? (
             <Chip
               icon={<AccessTimeIcon />}
-              label={dateTimeChip}
+              label={displayDateTime}
               clickable
               color="primary"
               onDelete={handleDeleteChip}
@@ -247,7 +248,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
         </CardContent>
         <div className="actionStyle">
           <CardActions className="createOptions">
-            <Reminder setDateTimeChip={setDateTimeChip} />
+            <Reminder setDateTimeChip={setDateTimeChip} setDisplayDateTime={setDisplayDateTime} />
             <div className="iconStyle">
               <CollaboratorIcon onClick={() => item !== undefined ? setIsCollabModalOpen(true) : setShowCard("collaborator")} />
             </div>

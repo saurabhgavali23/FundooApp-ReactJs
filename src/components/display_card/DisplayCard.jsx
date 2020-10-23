@@ -18,6 +18,7 @@ import {
 } from "../../services/NoteServices";
 import CreateNote from "../create_note/CreateNote";
 import Collaborator from "../collaborator/Collaborator";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isHover, setIsHover] = useState(false);
@@ -124,6 +125,16 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
               <CardContent className="createContentStyle">
                 {item.description}
               </CardContent>
+              <div>
+                {item.reminder !== undefined
+                  ? item.reminder.map((item, index)=>(
+                    <Chip 
+                    avatar={<AccessTimeIcon/>}
+                    key={index} label={item.slice(4, 21)}/>
+                  ))
+                  : null
+                }
+              </div>
               <div>
                 {item.noteLabels !== undefined
                   ? item.noteLabels.map((item, index) => (
