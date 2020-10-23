@@ -24,7 +24,6 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
   const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
   const [bgColor, setBgColor] = useState("");
-  const [itemBgColor, setItemBgColor] = useState(item.color);
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   const [addCollabUser, setAddCollabUser] = useState([])
@@ -75,23 +74,25 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
 
   useEffect(() => {
     if (bgColor !== "") {
-      setItemBgColor(bgColor);
       let data = {
         color: bgColor,
         noteIdList: noteId,
       };
-      updateNoteColor(data).catch((err) => {
+      updateNoteColor(data).then(
+        () => {setRefresh(Math.random())}
+      )
+      .catch((err) => {
         console.warn("error", err);
       });
       setBgColor("");
     }
-  }, [bgColor, noteId]);
+  }, [bgColor, noteId, setRefresh]);
 
   return (
     <div className="createMainContainer">
       <Grid item>
         <Card
-          style={{backgroundColor: itemBgColor}}
+          style={{backgroundColor: item.color}}
           className="createCardContainer"
           onMouseEnter={() => setIsHover(!isHover)}
           onMouseLeave={() => setIsHover(!isHover)}
