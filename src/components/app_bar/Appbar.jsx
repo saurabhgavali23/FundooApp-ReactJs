@@ -23,7 +23,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote}) => {
 
   return (
     <div className="grow">
-      <AppBar position="static">
+      <AppBar position="fixed" className="appBar">
         <Toolbar>
           <div className="toolbarContainer">
           <div className="appBarMenuAndTitile">

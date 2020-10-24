@@ -1,6 +1,9 @@
 .grow{
     flex-grow: 1;
 }
+.appBar{
+    top: 0;
+}
 .menuButton{
     margin-left: 1%;
 }
