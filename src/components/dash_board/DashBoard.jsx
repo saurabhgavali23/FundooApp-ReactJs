@@ -25,6 +25,7 @@ const DashBoard = () => {
   const [pinText, setPinText] = useState(false)
   const [refresh, setRefresh] = useState(Math.random())
   const [searchNote, setSearchNote] = useState('')
+  const [isGrid, setIsGrid] = useState(true)
 
   useEffect(() => {
     getNoteList()
@@ -40,7 +41,8 @@ const DashBoard = () => {
   return (
     <div>
       <Appbar selectCard={selectCard} 
-      setSelectCard={setSelectCard} setRefresh={setRefresh} setSearchNote={setSearchNote}/>
+      setSelectCard={setSelectCard} setRefresh={setRefresh} 
+      setSearchNote={setSearchNote} setIsGrid={setIsGrid} isGrid={isGrid}/>
       <div className="noteContainer">
         {(showCard === "take_note" && selectCard !== 'Trash' && searchNote === '') ? (
           <Card
@@ -88,7 +90,7 @@ const DashBoard = () => {
                   return(
                     <React.Fragment key={index}>
                       {item.isPined && item.isDeleted === false ?
-                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
+                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                     </React.Fragment>
                   )
                 }
@@ -96,7 +98,7 @@ const DashBoard = () => {
                   return(
                     <React.Fragment key={index}>
                       {item.isPined && item.isArchived && item.isDeleted === false ?
-                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
+                        <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                     </React.Fragment>
                   )
                 }
@@ -104,7 +106,7 @@ const DashBoard = () => {
                   return(
                     <React.Fragment key={index}>
                     {item.isPined && item.isDeleted === true ?
-                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
+                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                   </React.Fragment>
                   )
                 }
@@ -113,7 +115,7 @@ const DashBoard = () => {
                     <React.Fragment key={index}>
                     {item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
                       item.reminder.map((reminderIndex)=>(
-                        <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh}/>
+                        <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>
                       )): null
                     }
                   </React.Fragment>
@@ -142,7 +144,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                     {!item.isPined && !item.isArchived && item.isDeleted === false ?
-                    <DisplayCard key={index} item={item} setRefresh={setRefresh} setPinText={setPinText} />:null}
+                    <DisplayCard key={index} item={item} setRefresh={setRefresh} setPinText={setPinText} isGrid={isGrid}/>:null}
                   </React.Fragment>
                 )
               }
@@ -151,7 +153,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                     {!item.isPined && item.isArchived && item.isDeleted === false?
-                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
+                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                   </React.Fragment>
                 )
               }
@@ -159,7 +161,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                   {!item.isPined && item.isDeleted === true ?
-                    <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh}/> : null}
+                    <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                   </React.Fragment>
                 )
               }
@@ -168,7 +170,7 @@ const DashBoard = () => {
                   <React.Fragment key={index}>
                   {!item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
                     item.reminder.map((reminderIndex)=>(
-                      <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh}/>
+                      <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>
                     )): null
                   }
                 </React.Fragment>
@@ -179,7 +181,7 @@ const DashBoard = () => {
                    {item.noteLabels.map((labelItem,labelIndex)=>{
                      if(labelItem.label === selectCard){
                       return(
-                        <DisplayCard key={labelIndex} item={item} setRefresh={setRefresh} setPinText={setPinText}/>
+                        <DisplayCard key={labelIndex} item={item} setRefresh={setRefresh} setPinText={setPinText} isGrid={isGrid}/>
                       )
                     }
                     return(
@@ -206,7 +208,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={searchIndex}>
                     {searchItem.title.includes(searchNote) && searchItem.isDeleted === false ?
-                    <DisplayCard item={searchItem} setPinText={setPinText}/>: null
+                    <DisplayCard item={searchItem} setPinText={setPinText} isGrid={isGrid}/>: null
                     }
                   </React.Fragment>
                 )

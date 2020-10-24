@@ -8,10 +8,10 @@ import NoteDrawer from "../drawer/NoteDrawer";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import ListIcon from '@material-ui/icons/ViewAgendaOutlined';
 import GridOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
-import { useState } from "react";
 
-const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote}) => {
-  const [isGrid, setIsGrid] = useState(false)
+
+const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid, isGrid}) => {
+  
 
   var title = selectCard;
   if(title === 'note'){

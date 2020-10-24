@@ -22,7 +22,7 @@ import Collaborator from "../collaborator/Collaborator";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import moment from "moment";
 
-const DisplayCard = ({ item, setPinText, setRefresh }) => {
+const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
   const [isHover, setIsHover] = useState(false);
   const [isArchived, setIsArchived] = useState(item.isArchived);
   const [isPined, setIsPined] = useState(item.isPined);
@@ -130,9 +130,9 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
           onMouseEnter={() => setIsHover(!isHover)}
           onMouseLeave={() => setIsHover(!isHover)}
         >
-          <div className="displayCardContainerwithOption">
-            <div className="createCardContent" >
-              <CardContent className="createCardHeaderContend">
+          <div className={isGrid ? "displayCardContainerwithOption" : "gridDisplayCardContainerwithOption"}>
+            <div className={isGrid ? "createCardContent" : "gridCreateCardContent"} >
+              <CardContent className={isGrid ? "createCardHeaderContent" : "gridCreateCardHeaderContent"}>
                 {item.title}
                 {isHover && (
                   <div>
@@ -157,7 +157,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
                 )}
               </CardContent>
               <div onClick={() => setIsModalOpen(!isModalOpen)}>
-              <CardContent className="createContentStyle">
+              <CardContent className={isGrid ? "createContentStyle" : "girdCreateContentStyle"}>
                 {item.description}
               </CardContent>
               <div>
@@ -190,7 +190,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
             </div>
             <div>
               {isHover && (
-                <div className="options">
+                <div className={isGrid ? "options" : "gridOptions"}>
                   <Reminder setDateTimeChip={setDateTimeChip} item={item}/>
                   <CollaboratorIcon style={{ cursor: 'pointer' }} 
                   onClick={() => setIsCollabModalOpen(!isCollabModalOpen)}/>

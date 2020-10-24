@@ -4,15 +4,30 @@
 .createCardContent{
     padding: 10%;
     padding-bottom: 0%;
-    
+}
+.gridCreateCardContent{
+    padding: 3%;
+    padding-bottom: 0%;
 }
 .createContentStyle{
     padding: 0px !important;
     margin-bottom: 5%;
 }
-.createCardHeaderContend{
+.girdCreateContentStyle{
+    padding: 0px !important;
+    margin-bottom: 1%;
+}
+.createCardHeaderContent{
     padding: 0px !important;
     margin-bottom: 5%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.gridCreateCardHeaderContent{
+    padding: 0px !important;
+    margin-bottom: 1%;
     font-weight: bold;
     display: flex;
     flex-direction: row;
@@ -27,12 +42,25 @@
     justify-content: space-between;
     padding: 5%;
 }
+.gridOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2%;
+}
 .displayCardContainerwithOption{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 200px;
     width: 200px;
+}
+.gridDisplayCardContainerwithOption{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    width: 650px;
 }
 .modal{
     display: flex;
