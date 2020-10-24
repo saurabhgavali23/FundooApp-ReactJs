@@ -18,9 +18,18 @@
     display: flex;
     align-items: center;
 }
+.profileIconContainer{
+    align-items: center;
+}
+.profileButton{
+    display: flex;
+    align-items: center;
+}
 @media (max-Width: 360px){
-    .profileIcon{
+    .profileButton{
         padding: 0px !important;
+    }
+    .profileIconContainer{
         display: flex;
         align-items: center;
     }

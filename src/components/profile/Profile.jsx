@@ -29,12 +29,13 @@ const Profile = () => {
   };
   return (
     <ClickAwayListener onClickAway={()=>setShowProfile(false)}>
-    <div>
+    <div className="profileIconContainer">
       <IconButton
         edge="end"
         aria-label="account of current user"
         aria-haspopup="true"
         color="inherit"
+        className="profileButton"
         onClick={()=>setShowProfile(!showProfile)}
       >
         <AccountCircle className="profileIcon"/>

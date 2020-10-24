@@ -73,9 +73,15 @@
         font-size: 0 !important;
     }
     .refreshIcon{
-        margin-left: 10px;
+        margin-left: 2%;
     }
     .title{
         overflow: hidden !important;
+    }
+    .listAndGridViewContainer{
+        margin-left: 0;
+    }
+    .profile{
+        align-items: center;
     }
 }
