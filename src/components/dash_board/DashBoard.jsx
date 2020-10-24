@@ -142,7 +142,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                     {!item.isPined && !item.isArchived && item.isDeleted === false ?
-                    <DisplayCard key={index} item={item} setRefresh={setRefresh} />:null}
+                    <DisplayCard key={index} item={item} setRefresh={setRefresh} setPinText={setPinText} />:null}
                   </React.Fragment>
                 )
               }
@@ -179,7 +179,7 @@ const DashBoard = () => {
                    {item.noteLabels.map((labelItem,labelIndex)=>{
                      if(labelItem.label === selectCard){
                       return(
-                        <DisplayCard key={labelIndex} item={item} setRefresh={setRefresh}/>
+                        <DisplayCard key={labelIndex} item={item} setRefresh={setRefresh} setPinText={setPinText}/>
                       )
                     }
                     return(
@@ -206,7 +206,7 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={searchIndex}>
                     {searchItem.title.includes(searchNote) && searchItem.isDeleted === false ?
-                    <DisplayCard item={searchItem}/>: null
+                    <DisplayCard item={searchItem} setPinText={setPinText}/>: null
                     }
                   </React.Fragment>
                 )

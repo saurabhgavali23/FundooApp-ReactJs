@@ -201,13 +201,13 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
           {isPined ? (
             <img
               src={Pin}
-              style={{ width: '10px', height: '20px', cursor: 'pointer' }}
+              style={{ width: '20px', height: '15px', cursor: 'pointer' }}
               alt="pin"
               onClick={() => setIsPined(!isPined)}
             />
           ) : (
             <img
-              style={{ width: '20px', height: '20px', cursor: 'pointer' }}
+              style={{ width: '20px', height: '15px', cursor: 'pointer' }}
               alt="unPin"
               src={PinOutlined}
               onClick={() => setIsPined(!isPined)}
