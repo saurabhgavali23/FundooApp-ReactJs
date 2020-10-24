@@ -181,7 +181,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
     if(value.slice(0, 7) === todaysDate.slice(0, 7)){
         return ('today '+moment(value).format("LT"))
     }
-   return (value.slice(4,13)+' '+moment(value).format("LT"))
+   return (value.slice(4,10)+', '+moment(value).format("LT"))
   }
 
   return (
