@@ -136,13 +136,15 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
                     {isPined ? (
                       <img
                         src={Pin}
-                        style={{ width: "20px", height: "15px" }}
+                        style={{ width: "20px", height: "15px"}}
+                        className="pinIcon"
                         alt="pin"
                         onClick={() => handleNotePin(!isPined)}
                       />
                     ) : (
                       <img
-                        style={{ width: "20px", height: "15px" }}
+                        style={{ width: "20px", height: "15px"}}
+                        className="pinIcon"
                         alt="unPin"
                         src={PinOutlined}
                         onClick={() => handleNotePin(!isPined)}
