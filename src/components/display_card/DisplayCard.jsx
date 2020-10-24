@@ -52,7 +52,10 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
       isPined: value,
       noteIdList: noteId,
     };
-    updateNotePin(data).catch((err) => {
+    updateNotePin(data).then(
+      () => {setRefresh(Math.random())}
+    )
+    .catch((err) => {
       console.warn("error", err);
     });
   };
@@ -128,7 +131,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
           onMouseLeave={() => setIsHover(!isHover)}
         >
           <div className="displayCardContainerwithOption">
-            <div className="createCardContent" onClick={() => setIsModalOpen(!isModalOpen)}>
+            <div className="createCardContent" >
               <CardContent className="createCardHeaderContend">
                 {item.title}
                 {isHover && (
@@ -153,6 +156,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
                   </div>
                 )}
               </CardContent>
+              <div onClick={() => setIsModalOpen(!isModalOpen)}>
               <CardContent className="createContentStyle">
                 {item.description}
               </CardContent>
@@ -181,6 +185,7 @@ const DisplayCard = ({ item, setPinText, setRefresh }) => {
                   item.collaborators.map((item, index) => (
                     <Avatar key={index}>{item.firstName.slice(0, 1)}</Avatar>
                   ))}
+              </div>
               </div>
             </div>
             <div>
