@@ -1,4 +1,4 @@
-import { Avatar, Backdrop, Card, CardContent, Chip, Fade, Grid, Modal } from "@material-ui/core";
+import { Avatar, Backdrop, Card, CardContent, Checkbox, Chip, Fade, FormControlLabel, Grid, Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./DisplayCardCss.css";
 import Reminder from "../reminder/Reminder";
@@ -185,6 +185,26 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                   item.collaborators.map((item, index) => (
                     <Avatar key={index}>{item.firstName.slice(0, 1)}</Avatar>
                   ))}
+              </div>
+              <div>
+                {item.noteCheckLists !== undefined && (
+                  item.noteCheckLists.map((item, index)=>(
+                    <div key={index}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          size="small"
+                          checked={item.status === "open" ? false : true}
+                          color="primary"
+                        />
+                      }
+                      label={
+                        item.status === "close" ? 
+                      <strike>{item.itemName}</strike> : item.itemName }
+                    />
+                  </div>
+                  ))
+                )}
               </div>
               </div>
             </div>
