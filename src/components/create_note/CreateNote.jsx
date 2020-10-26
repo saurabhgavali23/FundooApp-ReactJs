@@ -231,7 +231,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               onDelete={handleDeleteChip}
             />
           ) : null}
-          {item !== undefined
+          {item !== undefined && displayDateTime === ""
             ? item.reminder.map((item, index)=>{
               let data = handleDateAndTime(item)
               return(
@@ -249,7 +249,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               ))}
             </div>
           ) : null}
-          {item !== undefined ? (
+          {item !== undefined && showLabels.length === 0 ? (
             <div>
               {item.noteLabels.map((item, index) => (
                 <Chip className="showLabel" key={index} label={item.label} />
@@ -263,13 +263,13 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
               ))}
             </div>
           )}
-          {item !== undefined && (
+          {item !== undefined && collabUser === undefined ? (
             <div>
               {item.collaborators.map((item,index)=>(
                 <Avatar key={index}>{item.firstName.slice(0,1)}</Avatar>
               ))}
             </div>
-          )}
+          ) : null}
           {addCollabUser !== undefined && (
             <div>
               {addCollabUser.map((item,index)=>(
