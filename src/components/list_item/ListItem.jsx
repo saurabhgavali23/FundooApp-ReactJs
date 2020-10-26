@@ -19,14 +19,26 @@ const ListItem = ({ setShowCheckBox }) => {
   const handleItemList = (event) => {
     var code = event.keyCode || event.which;
     if (code === 13 && items !== "") {
-      setItemList([...itemList, { value: items, check: false }]);
+      setItemList([...itemList, { itemName: items, status: "open" }]);
     }
   };
 
   const handleCheckItems = (item, index) => {
-    itemList[index] = { ...itemList[index], check: !item.check };
+    itemList[index] = {
+      ...itemList[index],
+      status: item.status === "open" ? "close" : "open",
+    };
     setItemList(itemList);
     setIsChecked(Math.random());
+  };
+
+  const handleRemovedItems = (item) => {
+    var array = [...itemList];
+    var index = array.indexOf(item);
+    if (index !== -1) {
+      array.splice(index, 1);
+      setItemList(array);
+    }
   };
 
   useEffect(() => {}, [isChecked]);
@@ -36,17 +48,21 @@ const ListItem = ({ setShowCheckBox }) => {
       {itemList.length !== 0 && (
         <div>
           {itemList.map((item, index) => (
-            <div key={index}>
+            <div key={index} className="checkItemsContainer">
               <FormControlLabel
                 control={
                   <Checkbox
                     size="small"
-                    checked={item.check}
+                    checked={item.status === "open" ? false : true}
                     onChange={() => handleCheckItems(item, index)}
                     color="primary"
                   />
                 }
-                label={item.value}
+                label={item.itemName}
+              />
+              <CloseIcon
+                onClick={() => handleRemovedItems(item)}
+                className="listItemCloseIcon"
               />
             </div>
           ))}
@@ -56,15 +72,14 @@ const ListItem = ({ setShowCheckBox }) => {
       <div className="listItemContainer">
         <Add />
         <InputBase
+          value={items}
           className="inputBase"
           placeholder="List item"
           onChange={(e) => setItems(e.target.value)}
           onKeyPress={(event) => handleItemList(event)}
         />
-        <CloseIcon
-          className="listItemCloseIcon"
-          onClick={() => setShowCheckBox(true)}
-        />
+        {items !== '' &&
+            <CloseIcon className="listItemCloseIcon" onClick={() => setItems("")} />}
       </div>
       <Divider />
     </div>
