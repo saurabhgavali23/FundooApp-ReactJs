@@ -49,6 +49,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   const [addCollabUser, setAddCollabUser] = useState([])
   const [showCheckBox, setShowCheckBox] = useState(true)
+  const [saveItemList, setSaveItemList] = useState([])
   var labelId = [];
   var noteId = [];
   noteId.push(item !== undefined ? item.id : null);
@@ -71,10 +72,11 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   }, [bgColor, noteId, itemBgColor, item]);
 
   const saveNote = () => {
-    if (title !== '' && description !== '') {
+    if (title !== '') {
       let formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
+      formData.append("checklist", JSON.stringify(saveItemList))
       formData.append("reminder", dateTimeChip);
       formData.append("isPined", isPined)
       formData.append("isArchived", isArchived);
@@ -82,7 +84,6 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
       formData.append("collaberators", JSON.stringify(collabUser))
       formData.append("color", bgColor);
       saveNotes(formData)
-        .then((res) => {})
         .catch((err) => {
           console.warn("error", err);
         });
@@ -226,7 +227,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
             onChange={(e) => setDescription(e.target.value)}
             multiline
           /> :(
-            <ListItem setShowCheckBox={setShowCheckBox}/>
+            <ListItem setSaveItemList={setSaveItemList}/>
           )}
           {displayDateTime !== "" ? (
             <Chip

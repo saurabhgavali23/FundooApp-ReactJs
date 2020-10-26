@@ -11,7 +11,7 @@ import "../list_item/ListItemCss.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const ListItem = ({ setShowCheckBox }) => {
+const ListItem = ({ setSaveItemList }) => {
   const [itemList, setItemList] = useState([]);
   const [items, setItems] = useState("");
   const [isChecked, setIsChecked] = useState(Math.random());
@@ -43,7 +43,9 @@ const ListItem = ({ setShowCheckBox }) => {
     }
   };
 
-  useEffect(() => {}, [isChecked]);
+  useEffect(() => {
+    setSaveItemList(itemList)
+  }, [isChecked, itemList, setSaveItemList]);
 
   return (
     <div>
