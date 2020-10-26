@@ -26,6 +26,8 @@ import Pin from "../../images/Pin.png";
 import PinOutlined from "../../images/PinOutlined.png";
 import Collaborator from "../collaborator/Collaborator";
 import moment from "moment";
+import ListItem from "../list_item/ListItem";
+
 
 const Styles = makeStyles({
   root: {
@@ -46,6 +48,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   const [addCollabUser, setAddCollabUser] = useState([])
+  const [showCheckBox, setShowCheckBox] = useState(true)
   var labelId = [];
   var noteId = [];
   noteId.push(item !== undefined ? item.id : null);
@@ -215,13 +218,16 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
           )}
         </CardContent>
         <CardContent className="discription" classes={{ root: classes.root }}>
+         {showCheckBox ?
           <InputBase
             value={description}
             placeholder="Take a notes..."
             className="inputBase"
             onChange={(e) => setDescription(e.target.value)}
             multiline
-          />
+          /> :(
+            <ListItem setShowCheckBox={setShowCheckBox}/>
+          )}
           {displayDateTime !== "" ? (
             <Chip
               icon={<AccessTimeIcon />}
@@ -295,7 +301,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
                 <ArchiveOutlined className="iconStyle" />
               )}
             </div>
-            <MoreOptions setShowLabels={setShowLabels} />
+            <MoreOptions setShowLabels={setShowLabels} setShowCheckBox={setShowCheckBox}/>
           </CardActions>
           <CardActions onClick={() => item !== undefined ? setIsModalOpen(false) : setShowCard("take_note")}>
             <Button color="primary" variant="text" onClick={item !== undefined ? updateNotes : saveNote}>

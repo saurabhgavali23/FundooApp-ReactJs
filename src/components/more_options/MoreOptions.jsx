@@ -5,7 +5,7 @@ import "./MoreOptionsCss.css";
 import Labels from "../labels/Labels";
 import { deleteNotePermanently, trashNotes } from "../../services/NoteServices";
 
-const MoreOptions = ({item, setShowLabels, setRefresh}) => {
+const MoreOptions = ({item, setShowLabels, setRefresh, setShowCheckBox}) => {
   const [isMoreIcon, setIsMoreIcon] = useState(false);
   const [showAddLabel, setShowAddLabel] = useState(false);
   let noteId = []
@@ -70,6 +70,13 @@ const MoreOptions = ({item, setShowLabels, setRefresh}) => {
               onClick={() => handleOptions()}
             >
               Add label
+            </CardContent>}
+            {item === undefined &&
+              <CardContent
+              className="moreOptionCardContent"
+              onClick={() => setShowCheckBox(false)}
+            >
+              Show tick boxes
             </CardContent>}
             {(item !== undefined && item.isDeleted === false) &&(
                 <CardContent

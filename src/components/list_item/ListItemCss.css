@@ -1,0 +1,7 @@
+.listItemContainer{
+    display: flex;
+    align-items: center;
+}
+.listItemCloseIcon{
+    cursor: pointer;
+}
