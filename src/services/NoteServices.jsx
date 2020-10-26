@@ -60,3 +60,7 @@ export const addCollaborator = (id, data) => {
 export const addReminder = (data) => {
   return apiServices.postWithHeader(NoteApi.addReminder, data)
 }
+
+export const updateNoteItemList = (noteId, itemId, data) => {
+  return apiServices.postWithHeader(NoteApi.notes+noteId+NoteApi.checkList+itemId+NoteApi.update, data)
+}

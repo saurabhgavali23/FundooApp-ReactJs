@@ -16,6 +16,7 @@ import {
   updateNoteArchive,
   updateNoteColor,
   updateNotePin,
+  updateNoteItemList,
 } from "../../services/NoteServices";
 import CreateNote from "../create_note/CreateNote";
 import Collaborator from "../collaborator/Collaborator";
@@ -121,6 +122,18 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
    return (value.slice(4,10)+', '+moment(value).format("LT"))
   }
 
+  const handleNoteItemList = (item) => {
+    let data = {itemName: item.itemName, 
+      status: item.status === "close" ? "open" : "close" }
+
+      updateNoteItemList(item.notesId, item.id, data)
+      .then(
+        () => {setRefresh(Math.random())}
+      ).catch(err=>{
+        console.warn("error", err);
+      })
+  }
+
   return (
     <div className="createMainContainer">
       <Grid item>
@@ -186,6 +199,7 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                     <Avatar key={index}>{item.firstName.slice(0, 1)}</Avatar>
                   ))}
               </div>
+              </div>
               <div>
                 {item.noteCheckLists !== undefined && (
                   item.noteCheckLists.map((item, index)=>(
@@ -195,6 +209,7 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                         <Checkbox
                           size="small"
                           checked={item.status === "open" ? false : true}
+                          onChange={() => handleNoteItemList(item)}
                           color="primary"
                         />
                       }
@@ -205,7 +220,6 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                   </div>
                   ))
                 )}
-              </div>
               </div>
             </div>
             <div>

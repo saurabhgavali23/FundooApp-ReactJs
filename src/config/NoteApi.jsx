@@ -19,6 +19,8 @@ const NoteApi = {
     notes: '/notes/',
     addNoteLabels: '/noteLabels',
     addCollaborator: '/AddcollaboratorsNotes',
-    addReminder: '/notes/addUpdateReminderNotes'
+    addReminder: '/notes/addUpdateReminderNotes',
+    checkList: '/checklist/',
+    update: '/update'
   };
   export default NoteApi;
