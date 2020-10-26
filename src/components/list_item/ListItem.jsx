@@ -15,11 +15,13 @@ const ListItem = ({ setShowCheckBox }) => {
   const [itemList, setItemList] = useState([]);
   const [items, setItems] = useState("");
   const [isChecked, setIsChecked] = useState(Math.random());
+  const [isHover, setIsHover] = useState(false);
 
   const handleItemList = (event) => {
     var code = event.keyCode || event.which;
     if (code === 13 && items !== "") {
       setItemList([...itemList, { itemName: items, status: "open" }]);
+      setItems("");
     }
   };
 
@@ -49,21 +51,25 @@ const ListItem = ({ setShowCheckBox }) => {
         <div>
           {itemList.map((item, index) => (
             <div key={index} className="checkItemsContainer">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    size="small"
-                    checked={item.status === "open" ? false : true}
-                    onChange={() => handleCheckItems(item, index)}
-                    color="primary"
+              {item.status === "open" && (
+                <>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        size="small"
+                        checked={item.status === "open" ? false : true}
+                        onChange={() => handleCheckItems(item, index)}
+                        color="primary"
+                      />
+                    }
+                    label={item.itemName}
                   />
-                }
-                label={item.itemName}
-              />
-              <CloseIcon
-                onClick={() => handleRemovedItems(item)}
-                className="listItemCloseIcon"
-              />
+                  <CloseIcon
+                    onClick={() => handleRemovedItems(item)}
+                    className="listItemCloseIcon"
+                  />
+                </>
+              )}
             </div>
           ))}
         </div>
@@ -78,10 +84,48 @@ const ListItem = ({ setShowCheckBox }) => {
           onChange={(e) => setItems(e.target.value)}
           onKeyPress={(event) => handleItemList(event)}
         />
-        {items !== '' &&
-            <CloseIcon className="listItemCloseIcon" onClick={() => setItems("")} />}
+        {items !== "" && (
+          <CloseIcon
+            className="listItemCloseIcon"
+            onClick={() => setItems("")}
+          />
+        )}
       </div>
       <Divider />
+      <div>
+        {itemList.length !== 0 && (
+          <div
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+          >
+            {itemList.map((item, index) => (
+              <div key={index} className="checkItemsContainer">
+                {item.status === "close" && (
+                  <>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          size="small"
+                          checked={item.status === "open" ? false : true}
+                          onChange={() => handleCheckItems(item, index)}
+                          color="primary"
+                        />
+                      }
+                      label={item.itemName}
+                    />
+                    {isHover && (
+                      <CloseIcon
+                        onClick={() => handleRemovedItems(item)}
+                        className="listItemCloseIcon"
+                      />
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
