@@ -74,6 +74,11 @@
 .pinIcon{
     cursor: pointer;
 }
+.displayItemsCheckBox{
+    padding: 2% !important;
+    margin-left: 15% !important;
+    margin-right: 10% !important;
+}
 
 @media (max-Width: 360px){
     .displayCardContainerwithOption{

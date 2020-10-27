@@ -207,6 +207,7 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          className="displayItemsCheckBox"
                           size="small"
                           checked={item.status === "open" ? false : true}
                           onChange={() => handleNoteItemList(item)}
