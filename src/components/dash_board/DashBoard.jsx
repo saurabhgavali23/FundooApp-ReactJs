@@ -26,6 +26,7 @@ const DashBoard = () => {
   const [refresh, setRefresh] = useState(Math.random())
   const [searchNote, setSearchNote] = useState('')
   const [isGrid, setIsGrid] = useState(true)
+  const [showCheckBox, setShowCheckBox] = useState(true)
 
   useEffect(() => {
     getNoteList()
@@ -52,14 +53,16 @@ const DashBoard = () => {
             <CardContent className="subCardContainer">
               <Typography className="noteTitle">Take a note...</Typography>
               <div className="imageCheckBoxContainer">
-                <CheckBoxOutlinedIcon />
+                <CheckBoxOutlinedIcon onClick={() => setShowCheckBox(false)}
+                 style={{ cursor: 'pointer' }}/>
                 <ImageIcon />
               </div>
             </CardContent>
           </Card>
         ) : null}
         {showCard === "create_note" ? (
-          <CreateNote collabUser={collabUser} setShowCard={setShowCard} setRefresh={setRefresh}/>
+          <CreateNote collabUser={collabUser} setShowCard={setShowCard} 
+          setRefresh={setRefresh} setShowCheckBox={setShowCheckBox} showCheckBox={showCheckBox}/>
         ) : null}
         {showCard === "collaborator" ? (
           <Collaborator

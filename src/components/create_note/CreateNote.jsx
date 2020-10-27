@@ -35,7 +35,7 @@ const Styles = makeStyles({
   },
 });
 
-const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh }) => {
+const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh, setShowCheckBox, showCheckBox }) => {
   const classes = Styles();
   const [title, setTitle] = useState(item !== undefined ? item.title : '');
   const [description, setDescription] = useState(item !== undefined ? item.description : '');
@@ -48,7 +48,6 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   const [isPined, setIsPined] = useState(item !== undefined ? item.isPined : false);
   const [isCollabModalOpen, setIsCollabModalOpen] = useState(false)
   const [addCollabUser, setAddCollabUser] = useState([])
-  const [showCheckBox, setShowCheckBox] = useState(true)
   const [saveItemList, setSaveItemList] = useState([])
   var labelId = [];
   var noteId = [];
@@ -72,6 +71,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh 
   }, [bgColor, noteId, itemBgColor, item]);
 
   const saveNote = () => {
+    setShowCheckBox(!showCheckBox)
     if (title !== '') {
       let formData = new FormData();
       formData.append("title", title);
