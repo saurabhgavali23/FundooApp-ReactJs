@@ -58,6 +58,7 @@ const ListItem = ({ setSaveItemList }) => {
                   <FormControlLabel
                     control={
                       <Checkbox
+                        className="itemsCheckBox"
                         size="small"
                         checked={item.status === "open" ? false : true}
                         onChange={() => handleCheckItems(item, index)}
@@ -107,6 +108,7 @@ const ListItem = ({ setSaveItemList }) => {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          className="itemsCheckBox"
                           size="small"
                           checked={item.status === "open" ? false : true}
                           onChange={() => handleCheckItems(item, index)}
