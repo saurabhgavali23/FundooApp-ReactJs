@@ -181,6 +181,7 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
                       <Chip 
                         avatar={<AccessTimeIcon/>}
                         key={index} 
+                        className="displayReminder"
                         label={data}/>
                       )})
                   : null
@@ -189,14 +190,15 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
               <div>
                 {item.noteLabels !== undefined
                   ? item.noteLabels.map((item, index) => (
-                      <Chip label={item.label} key={index} />
+                      <Chip label={item.label} key={index} style={{margin: '1%'}} />
                     ))
                   : null}
               </div>
               <div>
                 {item.collaborators !== undefined &&
                   item.collaborators.map((item, index) => (
-                    <Avatar key={index}>{item.firstName.slice(0, 1)}</Avatar>
+                    <Avatar key={index} style={{margin: '1%'}}>
+                      {item.firstName.slice(0, 1)}</Avatar>
                   ))}
               </div>
               </div>

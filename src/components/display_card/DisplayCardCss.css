@@ -79,6 +79,11 @@
     margin-left: 15% !important;
     margin-right: 10% !important;
 }
+.displayReminder{
+    margin: 1% !important;
+    background-color: transparent !important;
+    border: 1px solid #9e9d9d !important;
+}
 
 @media (max-Width: 360px){
     .displayCardContainerwithOption{
