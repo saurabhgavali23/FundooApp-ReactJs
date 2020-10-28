@@ -23,6 +23,10 @@
 }
 .iconStyle{
     cursor: pointer;
+    font-size: 1.7rem !important;
+}
+.iconMargin{
+    margin-right: 5%;
 }
 .actionStyle{
     display: flex;

@@ -289,14 +289,14 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
         <div className="actionStyle">
           <CardActions className="createOptions">
             <Reminder setDateTimeChip={setDateTimeChip} setDisplayDateTime={setDisplayDateTime} />
-            <div className="iconStyle">
-              <CollaboratorIcon onClick={() => item !== undefined ? setIsCollabModalOpen(true) : setShowCard("collaborator")} />
+            <div className="iconMargin">
+              <CollaboratorIcon className="iconStyle" onClick={() => item !== undefined ? setIsCollabModalOpen(true) : setShowCard("collaborator")} />
             </div>
             <ColorList setBgColor={setBgColor} />
-            <div>
+            <div className="iconMargin">
               <ImageIcon className="iconStyle" />
             </div>
-            <div onClick={() => item !==undefined ? handleNoteArchive(!isArchived) : setIsArchived(!isArchived)}>
+            <div className="iconMargin" onClick={() => item !==undefined ? handleNoteArchive(!isArchived) : setIsArchived(!isArchived)}>
               {isArchived ? (
                 <ArchiveFilled className="iconStyle" />
               ) : (
