@@ -71,7 +71,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
   }, [bgColor, noteId, itemBgColor, item]);
 
   const saveNote = () => {
-    setShowCheckBox(!showCheckBox)
+    setShowCheckBox(true)
     if (title !== '') {
       let formData = new FormData();
       formData.append("title", title);
@@ -219,7 +219,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
           )}
         </CardContent>
         <CardContent className="discription" classes={{ root: classes.root }}>
-         {showCheckBox ?
+         {showCheckBox || item !== undefined?
           <InputBase
             value={description}
             placeholder="Take a notes..."
@@ -227,6 +227,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
             onChange={(e) => setDescription(e.target.value)}
             multiline
           /> :(
+            item === undefined &&
             <ListItem setSaveItemList={setSaveItemList}/>
           )}
           {displayDateTime !== "" ? (
