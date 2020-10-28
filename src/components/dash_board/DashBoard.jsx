@@ -92,7 +92,7 @@ const DashBoard = () => {
                 if(selectCard === 'note'){
                   return(
                     <React.Fragment key={index}>
-                      {item.isPined && item.isDeleted === false ?
+                      {item.isPined && item.isDeleted === false && !item.isArchived ?
                         <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
                     </React.Fragment>
                   )

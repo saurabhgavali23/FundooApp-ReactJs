@@ -265,7 +265,7 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
         }}
       >
         <Fade in={isModalOpen}>
-            <CreateNote item={item} setIsModalOpen={setIsModalOpen} setRefresh={setRefresh}/>
+            <CreateNote item={item} setIsModalOpen={setIsModalOpen} setRefresh={setRefresh} showCheckBox={true}/>
         </Fade>
       </Modal>
       </div>
