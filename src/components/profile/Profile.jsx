@@ -12,15 +12,22 @@ import {
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { uploadUserProfile } from "../../services/userServices";
+import { useEffect } from "react";
 
 const Profile = () => {
   const [showProfile, setShowProfile] = useState(false)
+  const [displayImage, setDisplayImage] = useState('')
+  const [imageRefresh, setImageRefresh] = useState(Math.random())
   let userEmail = 'abcd@gmail.com'
   let userData = JSON.parse(localStorage.getItem("userData"))
   let history = useHistory();
 
+  useEffect(() => {
+    setDisplayImage(localStorage.getItem('userImage'))
+  }, [imageRefresh])
+
   if(userData !== null){
-    userData.map((item,index)=>(
+    userData.map((item)=>(
       userEmail = item.email
     ))
   }
@@ -36,10 +43,9 @@ const Profile = () => {
       const formData = new FormData()
       formData.append("file", e.target.files[0])
 
-      uploadUserProfile(formData)
-      .catch(err=>{
-        console.warn("error", err);
-      })
+      uploadUserProfile(formData).then(
+        () => { setImageRefresh(Math.random()) }
+      )
     }
   }
   return (
@@ -53,7 +59,7 @@ const Profile = () => {
         className="profileButton"
         onClick={()=>setShowProfile(!showProfile)}
       >
-        <Avatar className="profileIcon">{userEmail.slice(0,1)}</Avatar>
+        <Avatar className="profileIcon" src={displayImage} alt={userEmail.slice(0,1)} />
       </IconButton>
       {showProfile ? (
         <div className="profileContainer">
@@ -69,7 +75,7 @@ const Profile = () => {
                 onChange={handleUploadImage}
               />
               <label htmlFor="upload-button">
-              <Avatar className="avatarIcon" >{userEmail.slice(0,1)}</Avatar>
+              <Avatar className="avatarIcon" src={displayImage} alt={userEmail.slice(0,1)}/>
               </label>
               </div>
               <Typography style={{ fontSize: 15 }} gutterBottom>

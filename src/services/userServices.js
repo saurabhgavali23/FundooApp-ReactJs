@@ -2,6 +2,8 @@ import Axios from "axios";
 import NoteApi from "../config/NoteApi";
 import apiServices from "./apiServices";
 
+const FETCH_IMAGE = process.env.REACT_APP_USER_IMAGE;
+
 export const userRegistration = (data) => {
   return apiServices.post(NoteApi.userSignUp, data);
 };
@@ -26,6 +28,9 @@ export const searchUserDetails = (data) => {
   return apiServices.postWithHeader(NoteApi.SearchUserDetails, data);
 };
 
-export const uploadUserProfile = (data) => {
-  return apiServices.postWithHeader(NoteApi.uploadUserImage, data)
+export const uploadUserProfile = async (data) => {
+  return await apiServices.postWithHeader(NoteApi.uploadUserImage, data)
+          .then(res=>{
+            localStorage.setItem("userImage", FETCH_IMAGE+res.data.status.imageUrl)
+          }).catch(err=>{console.warn("error", err)})
 }
