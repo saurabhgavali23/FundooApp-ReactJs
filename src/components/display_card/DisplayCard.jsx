@@ -229,19 +229,19 @@ const DisplayCard = ({ item, setPinText, setRefresh, isGrid }) => {
               {isHover && (
                 <div className={isGrid ? "options" : "gridOptions"}>
                   <Reminder setDateTimeChip={setDateTimeChip} item={item}/>
-                  <CollaboratorIcon style={{ cursor: 'pointer' }} 
+                  <CollaboratorIcon style={{ cursor: 'pointer', fontSize: '1.7rem' }} 
                   onClick={() => setIsCollabModalOpen(!isCollabModalOpen)}/>
                   <ColorList setBgColor={setBgColor} />
-                  <ImageIcon />
+                  <ImageIcon style={{ fontSize: '1.7rem' }}/>
                   <div>
                     {isArchived ? (
                       <ArchiveFilled
-                        className="iconStyle"
+                        style={{ fontSize: '1.7rem' }}
                         onClick={() => handleNoteArchive(!isArchived)}
                       />
                     ) : (
                       <ArchiveOutlined
-                        className="iconStyle"
+                        style={{ fontSize: '1.7rem' }}
                         onClick={() => handleNoteArchive(!isArchived)}
                       />
                     )}

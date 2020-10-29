@@ -1,7 +1,6 @@
 .reminderContainer{
     cursor: pointer;
     font-size: 1.7rem !important;
-    margin-right: 10px;
 }
 .dateTimeContainer{
     position: absolute;

@@ -288,11 +288,15 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
         </CardContent>
         <div className="actionStyle">
           <CardActions className="createOptions">
+            <div className="iconMargin">
             <Reminder setDateTimeChip={setDateTimeChip} setDisplayDateTime={setDisplayDateTime} />
+            </div>
             <div className="iconMargin">
               <CollaboratorIcon className="iconStyle" onClick={() => item !== undefined ? setIsCollabModalOpen(true) : setShowCard("collaborator")} />
             </div>
+            <div className="iconMargin">
             <ColorList setBgColor={setBgColor} />
+            </div>
             <div className="iconMargin">
               <ImageIcon className="iconStyle" />
             </div>
