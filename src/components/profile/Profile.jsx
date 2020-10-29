@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import "./ProfileCss.css";
 import {
+  Avatar,
   Button,
   Card,
   CardActions,
@@ -38,13 +38,13 @@ const Profile = () => {
         className="profileButton"
         onClick={()=>setShowProfile(!showProfile)}
       >
-        <AccountCircle className="profileIcon"/>
+        <Avatar className="profileIcon">{userEmail.slice(0,1)}</Avatar>
       </IconButton>
       {showProfile ? (
         <div className="profileContainer">
           <Card>
             <CardContent className="profielCardContainer">
-              <AccountCircle className="profileIcon" />
+              <Avatar className="avatarIcon" >{userEmail.slice(0,1)}</Avatar>
               <Typography style={{ fontSize: 15 }} gutterBottom>
                 {userEmail}
               </Typography>

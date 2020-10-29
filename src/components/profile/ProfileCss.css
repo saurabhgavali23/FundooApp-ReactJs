@@ -14,9 +14,8 @@
     justify-content: flex-end;
 }
 .profileIcon{
-    font-size: 30;
-    display: flex;
-    align-items: center;
+    background-color: #f5a453 !important;
+    border: 1px solid #facd9f;
 }
 .profileIconContainer{
     align-items: center;
@@ -25,6 +24,11 @@
     display: flex;
     align-items: center;
 }
+.avatarIcon{
+    margin-right: 1%;
+    background-color: #f5a453 !important;
+}
+
 @media (max-Width: 360px){
     .profileButton{
         padding: 0px !important;
