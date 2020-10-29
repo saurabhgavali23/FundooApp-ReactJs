@@ -25,3 +25,7 @@ export const resetPassword = (data, token) => {
 export const searchUserDetails = (data) => {
   return apiServices.postWithHeader(NoteApi.SearchUserDetails, data);
 };
+
+export const uploadUserProfile = (data) => {
+  return apiServices.postWithHeader(NoteApi.uploadUserImage, data)
+}

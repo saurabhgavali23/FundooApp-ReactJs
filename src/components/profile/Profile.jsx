@@ -11,22 +11,37 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { uploadUserProfile } from "../../services/userServices";
 
 const Profile = () => {
   const [showProfile, setShowProfile] = useState(false)
   let userEmail = 'abcd@gmail.com'
   let userData = JSON.parse(localStorage.getItem("userData"))
+  let history = useHistory();
+
   if(userData !== null){
     userData.map((item,index)=>(
       userEmail = item.email
     ))
   }
-  let history = useHistory();
-
+  
   const handleLogout = () => {
     localStorage.clear();
     history.push("/login");
   };
+
+  const handleUploadImage = e => {
+    if(e.target.files.length){
+
+      const formData = new FormData()
+      formData.append("file", e.target.files[0])
+
+      uploadUserProfile(formData)
+      .catch(err=>{
+        console.warn("error", err);
+      })
+    }
+  }
   return (
     <ClickAwayListener onClickAway={()=>setShowProfile(false)}>
     <div className="profileIconContainer">
@@ -44,7 +59,19 @@ const Profile = () => {
         <div className="profileContainer">
           <Card>
             <CardContent className="profielCardContainer">
+              <div className="avatarContainer">
+              <input
+                id="upload-button"
+                type="file"
+                style={{display: 'none'}}
+                name="myImage"
+                accept="image/x-png,image/gif,image/jpeg" 
+                onChange={handleUploadImage}
+              />
+              <label htmlFor="upload-button">
               <Avatar className="avatarIcon" >{userEmail.slice(0,1)}</Avatar>
+              </label>
+              </div>
               <Typography style={{ fontSize: 15 }} gutterBottom>
                 {userEmail}
               </Typography>

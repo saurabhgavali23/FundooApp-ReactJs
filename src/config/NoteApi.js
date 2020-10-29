@@ -21,6 +21,7 @@ const NoteApi = {
     addCollaborator: '/AddcollaboratorsNotes',
     addReminder: '/notes/addUpdateReminderNotes',
     checkList: '/checklist/',
-    update: '/update'
+    update: '/update',
+    uploadUserImage: '/user/uploadProfileImage'
   };
   export default NoteApi;
