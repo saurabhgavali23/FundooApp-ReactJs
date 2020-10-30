@@ -63,6 +63,20 @@ const DashBoard = () => {
     return itemCount
   }
 
+  const handleArchiveFalseNote = (value) =>{
+    if(value === false){
+      count = count + 1
+    }
+    return count
+  }
+
+  const handleArchiveTrueNote = (value) =>{
+    if(value === true){
+      itemCount = itemCount + 1
+    }
+    return itemCount
+  }
+
   return (
     <div>
       <Appbar selectCard={selectCard} 
@@ -180,7 +194,13 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                     {!item.isPined && item.isArchived && item.isDeleted === false?
-                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
+                      <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : 
+                        <React.Fragment>
+                          {handleArchiveFalseNote(item.isArchived) === noteList.length - handleArchiveTrueNote(item.isArchived) &&
+                           <div className="searchText">Archive note not found</div>
+                          }
+                        </React.Fragment>
+                      }
                   </React.Fragment>
                 )
               }
