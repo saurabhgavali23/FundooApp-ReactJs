@@ -27,6 +27,7 @@ const DashBoard = () => {
   const [searchNote, setSearchNote] = useState('')
   const [isGrid, setIsGrid] = useState(true)
   const [showCheckBox, setShowCheckBox] = useState(true)
+  let count = 0
 
   useEffect(() => {
     getNoteList()
@@ -38,6 +39,13 @@ const DashBoard = () => {
         console.warn("error", err);
       });
   }, [showCard,refresh]);
+
+  const handleSearchNote = (title) => {
+    if(title !== searchNote){
+      count = count + 1 
+    }
+    return count
+  }
 
   return (
     <div>
@@ -211,7 +219,11 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={searchIndex}>
                     {searchItem.title.includes(searchNote) && searchItem.isDeleted === false ?
-                    <DisplayCard item={searchItem} setPinText={setPinText} isGrid={isGrid}/>: null
+                    <DisplayCard item={searchItem} setPinText={setPinText} isGrid={isGrid}/>: 
+                    <React.Fragment>
+                      {handleSearchNote(searchItem.title) === noteList.length && 
+                      <div className="searchText">No matching results.</div>}
+                    </React.Fragment>
                     }
                   </React.Fragment>
                 )

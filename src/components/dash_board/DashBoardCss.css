@@ -57,6 +57,9 @@
 .gridContainer{
     flex-grow: 1;
 }
+.searchText{
+    margin-left: 40%;
+}
 
 @media (max-Width: 360px){
     .cardContainer{
@@ -75,5 +78,8 @@
     }
     .gridContainer{
         justify-content: center;
+    }
+    .searchText{
+       margin-left: 0;
     }
 }
