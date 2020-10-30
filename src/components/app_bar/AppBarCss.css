@@ -59,6 +59,10 @@
     display: flex;
     align-items: center;
 }
+.mobiSearchIcon{
+    display: flex;
+    align-items: center;
+}
 
 @media (max-Width: 360px){
     .searchInput{
@@ -73,13 +77,14 @@
         font-size: 0 !important;
     }
     .refreshIcon{
-        margin-left: 2%;
+        margin-left: 5%;
     }
     .title{
         overflow: hidden !important;
+        width: 120px;
     }
     .listAndGridViewContainer{
-        margin-left: 0;
+        margin-left: 5%;
     }
     .profile{
         align-items: center;

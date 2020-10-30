@@ -8,10 +8,17 @@ import NoteDrawer from "../drawer/NoteDrawer";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import ListIcon from '@material-ui/icons/ViewAgendaOutlined';
 import GridOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
-
+import { useEffect, useState } from "react";
 
 const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid, isGrid}) => {
-  
+  const [match, setMatch] = useState(window.innerWidth)
+  const breakpoint = 360
+
+  useEffect(() => {
+     const handler = () => setMatch(window.innerWidth)
+     window.addEventListener("resize", handler)
+     return () => window.removeEventListener("resize", handler)
+  },[])
 
   var title = selectCard;
   if(title === 'note'){
@@ -31,6 +38,10 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
           <Typography variant="h6" noWrap className="title">
             {title}
           </Typography>
+          {match === breakpoint ?
+          <div className="mobiSearchIcon">
+            <SearchIcon style={{ fontSize: 30}}/> 
+          </div> :
           <div className="search">
             <div className="searchIcon">
             <SearchIcon style={{ fontSize: 30}}/>
@@ -39,7 +50,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
             className="searchInput" multiline 
             onChange={(e) => setSearchNote(e.target.value)}
             />
-          </div>
+          </div>}
           </div>
           <div className="refreshIcon" onClick={() => setRefresh(Math.random())}>
           <RefreshIcon style={{ fontSize: 30}}/>
