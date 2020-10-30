@@ -28,6 +28,8 @@ const DashBoard = () => {
   const [isGrid, setIsGrid] = useState(true)
   const [showCheckBox, setShowCheckBox] = useState(true)
   let count = 0
+  let itemCount = 0
+  let reminderArray = []
 
   useEffect(() => {
     getNoteList()
@@ -45,6 +47,20 @@ const DashBoard = () => {
       count = count + 1 
     }
     return count
+  }
+
+  const handleReminderArray = (reminderLength, value) => {
+    if(reminderLength === value){
+      count = count + 1
+    }
+    return count
+  }
+
+  const handleItemLength = (itemLength, value) => {
+    if(itemLength === value){
+      itemCount = itemCount + 1
+    }
+    return itemCount
   }
 
   return (
@@ -126,7 +142,7 @@ const DashBoard = () => {
                     <React.Fragment key={index}>
                     {item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
                       item.reminder.map((reminderIndex)=>(
-                        <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>
+                      <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>
                       )): null
                     }
                   </React.Fragment>
@@ -180,9 +196,15 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                   {!item.isPined && item.reminder !== undefined && item.isDeleted === false && item.isArchived === false ?
-                    item.reminder.map((reminderIndex)=>(
-                      <DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>
-                    )): null
+                    item.reminder.map((reminderIndex)=>{
+                      reminderArray.push(item)
+                     return (<DisplayCard key={reminderIndex} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/>)
+                    }): <React.Fragment>
+                      {
+                        handleReminderArray(reminderArray.length, 0) === noteList.length - handleItemLength(item.reminder.length, 1) && 
+                          <div className="searchText">Reminder note not found</div>
+                      }
+                    </React.Fragment>
                   }
                 </React.Fragment>
                 )
