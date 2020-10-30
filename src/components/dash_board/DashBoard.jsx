@@ -63,14 +63,14 @@ const DashBoard = () => {
     return itemCount
   }
 
-  const handleArchiveFalseNote = (value) =>{
+  const handleFalseNote = (value) =>{
     if(value === false){
       count = count + 1
     }
     return count
   }
 
-  const handleArchiveTrueNote = (value) =>{
+  const handleTrueNote = (value) =>{
     if(value === true){
       itemCount = itemCount + 1
     }
@@ -196,7 +196,7 @@ const DashBoard = () => {
                     {!item.isPined && item.isArchived && item.isDeleted === false?
                       <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : 
                         <React.Fragment>
-                          {handleArchiveFalseNote(item.isArchived) === noteList.length - handleArchiveTrueNote(item.isArchived) &&
+                          {handleFalseNote(item.isArchived) === noteList.length - handleTrueNote(item.isArchived) &&
                            <div className="searchText">Archive note not found</div>
                           }
                         </React.Fragment>
@@ -208,7 +208,13 @@ const DashBoard = () => {
                 return(
                   <React.Fragment key={index}>
                   {!item.isPined && item.isDeleted === true ?
-                    <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : null}
+                    <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : 
+                    <React.Fragment>
+                      {handleFalseNote(item.isDeleted) === noteList.length - handleTrueNote(item.isDeleted) &&
+                      <div className="searchText">Trash note not found</div>
+                      }
+                  </React.Fragment>
+                    }
                   </React.Fragment>
                 )
               }
