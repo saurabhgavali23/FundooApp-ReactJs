@@ -43,6 +43,11 @@ const theme = createMuiTheme({
       gutters:{
         borderBottomRightRadius: 20,
         borderTopRightRadius: 20
+      },
+      root:{
+        "&$selected":{
+          backgroundColor: '#f5a453'
+        }
       }
     }
 }
@@ -53,6 +58,7 @@ const NoteDrawer = ({setSelectCard}) => {
   const [openEditLabels, setOpenEditLabels] = useState(false)
   const [labelList, setLabelList] = useState([])
   const [drawerLabelRefresh, setDrawerLabelRefresh] = useState(Math.random())
+  const [selected, setSelected] = useState('')
 
   useEffect(() => {
     getNoteLabelList().then(res=>{
@@ -82,13 +88,19 @@ const NoteDrawer = ({setSelectCard}) => {
         >
         <div className="list">
         <List>
-            <ListItem className="note" onClick={()=> setSelectCard('note')}>
+            <ListItem className="note" 
+            selected={selected === 'note' ? true : false}
+            onClickCapture={() => setSelected('note')}
+            onClick={()=> setSelectCard('note')}>
               <ListItemIcon>
                 <NoteIcon/>
               </ListItemIcon>
               <ListItemText>Note</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('Reminder')}>
+            <ListItem className="note" 
+            selected={selected === 'reminder' ? true : false}
+            onClickCapture={() => setSelected('reminder')}
+            onClick={()=> setSelectCard('Reminder')}>
               <ListItemIcon>
                 <ReminderIcon/>
               </ListItemIcon>
@@ -96,7 +108,11 @@ const NoteDrawer = ({setSelectCard}) => {
             </ListItem>
             {labelList.length !== 0 && (
               labelList.map((item, index)=>(
-            <ListItem key={index} className="note" onClick={()=> setSelectCard(item.label)}>
+            <ListItem key={index} 
+            className="note"
+            selected={selected === item.label ? true : false}
+            onClickCapture={() => setSelected(item.label)}
+            onClick={()=> setSelectCard(item.label)}>
               <ListItemIcon>
                 <Label/>
               </ListItemIcon>
@@ -104,19 +120,28 @@ const NoteDrawer = ({setSelectCard}) => {
             </ListItem>
               )))
             }
-            <ListItem className="note" onClick={()=> setOpenEditLabels(!openEditLabels)}>
+            <ListItem className="note" 
+            selected={selected === 'editLabel' ? true : false}
+            onClickCapture={() => setSelected('editLabel')}
+            onClick={()=> setOpenEditLabels(!openEditLabels)}>
               <ListItemIcon>
                <EditIcon/>
               </ListItemIcon>
               <ListItemText>Edit labels</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('isArchived')}>
+            <ListItem className="note" 
+            selected={selected === 'archive' ? true : false}
+            onClickCapture={() => setSelected('archive')}
+            onClick={()=> setSelectCard('isArchived')}>
               <ListItemIcon>
                 <ArchiveIcon/>
               </ListItemIcon>
               <ListItemText>Archive</ListItemText>
             </ListItem>
-            <ListItem className="note" onClick={()=> setSelectCard('Trash')}>
+            <ListItem className="note" 
+            selected={selected === 'trash' ? true : false}
+            onClickCapture={() => setSelected('trash')}
+            onClick={()=> setSelectCard('Trash')}>
               <ListItemIcon>
                 <TrashIcon/>
               </ListItemIcon>
