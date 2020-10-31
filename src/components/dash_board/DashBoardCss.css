@@ -8,6 +8,8 @@
     height: 46px !important;
     box-shadow: 1px 1px 6px #A9A9A9 !important;
     border-radius: 10px !important;
+    display: flex;
+    align-items: center;
 }
 .subCardContainer{
     width: 100%;
