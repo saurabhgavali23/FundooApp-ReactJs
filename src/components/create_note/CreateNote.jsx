@@ -235,7 +235,7 @@ const CreateNote = ({ collabUser, setShowCard, item, setIsModalOpen, setRefresh,
               icon={<AccessTimeIcon />}
               label={displayDateTime}
               clickable
-              color="primary"
+              className="createDisplayDateTime"
               onDelete={handleDeleteChip}
             />
           ) : null}
