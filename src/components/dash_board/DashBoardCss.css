@@ -62,6 +62,21 @@
 .searchText{
     margin-left: 40%;
 }
+.trashContainer{
+    margin-left: 30%;
+}
+.trashText{
+    font-size: 2rem;
+    opacity: 9%;
+    display: flex;
+    align-items: center;
+}
+.trashImage{
+    margin: 10%;
+    display: flex;
+    align-items: center;
+    opacity: 9%;
+}
 
 @media (max-Width: 360px){
     .cardContainer{

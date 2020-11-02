@@ -15,6 +15,7 @@ import { getNoteList } from "../../services/NoteServices";
 import DisplayCard from "../display_card/DisplayCard";
 import Collaborator from "../collaborator/Collaborator";
 import Appbar from "../app_bar/Appbar";
+import Trash from '../../images/trash.png'
 
 const DashBoard = () => {
   const [showCard, setShowCard] = useState("take_note");
@@ -211,7 +212,12 @@ const DashBoard = () => {
                     <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : 
                     <React.Fragment>
                       {handleFalseNote(item.isDeleted) === noteList.length - handleTrueNote(item.isDeleted) &&
-                      <div className="searchText">Trash note not found</div>
+                      <div className="trashContainer">
+                        <img src={Trash} alt="trash" 
+                        className="trashImage"
+                        style={{width: '200px', height: '200px'}}/>
+                      <div className="trashText">Trash note not found</div>  
+                      </div>
                       }
                   </React.Fragment>
                     }
@@ -270,7 +276,8 @@ const DashBoard = () => {
                     <DisplayCard item={searchItem} setPinText={setPinText} isGrid={isGrid}/>: 
                     <React.Fragment>
                       {handleSearchNote(searchItem.title) === noteList.length && 
-                      <div className="searchText">No matching results.</div>}
+                        <div className="searchText">No matching results.</div>
+                      }
                     </React.Fragment>
                     }
                   </React.Fragment>
