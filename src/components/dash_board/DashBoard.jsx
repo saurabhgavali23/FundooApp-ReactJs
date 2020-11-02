@@ -17,6 +17,7 @@ import Collaborator from "../collaborator/Collaborator";
 import Appbar from "../app_bar/Appbar";
 import Trash from '../../images/trash.png'
 import ReminderImage from "../../images/reminder.png"
+import ArchivedImage from "../../images/archive.png"
 
 const DashBoard = () => {
   const [showCard, setShowCard] = useState("take_note");
@@ -199,7 +200,12 @@ const DashBoard = () => {
                       <DisplayCard key={index} item={item} setPinText={setPinText} setRefresh={setRefresh} isGrid={isGrid}/> : 
                         <React.Fragment>
                           {handleFalseNote(item.isArchived) === noteList.length - handleTrueNote(item.isArchived) &&
-                           <div className="searchText">Archive note not found</div>
+                          <div className="trashContainer">
+                            <img src={ArchivedImage} alt="trash" 
+                            className="trashImage"
+                            style={{width: '200px', height: '200px'}}/>
+                           <div className="trashText">Archive note not found</div>
+                           </div>
                           }
                         </React.Fragment>
                       }
