@@ -63,6 +63,30 @@
     display: flex;
     align-items: center;
 }
+.mobiSearchInput{
+    width: 180px;
+    padding: 1%;
+    margin-left: 2%;
+}
+.mobiSearch{
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 45px;
+    flex-direction: row;
+    background-color: aliceblue;
+    border-radius: 5px;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+}
+.clearIcon{
+    font-size: 1rem;
+    position: absolute;
+    color: black;
+    display: flex;
+    right: 0;
+}
 
 @media (max-Width: 360px){
     .searchInput{

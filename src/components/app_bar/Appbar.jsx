@@ -9,9 +9,11 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ListIcon from '@material-ui/icons/ViewAgendaOutlined';
 import GridOutlinedIcon from '@material-ui/icons/ViewModuleOutlined';
 import { useEffect, useState } from "react";
+import ClearIcon from '@material-ui/icons/Clear';
 
 const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid, isGrid}) => {
   const [match, setMatch] = useState(window.innerWidth)
+  const [showSearchBar, setShowSearchBar] = useState(true)
   const breakpoint = 360
 
   useEffect(() => {
@@ -39,12 +41,26 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
             {title}
           </Typography>
           {match === breakpoint ?
-          <div className="mobiSearchIcon">
-            <SearchIcon style={{ fontSize: 30}}/> 
+          <div>
+            {showSearchBar ? 
+            <div className="mobiSearchIcon"
+             onClick={() => setShowSearchBar(!showSearchBar)}>
+             <SearchIcon style={{ fontSize: 30}}/> 
+            </div> :
+            <div className="mobiSearch">
+              <InputBase placeholder="Search" 
+                className="mobiSearchInput" multiline 
+                onChange={(e) => setSearchNote(e.target.value)}
+              />
+              <ClearIcon className="clearIcon"
+                onClick={() => setShowSearchBar(!showSearchBar)}
+              />
+            </div>
+            }
           </div> :
           <div className="search">
             <div className="searchIcon">
-            <SearchIcon style={{ fontSize: 30}}/>
+            <SearchIcon style={{ fontSize: '1rem'}}/>
             </div>
             <InputBase placeholder="Search" 
             className="searchInput" multiline 
@@ -53,7 +69,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
           </div>}
           </div>
           <div className="refreshIcon" onClick={() => setRefresh(Math.random())}>
-          <RefreshIcon style={{ fontSize: 30}}/>
+          <RefreshIcon style={{ fontSize: '2rem'}}/>
           </div>
           <div className="listAndGridViewContainer">
             {isGrid ?
