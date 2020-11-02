@@ -45,7 +45,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
             {showSearchBar ? 
             <div className="mobiSearchIcon"
              onClick={() => setShowSearchBar(!showSearchBar)}>
-             <SearchIcon style={{ fontSize: 30}}/> 
+             <SearchIcon style={{ fontSize: '2rem'}}/> 
             </div> :
             <div className="mobiSearch">
               <InputBase placeholder="Search" 
@@ -60,7 +60,7 @@ const Appbar = ({selectCard, setSelectCard, setRefresh, setSearchNote, setIsGrid
           </div> :
           <div className="search">
             <div className="searchIcon">
-            <SearchIcon style={{ fontSize: '1rem'}}/>
+            <SearchIcon style={{ fontSize: '2rem'}}/>
             </div>
             <InputBase placeholder="Search" 
             className="searchInput" multiline 
