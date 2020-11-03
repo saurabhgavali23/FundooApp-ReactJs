@@ -45,3 +45,7 @@
     display: flex !important;
     align-items: center !important;
 }
+.cartText{
+    margin-top: 2% !important;
+    margin-left: 25% !important;
+}

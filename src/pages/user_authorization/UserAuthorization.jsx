@@ -1,4 +1,12 @@
-import { AppBar, Card, CardContent, Container, Grid, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import "../user_authorization/UserAuthentication.css";
 
@@ -15,7 +23,9 @@ const UserAuthorization = () => {
       <Container className="mainContainer">
         <Grid container className="gridContainer" alignItems="center">
           <Grid item xs={12}>
-            <Typography variant="h5" className="offerText">fundooNotes offered. Choose below service to Register.</Typography>
+            <Typography variant="h5" className="offerText">
+              fundooNotes offered. Choose below service to Register.
+            </Typography>
             <Grid
               container
               justify="center"
@@ -40,6 +50,7 @@ const UserAuthorization = () => {
                     </div>
                   </div>
                 </Card>
+                <Typography className="cartText">ADD TO CART</Typography>
               </Grid>
               <Grid item>
                 <Card className="paper">
@@ -58,6 +69,7 @@ const UserAuthorization = () => {
                     </div>
                   </div>
                 </Card>
+                <Typography className="cartText">ADD TO CART</Typography>
               </Grid>
             </Grid>
           </Grid>
