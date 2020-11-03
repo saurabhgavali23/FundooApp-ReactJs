@@ -41,6 +41,7 @@
     font-size: larger;
 }
 .offerText{
+    margin-top: 10% !important;
     margin-bottom: 10% !important;
     display: flex !important;
     align-items: center !important;
