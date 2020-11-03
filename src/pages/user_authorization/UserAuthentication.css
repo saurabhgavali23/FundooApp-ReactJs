@@ -1,0 +1,39 @@
+.paper{
+    width: 17vw;
+    height: 43vh;
+    padding: 20px !important;
+    box-shadow: 30px 40px #888888 !important;
+    cursor: pointer;
+}
+.paper:hover{
+    box-shadow: 30px 40px #f5a453 !important;
+}
+.gridContainer{
+    height: 100vh;
+}
+.subGridContainer{
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.headerText{
+    font-size: x-large;
+    padding: 0 !important;
+}
+.serviceText{
+    padding: 0 !important;
+    color: blue;
+}
+.bulletPoint{
+    margin-top: 5%;
+    margin-right: 10%;
+    font-weight: bold;
+    font-size: larger;
+}
+.bulletPointdiv{
+    display: flex;
+    flex-direction: row;
+}
+.priceTag{
+    margin-top: 5%;
+    font-size: larger;
+}

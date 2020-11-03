@@ -8,6 +8,7 @@ import Login from '../pages/login/Login'
 import Registration from '../pages/registration/Registration'
 import SendEmail from '../pages/send_email/SendEmail'
 import ResetPassword from '../pages/reset_password/ResetPassword'
+import UserAuthorization from '../pages/user_authorization/UserAuthorization'
 
 const Routes = () => {
     const [state, setState] = useState({ isActive: false, status: ''})
@@ -36,6 +37,7 @@ const Routes = () => {
                 <Route path={'/resetpassword/:token'}>
                     <ResetPassword openSnackBar={openSnackBar}/>
                 </Route>
+                <Route path={'/home'} component={UserAuthorization}/>
             </Switch>
             </BrowserRouter>
             <div className={
