@@ -6,6 +6,8 @@
     cursor: pointer;
 }
 .paper:hover{
+    width: 250px;
+    height: 290px;
     box-shadow: 30px 40px #f5a453 !important;
 }
 .mainHomeContainer{
