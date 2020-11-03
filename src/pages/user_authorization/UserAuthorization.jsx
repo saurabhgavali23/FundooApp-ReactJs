@@ -12,9 +12,10 @@ const UserAuthorization = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="sm">
+      <Container className="mainContainer">
         <Grid container className="gridContainer" alignItems="center">
           <Grid item xs={12}>
+            <Typography variant="h5" className="offerText">fundooNotes offered. Choose below service to Register.</Typography>
             <Grid
               container
               justify="center"

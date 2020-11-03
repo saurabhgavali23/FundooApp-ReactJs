@@ -1,12 +1,15 @@
 .paper{
-    width: 17vw;
-    height: 43vh;
+    width: 210px;
+    height: 290px;
     padding: 20px !important;
     box-shadow: 30px 40px #888888 !important;
     cursor: pointer;
 }
 .paper:hover{
     box-shadow: 30px 40px #f5a453 !important;
+}
+.mainContainer{
+    width: 650px !important;
 }
 .gridContainer{
     height: 100vh;
@@ -36,4 +39,9 @@
 .priceTag{
     margin-top: 5%;
     font-size: larger;
+}
+.offerText{
+    margin-bottom: 10% !important;
+    display: flex !important;
+    align-items: center !important;
 }
