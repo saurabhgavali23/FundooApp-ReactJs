@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import "../user_authorization/UserAuthentication.css";
 
 const UserAuthorization = () => {
@@ -20,8 +21,8 @@ const UserAuthorization = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container className="mainContainer">
-        <Grid container className="gridContainer" alignItems="center">
+      <Container className="mainHomeContainer">
+        <Grid container className="gridHomeContainer" alignItems="center">
           <Grid item xs={12}>
             <Typography variant="h5" className="offerText">
               fundooNotes offered. Choose below service to Register.
@@ -71,6 +72,11 @@ const UserAuthorization = () => {
                 </Card>
                 <Typography className="cartText">ADD TO CART</Typography>
               </Grid>
+            </Grid>
+            <Grid item className="linkText">
+            <Link to="/login" >
+                {"Sign in insted"}
+            </Link>
             </Grid>
           </Grid>
         </Grid>

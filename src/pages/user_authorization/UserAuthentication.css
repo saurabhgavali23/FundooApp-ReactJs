@@ -8,10 +8,10 @@
 .paper:hover{
     box-shadow: 30px 40px #f5a453 !important;
 }
-.mainContainer{
+.mainHomeContainer{
     width: 650px !important;
 }
-.gridContainer{
+.gridHomeContainer{
     height: 100vh;
 }
 .subGridContainer{
@@ -48,4 +48,8 @@
 .cartText{
     margin-top: 2% !important;
     margin-left: 25% !important;
+}
+.linkText{
+    margin-top: 10% !important;
+    margin-left: 45% !important;
 }
