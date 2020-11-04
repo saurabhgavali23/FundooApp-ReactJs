@@ -1,17 +1,23 @@
 import {
   AppBar,
+  Backdrop,
   Card,
   CardContent,
   Container,
+  Fade,
   Grid,
+  Modal,
   Toolbar,
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../user_authorization/UserAuthentication.css";
 
 const UserAuthorization = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div>
       <AppBar position="fixed">
@@ -34,7 +40,7 @@ const UserAuthorization = () => {
               className="subGridContainer"
             >
               <Grid item>
-                <Card className="paper">
+                <Card className="paper" onClick={() => setOpenModal(!openModal)}>
                   <CardContent className="headerText">
                     price: $99 per month
                   </CardContent>
@@ -54,7 +60,7 @@ const UserAuthorization = () => {
                 <Typography className="cartText">ADD TO CART</Typography>
               </Grid>
               <Grid item>
-                <Card className="paper">
+                <Card className="paper" onClick={() => setOpenModal(!openModal)}>
                   <CardContent className="headerText">
                     price: $49 per month
                   </CardContent>
@@ -74,13 +80,25 @@ const UserAuthorization = () => {
               </Grid>
             </Grid>
             <Grid item className="linkText">
-            <Link to="/login" >
-                {"Sign in insted"}
-            </Link>
+              <Link to="/login">{"Sign in insted"}</Link>
             </Grid>
           </Grid>
         </Grid>
       </Container>
+      <Modal
+        open={openModal}
+        onClose={() => setOpenModal(!openModal)}
+        closeAfterTransition
+        className="modal"
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openModal}>
+          <div>open Modal</div>
+        </Fade>
+      </Modal>
     </div>
   );
 };
