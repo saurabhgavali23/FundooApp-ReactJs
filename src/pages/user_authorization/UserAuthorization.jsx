@@ -18,6 +18,19 @@ import "../user_authorization/UserAuthentication.css";
 
 const UserAuthorization = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [serviceText, setServiceText] = useState("");
+  const [priceText, setPriceText] = useState("");
+
+  const handelText = (value) => {
+    setOpenModal(!openModal);
+    if (value === "advance") {
+      setServiceText("Advanced");
+      setPriceText("$99/month");
+    } else {
+      setServiceText("Basic");
+      setPriceText("$49/month");
+    }
+  };
 
   return (
     <div>
@@ -41,7 +54,7 @@ const UserAuthorization = () => {
               className="subGridContainer"
             >
               <Grid item>
-                <Card className="paper" onClick={() => setOpenModal(!openModal)}>
+                <Card className="paper" onClick={() => handelText("advance")}>
                   <CardContent className="headerText">
                     price: $99 per month
                   </CardContent>
@@ -61,7 +74,7 @@ const UserAuthorization = () => {
                 <Typography className="cartText">ADD TO CART</Typography>
               </Grid>
               <Grid item>
-                <Card className="paper" onClick={() => setOpenModal(!openModal)}>
+                <Card className="paper" onClick={() => handelText("basic")}>
                   <CardContent className="headerText">
                     price: $49 per month
                   </CardContent>
@@ -97,7 +110,11 @@ const UserAuthorization = () => {
         }}
       >
         <Fade in={openModal}>
-          <NoteFeatures setOpenModal={setOpenModal}/>
+          <NoteFeatures
+            serviceText={serviceText}
+            priceText={priceText}
+            setOpenModal={setOpenModal}
+          />
         </Fade>
       </Modal>
     </div>
