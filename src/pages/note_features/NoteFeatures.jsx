@@ -1,6 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import "../note_features/NoteFeatures.css";
+import FeatureTabPanel from "../tab_panel/FeatureTabPanel";
 
 const NoteFeatures = () => {
   return (
@@ -12,6 +13,9 @@ const NoteFeatures = () => {
         <Typography variant="body1" className="featureTitleText2">
           $99/monthe
         </Typography>
+      </div>
+      <div>
+        <FeatureTabPanel />
       </div>
     </div>
   );
