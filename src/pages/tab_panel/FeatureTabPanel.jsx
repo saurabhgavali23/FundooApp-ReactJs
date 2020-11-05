@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 function TabPanel(props) {
+  const classes = useStyles();
   const { children, value, index, ...other } = props;
 
   return (
@@ -20,7 +21,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={3} className={classes.boxRoot}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -44,8 +45,11 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 584,
+    width: '100%',
   },
+  boxRoot:{
+    padding: '15px'
+  }
 }));
 
 const FeatureTabPanel = () => {
