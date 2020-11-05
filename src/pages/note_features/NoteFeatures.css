@@ -20,3 +20,13 @@
     background-color: white;
     border-radius: 5px;
 }
+.featureButton{
+    padding: 0 5px !important;
+    font-size: small !important;
+    background-color: #0e89c2 !important;
+}
+.featureButtonContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}

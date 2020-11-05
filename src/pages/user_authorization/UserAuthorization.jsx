@@ -97,7 +97,7 @@ const UserAuthorization = () => {
         }}
       >
         <Fade in={openModal}>
-          <NoteFeatures/>
+          <NoteFeatures setOpenModal={setOpenModal}/>
         </Fade>
       </Modal>
     </div>

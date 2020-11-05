@@ -1,9 +1,9 @@
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import React from "react";
 import "../note_features/NoteFeatures.css";
 import FeatureTabPanel from "../tab_panel/FeatureTabPanel";
 
-const NoteFeatures = () => {
+const NoteFeatures = ({ setOpenModal }) => {
   return (
     <div className="featureMainContainer">
       <div className="featureHeaderText">
@@ -16,6 +16,18 @@ const NoteFeatures = () => {
       </div>
       <div>
         <FeatureTabPanel />
+      </div>
+      <div className="featureButtonContainer">
+        <Button
+          variant="contained"
+          className="featureButton"
+          onClick={() => setOpenModal(false)}
+        >
+          Remove
+        </Button>
+        <Button variant="contained" className="featureButton">
+          Proceed to checkout
+        </Button>
       </div>
     </div>
   );
