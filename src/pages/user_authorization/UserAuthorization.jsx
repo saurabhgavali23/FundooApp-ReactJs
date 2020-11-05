@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import NoteFeatures from "../note_features/NoteFeatures";
 import "../user_authorization/UserAuthentication.css";
 
 const UserAuthorization = () => {
@@ -96,7 +97,7 @@ const UserAuthorization = () => {
         }}
       >
         <Fade in={openModal}>
-          <div>open Modal</div>
+          <NoteFeatures/>
         </Fade>
       </Modal>
     </div>

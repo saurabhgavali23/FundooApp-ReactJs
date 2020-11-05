@@ -1,0 +1,22 @@
+.featureHeaderText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #f5a453;
+    height: 25%;
+    padding: 2%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.featureTitleText1{
+    margin-left: 10% !important;
+}
+.featureTitleText2{
+    margin-right: 10% !important;
+}
+.featureMainContainer{
+    width: 45%;
+    height: 30%;
+    background-color: white;
+    border-radius: 5px;
+}
